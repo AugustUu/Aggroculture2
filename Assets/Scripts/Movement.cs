@@ -9,13 +9,15 @@ public class Movement : MonoBehaviour
 
 
     public CharacterController controller;
-    private Vector3 player_velocity;
-    private bool grounded_player;
+    public new Camera camera;
 
-
+    public Transform model_transform;
     public float player_speed = 2.0f;
 
-    public new Camera camera;
+
+
+    private Vector3 player_velocity;
+    private bool grounded_player;
 
     private float rotation = 0;
     private float mouse_start = 0;
@@ -33,25 +35,28 @@ public class Movement : MonoBehaviour
             player_velocity.y = 0f;
         }
 
-        Vector3 player_screen_pos = camera.WorldToScreenPoint(this.transform.position);
+        Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
         Vector3 mouse_pos = Input.mousePosition;
 
-        if (Input.GetButtonDown("Aim"))
+        if (Input.GetButtonDown("Drag"))
         {
             mouse_start = mouse_pos.x;
         }
-        else if (Input.GetButton("Aim"))
+        else if (Input.GetButton("Drag"))
         {
-            float mouse_pos_reletive = mouse_pos.x - mouse_start;
-            rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos_reletive, player_screen_pos.x - mouse_pos_reletive);
-            this.transform.rotation = Quaternion.Euler(0, (float)(rotation * 180f * Math.PI), 0);
-            
-            Debug.Log(player_screen_pos - mouse_pos);
+            transform.Rotate(new Vector3(0, mouse_pos.x - mouse_start, 0));
+            mouse_start = mouse_pos.x;
+        }
+
+        if (Input.GetButton("Aim"))
+        {
+            rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y);
         }
 
 
 
-        //transform.rotation.y += 1;
+
+        model_transform.rotation = Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0);
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * player_speed;
         controller.Move(move);
