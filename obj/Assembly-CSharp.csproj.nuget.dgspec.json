@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/xn5/Documents/games/Aggroculture2/Assembly-CSharp.csproj": {}
+    "c:\\Users\\auusitalo8059\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {}
   },
   "projects": {
-    "/home/xn5/Documents/games/Aggroculture2/Assembly-CSharp.csproj": {
+    "c:\\Users\\auusitalo8059\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/xn5/Documents/games/Aggroculture2/Assembly-CSharp.csproj",
+        "projectUniqueName": "c:\\Users\\auusitalo8059\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
         "projectName": "Assembly-CSharp",
-        "projectPath": "/home/xn5/Documents/games/Aggroculture2/Assembly-CSharp.csproj",
-        "packagesPath": "/home/xn5/.nuget/packages/",
-        "outputPath": "/home/xn5/Documents/games/Aggroculture2/obj/",
+        "projectPath": "c:\\Users\\auusitalo8059\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
+        "packagesPath": "C:\\Users\\auusitalo8059\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\auusitalo8059\\Documents\\GitHub\\Aggroculture2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/home/xn5/.local/share/godot/mono/GodotNuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/home/xn5/.nuget/NuGet/NuGet.Config",
-          "/home/xn5/.nuget/NuGet/config/Godot.Offline.Config"
+          "C:\\Users\\auusitalo8059\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -52,7 +48,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

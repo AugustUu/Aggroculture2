@@ -22,13 +22,14 @@ public class Movement : MonoBehaviour
     private float rotation = 0;
     private float mouse_start = 0;
 
-
     private void Start()
     {
     }
 
     void Update()
     {
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
         grounded_player = controller.isGrounded;
         if (grounded_player && player_velocity.y < 0)
         {
@@ -51,15 +52,20 @@ public class Movement : MonoBehaviour
         if (Input.GetButton("Aim"))
         {
             rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y);
+        }else if(direction != Vector3.zero){
+            rotation = Mathf.Atan2(direction.x,direction.z);
         }
 
+        if(direction != Vector3.zero){
+            rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
+        }
+        
 
 
-
-        model_transform.rotation = Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0);
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * player_speed;
-        controller.Move(move);
+        model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 5);
+        //Debug.Log(camera.transform.rotation);
+        Vector3 move = direction * Time.deltaTime * player_speed;
+        controller.Move(this.transform.TransformDirection(move));
 
     }
 
