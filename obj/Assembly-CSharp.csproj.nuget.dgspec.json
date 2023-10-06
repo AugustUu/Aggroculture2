@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {}
+    "C:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {
+    "C:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
+        "projectUniqueName": "C:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
         "projectName": "Assembly-CSharp",
-        "projectPath": "c:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
+        "projectPath": "C:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\Assembly-CSharp.csproj",
         "packagesPath": "C:\\Users\\tschmidt8320\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\obj\\",
+        "outputPath": "C:\\Users\\tschmidt8320\\Documents\\GitHub\\Aggroculture2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tschmidt8320\\AppData\\Roaming\\NuGet\\NuGet.Config"

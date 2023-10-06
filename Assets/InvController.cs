@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class InvController : MonoBehaviour
 {
-    [SerializeField] ItemGrid selected_item_grid;
+    [SerializeField] public ItemGrid selected_item_grid;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (selected_item_grid == null) {return;}
+
+        Debug.Log(selected_item_grid.GetGridPos(Input.mousePosition));
     }
 }

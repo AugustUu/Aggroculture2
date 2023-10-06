@@ -59,6 +59,7 @@
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\ItemGrid.cs" />
     <Compile Include="Assets\InvController.cs" />
+    <Compile Include="Assets\GridInteract.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
