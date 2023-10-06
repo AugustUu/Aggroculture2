@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     public Transform model_transform;
     public float player_speed = 2.0f;
 
+    public int sens = 300;
 
 
     private Vector3 player_velocity;
@@ -45,20 +46,21 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetButton("Drag"))
         {
-            transform.Rotate(new Vector3(0, mouse_pos.x - mouse_start, 0));
+            transform.Rotate(new Vector3(0, (mouse_pos.x - mouse_start)/sens, 0));
             mouse_start = mouse_pos.x;
         }
 
         if (Input.GetButton("Aim"))
         {
             rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y);
+            rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg + Mathf.PI;
         }else if(direction != Vector3.zero){
             rotation = Mathf.Atan2(direction.x,direction.z);
-        }
-
-        if(direction != Vector3.zero){
             rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
         }
+
+        
+        
         
 
 

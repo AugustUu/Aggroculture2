@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638318655148593737
-    m_Hash: 412227582
+      ticks: 638321235827716146
+    m_Hash: 180375877
   m_LockFileStatus:
     m_FilePath: C:/Users/auusitalo8059/Documents/GitHub/Aggroculture2/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638318655148603711
-    m_Hash: 2873382547
+      ticks: 638321235827785959
+    m_Hash: 1287324363
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
