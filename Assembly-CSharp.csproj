@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TimeCycle.cs" />
+    <Compile Include="Assets\HealthSystem.cs" />
     <Compile Include="Assets\Movement.cs" />
   </ItemGroup>
   <ItemGroup>
