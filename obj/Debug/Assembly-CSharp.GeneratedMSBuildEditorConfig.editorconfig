@@ -1,3 +1,7 @@
 is_global = true
 build_property.RootNamespace = 
+<<<<<<< Updated upstream
 build_property.ProjectDir = c:\Users\ianml\OneDrive\Documents\Aggroculture2\
+=======
+build_property.ProjectDir = /home/xn5/Documents/games/Aggroculture2/
+>>>>>>> Stashed changes
