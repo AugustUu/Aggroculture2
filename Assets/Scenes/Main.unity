@@ -454,9 +454,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1023784120}
   - component: {fileID: 1023784122}
-  - component: {fileID: 1023784121}
+  - component: {fileID: 1023784123}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -477,18 +477,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1211266397}
   m_LocalEulerAnglesHint: {x: 0.18, y: 0, z: 0}
---- !u!114 &1023784121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023784119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7b7c43fed02c144db6cd94a2bb9a93b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1023784122
 Light:
   m_ObjectHideFlags: 0
@@ -551,6 +539,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1023784123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023784119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252421f6d1b86f8d2ad40b2977572eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1064840729
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +700,8 @@ GameObject:
   - component: {fileID: 1211266393}
   - component: {fileID: 1211266392}
   - component: {fileID: 1211266391}
+  - component: {fileID: 1211266398}
+  - component: {fileID: 1211266399}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -742,12 +744,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211266390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8d9641a18ca4b4690db879cdb7c0d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3aa396ee20f8788d7ac251e6aaae4ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1211266391}
-  camera: {fileID: 19397675}
-  model_transform: {fileID: 1445140665}
+  camera: {fileID: 0}
+  model_transform: {fileID: 0}
   player_speed: 10
   sens: 10
 --- !u!54 &1211266393
@@ -866,6 +868,49 @@ Transform:
   - {fileID: 1023784120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211266398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211266390}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 1313bb1e65904aba09804f1eb7e25528, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1211266399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211266390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111cf9efda50e242982a46116f71982a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_input: {fileID: -944628639613478452, guid: 1313bb1e65904aba09804f1eb7e25528, type: 3}
 --- !u!1 &1445140664
 GameObject:
   m_ObjectHideFlags: 0
