@@ -213,8 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_item_grid: {fileID: 0}
-  tile_size_width: 24
-  tile_size_height: 24
+  grid_width: 10
+  grid_height: 15
+  inv_item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
 --- !u!114 &74166963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973222c367bcb524a8381a485878313a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected_item_grid: {fileID: 74166962}
+  selected_item_grid: {fileID: 0}
 --- !u!1 &2047849631
 GameObject:
   m_ObjectHideFlags: 0
