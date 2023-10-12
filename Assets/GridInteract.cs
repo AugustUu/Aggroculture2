@@ -8,10 +8,6 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public InvController inv_controller;
     public ItemGrid item_grid;
 
-    public void  Awake()
-    {
-
-    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         inv_controller.selected_item_grid = item_grid;

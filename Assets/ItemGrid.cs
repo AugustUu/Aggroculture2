@@ -8,16 +8,27 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] ItemGrid selected_item_grid;
     [SerializeField] public int grid_width = 10;
     [SerializeField] public int grid_height = 15;
+    [SerializeField] public GameObject canvas;
 
     [SerializeField] GameObject inv_item_prefab;
 
     RectTransform rect_transform;
     private void Start(){
-        scaled_tile_size = local_tile_size * transform.localScale.x;
+        scaled_tile_size = local_tile_size * transform.localScale.y;
+        canvas_scale = canvas.transform.localScale.y;
+        canvas_tile_size =  scaled_tile_size * canvas_scale;
         rect_transform = GetComponent<RectTransform>();
         InvInit(grid_width, grid_height);
         InvItem inv_item = Instantiate(inv_item_prefab).GetComponent<InvItem>();
-        PlaceItem(inv_item, 3, 2);
+        PlaceItem(inv_item, 4, 5);
+    }
+
+    private void Update(){
+        if(canvas_scale != canvas.transform.localScale.y){
+            canvas_scale = canvas.transform.localScale.y;
+            canvas_tile_size = scaled_tile_size * canvas_scale;
+        }
+
     }
 
     private void InvInit(int width, int height){
@@ -26,7 +37,9 @@ public class ItemGrid : MonoBehaviour
         rect_transform.sizeDelta = size;
     }
     public static float local_tile_size = 16;
-    public static float scaled_tile_size;
+    public float scaled_tile_size;
+    public float canvas_scale;
+    public static float canvas_tile_size;
 
     InvItem[,] inv_item_slot;
 
@@ -36,9 +49,15 @@ public class ItemGrid : MonoBehaviour
     public Vector2Int GetGridPos(Vector2 mouse_pos){
         grid_pos.x = mouse_pos.x - rect_transform.position.x;
         grid_pos.y = rect_transform.position.y - mouse_pos.y;
-        tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / scaled_tile_size), 0, grid_width - 1);
-        tile_grid_pos.y = Mathf.Clamp((int) (grid_pos.y / scaled_tile_size), 0, grid_height - 1);
+        tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / canvas_tile_size), 0, grid_width - 1);
+        tile_grid_pos.y = Mathf.Clamp((int) (grid_pos.y / canvas_tile_size), 0, grid_height - 1);
         return tile_grid_pos;
+    }
+
+    public InvItem PickUpItem(int pos_x, int pos_y){
+        InvItem picked_up_item = inv_item_slot[pos_x, pos_y];
+        inv_item_slot[pos_x, pos_y] = null;
+        return picked_up_item;
     }
 
     public void PlaceItem(InvItem inv_item, int pos_x, int pos_y){
