@@ -67,7 +67,6 @@ public class Movement : MonoBehaviour
 
 
         model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 5);
-        //Debug.Log(camera.transform.rotation);
         Vector3 move = direction * Time.deltaTime * player_speed;
         controller.Move(this.transform.TransformDirection(move));
 
