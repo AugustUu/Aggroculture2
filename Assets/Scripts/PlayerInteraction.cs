@@ -18,13 +18,46 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            RaycastHit hit_object;
 
-            if (Physics.Raycast(ray, out hit, 300f, 1 << 6))
+            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
             {
-                GameObject farmland = Instantiate(placeable, new Vector3(hit.point.x - (hit.point.x % 2.5f), hit.point.y, hit.point.z - (hit.point.z % 2.5f)), Quaternion.identity);
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 1f);
-                Debug.Log(hit.point);
+                if (hit_object.normal != Vector3.up) // dont place on walls
+                    return;
+
+                Vector3 scale = placeable.transform.localScale;
+
+                Vector3 position = new Vector3(
+                    Mathf.Round(hit_object.point.x / scale.x) * scale.x,
+                    hit_object.point.y,
+                    Mathf.Round(hit_object.point.z / scale.z) * scale.z
+                );
+                                                                                
+                if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
+                {
+                    GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
+                }
+                else
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+                }
+            }
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit_object;
+
+            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7))
+            {
+                FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+                if(script != null){
+                    script.plant +=1;
+                }
+                
+                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
             }
         }
     }
