@@ -29,7 +29,7 @@ public class ItemGrid : MonoBehaviour
     }
 
     private void InvInit(int width, int height){
-        inv_item_slot = new InvItem[width, height];
+        inventory = new InvItem[width, height];
         Vector2 size = new Vector2(width * local_tile_size, height * local_tile_size);
         rect_transform.sizeDelta = size;
     }
@@ -38,7 +38,7 @@ public class ItemGrid : MonoBehaviour
     public float canvas_scale;
     public static float canvas_tile_size;
 
-    InvItem[,] inv_item_slot;
+    InvItem[,] inventory;
 
     Vector2 grid_pos = new Vector2();
     Vector2Int tile_grid_pos = new Vector2Int();
@@ -52,26 +52,30 @@ public class ItemGrid : MonoBehaviour
     }
 
     public InvItem PickUpItem(Vector2Int mouse_pos){
-        InvItem picked_up_item = inv_item_slot[mouse_pos.x, mouse_pos.y];
+        InvItem picked_up_item = inventory[mouse_pos.x, mouse_pos.y];
         if(picked_up_item != null){
             for(int x = 0; x < picked_up_item.item_data.width; x++){
                 for(int y = 0; y < picked_up_item.item_data.height; y++){
-                    inv_item_slot[picked_up_item.grid_pos_x + x, picked_up_item.grid_pos_y + y] = null;
+                    inventory[picked_up_item.grid_pos_x + x, picked_up_item.grid_pos_y + y] = null;
                 }
             }
         }
         return picked_up_item;
     }
 
-    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_pos){
+    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_pos, ref InvItem overlap_item){
         if(!BoundsCheck(mouse_pos, inv_item.item_data.width, inv_item.item_data.height)){ return false; }
+
+        if(!OverlapCheck(mouse_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)){
+            return false;
+        }
 
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
 
         for(int x = 0; x < inv_item.item_data.width; x++){
             for(int y = 0; y < inv_item.item_data.height; y++){
-                inv_item_slot[mouse_pos.x + x, mouse_pos.y + y] = inv_item;
+                inventory[mouse_pos.x + x, mouse_pos.y + y] = inv_item;
             }
         }
 
@@ -89,9 +93,19 @@ public class ItemGrid : MonoBehaviour
 
     public bool BoundsCheck(Vector2Int pos, int width, int height){
         if(pos.x < 0 || pos.y < 0 || pos.x + width - 1 >= grid_width || pos.y + height - 1 >= grid_height){
-            Debug.Log(pos.x);
-            Debug.Log(pos.y);
             return false;
+        }
+        return true;
+    }
+
+    public bool OverlapCheck(Vector2Int pos, int width, int height, ref InvItem overlap_item){
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                if(inventory[pos.x + x, pos.y + y] != null){
+                    overlap_item = inventory[pos.x + x, pos.y + y];
+                    return false;
+                }
+            }
         }
         return true;
     }

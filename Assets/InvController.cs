@@ -36,8 +36,15 @@ public class InvController : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0) && selected_item != null)
                 {
-                    if(selected_item_grid.PlaceItem(selected_item, mouse_pos)){
+                    if(selected_item_grid.PlaceItem(selected_item, mouse_pos, ref overlap_item)){
                         selected_item = null;
+                    }
+                    else{
+                        if(overlap_item != null){
+                            Debug.Log(overlap_item);
+                            overlap_item = null;
+                        }
+                        Debug.Log("goop wee");
                     }
                 }
             }
