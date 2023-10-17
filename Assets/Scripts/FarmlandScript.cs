@@ -6,10 +6,22 @@ using UnityEditor;
 public class FarmlandScript : MonoBehaviour
 {
     public int plant = 0;
-    
-    void OnDrawGizmos() 
+    public int growth = 0;
+
+
+    void Start()
     {
-        Handles.Label(transform.position, "Plant: " + plant);
+        InvokeRepeating("grow", 0.0f, 1.0f);
     }
+    void OnDrawGizmos()
+    {
+        Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
+    }
+
+    void grow()
+    {
+        growth += 1;
+    }
+
 
 }
