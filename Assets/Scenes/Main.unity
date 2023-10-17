@@ -216,7 +216,6 @@ MonoBehaviour:
   grid_width: 10
   grid_height: 15
   canvas: {fileID: 2047849631}
-  inv_item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   scaled_tile_size: 0
   canvas_scale: 0
 --- !u!114 &74166963
@@ -934,6 +933,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_item_grid: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: b0faa540bcb535c44bf55976596c882d, type: 2}
+  - {fileID: 11400000, guid: 3146f198ebe7a644c87afc12be3b0c96, type: 2}
+  - {fileID: 11400000, guid: e809cff7b382af945bc172ee5f6ec3a4, type: 2}
+  item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
+  canvas_transform: {fileID: 2047849635}
 --- !u!1 &2047849631
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] public int grid_height = 15;
     [SerializeField] public GameObject canvas;
 
-    [SerializeField] GameObject inv_item_prefab;
 
     RectTransform rect_transform;
     private void Start(){
@@ -19,8 +18,6 @@ public class ItemGrid : MonoBehaviour
         canvas_tile_size =  scaled_tile_size * canvas_scale;
         rect_transform = GetComponent<RectTransform>();
         InvInit(grid_width, grid_height);
-        InvItem inv_item = Instantiate(inv_item_prefab).GetComponent<InvItem>();
-        PlaceItem(inv_item, 4, 5);
     }
 
     private void Update(){
@@ -54,21 +51,48 @@ public class ItemGrid : MonoBehaviour
         return tile_grid_pos;
     }
 
-    public InvItem PickUpItem(int pos_x, int pos_y){
-        InvItem picked_up_item = inv_item_slot[pos_x, pos_y];
-        inv_item_slot[pos_x, pos_y] = null;
+    public InvItem PickUpItem(Vector2Int mouse_pos){
+        InvItem picked_up_item = inv_item_slot[mouse_pos.x, mouse_pos.y];
+        if(picked_up_item != null){
+            for(int x = 0; x < picked_up_item.item_data.width; x++){
+                for(int y = 0; y < picked_up_item.item_data.height; y++){
+                    inv_item_slot[picked_up_item.grid_pos_x + x, picked_up_item.grid_pos_y + y] = null;
+                }
+            }
+        }
         return picked_up_item;
     }
 
-    public void PlaceItem(InvItem inv_item, int pos_x, int pos_y){
+    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_pos){
+        if(!BoundsCheck(mouse_pos, inv_item.item_data.width, inv_item.item_data.height)){ return false; }
+
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
-        item_rect_transform.SetParent(rect_transform)   ;
-        inv_item_slot[pos_x, pos_y] = inv_item;
+        item_rect_transform.SetParent(rect_transform);
+
+        for(int x = 0; x < inv_item.item_data.width; x++){
+            for(int y = 0; y < inv_item.item_data.height; y++){
+                inv_item_slot[mouse_pos.x + x, mouse_pos.y + y] = inv_item;
+            }
+        }
+
+        inv_item.grid_pos_x = mouse_pos.x;
+        inv_item.grid_pos_y = mouse_pos.y;
 
         Vector2 item_position = new Vector2();
-        item_position.x = pos_x * local_tile_size + local_tile_size / 2;
-        item_position.y = -(pos_y * local_tile_size + local_tile_size / 2);
+        item_position.x = mouse_pos.x * local_tile_size + inv_item.item_data.width * local_tile_size / 2;
+        item_position.y = -(mouse_pos.y * local_tile_size + inv_item.item_data.height * local_tile_size / 2);
 
         item_rect_transform.localPosition = item_position;
+
+        return true;
+    }
+
+    public bool BoundsCheck(Vector2Int pos, int width, int height){
+        if(pos.x < 0 || pos.y < 0 || pos.x + width - 1 >= grid_width || pos.y + height - 1 >= grid_height){
+            Debug.Log(pos.x);
+            Debug.Log(pos.y);
+            return false;
+        }
+        return true;
     }
 }
