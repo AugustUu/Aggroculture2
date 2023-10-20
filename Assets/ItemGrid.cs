@@ -34,7 +34,7 @@ public class ItemGrid : MonoBehaviour
         rect_transform.sizeDelta = size;
     }
     public static float local_tile_size = 16;
-    public float scaled_tile_size;
+    public static float scaled_tile_size;
     public float canvas_scale;
     public static float canvas_tile_size;
 
@@ -56,39 +56,53 @@ public class ItemGrid : MonoBehaviour
         if(picked_up_item != null){
             for(int x = 0; x < picked_up_item.item_data.width; x++){
                 for(int y = 0; y < picked_up_item.item_data.height; y++){
-                    inventory[picked_up_item.grid_pos_x + x, picked_up_item.grid_pos_y + y] = null;
+                    inventory[picked_up_item.grid_pos.x + x, picked_up_item.grid_pos.y + y] = null;
                 }
             }
         }
         return picked_up_item;
     }
 
-    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_pos, ref InvItem overlap_item){
-        if(!BoundsCheck(mouse_pos, inv_item.item_data.width, inv_item.item_data.height)){ return false; }
+    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
+    {
+        if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
 
-        if(!OverlapCheck(mouse_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)){
+        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item))
+        {
             return false;
         }
 
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
 
-        for(int x = 0; x < inv_item.item_data.width; x++){
-            for(int y = 0; y < inv_item.item_data.height; y++){
-                inventory[mouse_pos.x + x, mouse_pos.y + y] = inv_item;
+        for (int x = 0; x < inv_item.item_data.width; x++)
+        {
+            for (int y = 0; y < inv_item.item_data.height; y++)
+            {
+                inventory[mouse_grid_pos.x + x, mouse_grid_pos.y + y] = inv_item;
             }
         }
 
-        inv_item.grid_pos_x = mouse_pos.x;
-        inv_item.grid_pos_y = mouse_pos.y;
-
-        Vector2 item_position = new Vector2();
-        item_position.x = mouse_pos.x * local_tile_size + inv_item.item_data.width * local_tile_size / 2;
-        item_position.y = -(mouse_pos.y * local_tile_size + inv_item.item_data.height * local_tile_size / 2);
+        inv_item.grid_pos = mouse_grid_pos;
+        Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
 
         item_rect_transform.localPosition = item_position;
 
         return true;
+    }
+
+    public Vector2 GetItemPos(InvItem inv_item, Vector2Int mouse_pos)
+    {
+        Vector2 item_position = new Vector2
+        {
+            x = mouse_pos.x * local_tile_size + inv_item.item_data.width * local_tile_size / 2,
+            y = -(mouse_pos.y * local_tile_size + inv_item.item_data.height * local_tile_size / 2)
+        };
+        return item_position;
+    }
+
+    public InvItem GetItem(Vector2Int pos){
+        return inventory[pos.x, pos.y];
     }
 
     public bool BoundsCheck(Vector2Int pos, int width, int height){

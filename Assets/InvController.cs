@@ -12,6 +12,13 @@ public class InvController : MonoBehaviour
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
+
+    InvHighlight inv_highlighter;
+
+    void Awake(){
+        inv_highlighter = GetComponent<InvHighlight>();
+    }
+
     void Update()
     {
         DragItemIcon();
@@ -22,6 +29,9 @@ public class InvController : MonoBehaviour
         }
 
         if(selected_item_grid != null){
+
+            HandleHighlight();
+
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
                 Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
@@ -50,6 +60,26 @@ public class InvController : MonoBehaviour
             }
         }
         
+    }
+
+    InvItem highlighted_item;
+    private void HandleHighlight()
+    {
+        Vector2Int grid_pos = selected_item_grid.GetGridPos(Input.mousePosition);
+        if(selected_item == null){
+            highlighted_item = selected_item_grid.GetItem(grid_pos);
+            if(highlighted_item != null){
+                inv_highlighter.SetVisible(true);
+                inv_highlighter.SetSize(highlighted_item);
+                inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
+            }
+            else{
+                inv_highlighter.SetVisible(false);
+            }
+        }
+        else{
+            Debug.Log("wee snaw");
+        }
     }
 
     private void GenerateRandomItem()

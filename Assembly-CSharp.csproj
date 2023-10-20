@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Assets\TimeCycle.cs" />
     <Compile Include="Assets\InvItem.cs" />
+    <Compile Include="Assets\InvHighlight.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\ItemData.cs" />
     <Compile Include="Assets\ItemGrid.cs" />

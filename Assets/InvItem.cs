@@ -10,8 +10,7 @@ public class InvItem : MonoBehaviour
 {
     public ItemData item_data;
     
-    public int grid_pos_x;
-    public int grid_pos_y;
+    public Vector2Int grid_pos;
     public void Awake(){
         
     }
