@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class interactable : MonoBehaviour
 {
-    public new Camera camera; 
+
+    public event Action interact;
+
     void Start()
     {
         
@@ -14,6 +17,5 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         
-        camera.orthographicSize -= 1*Input.mouseScrollDelta.y;
     }
 }
