@@ -10,11 +10,11 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inv_controller.selected_item_grid = item_grid;
+        inv_controller.Selected_item_grid = item_grid;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        inv_controller.selected_item_grid = null;
+        inv_controller.Selected_item_grid = null;
     }
 }
