@@ -6,6 +6,15 @@ public class InvHighlight : MonoBehaviour
 {
     [SerializeField] RectTransform highlighter;
 
+
+    public void SetTop(bool b){
+        if(b){
+            highlighter.SetAsLastSibling();
+        }
+        else{
+            highlighter.SetAsFirstSibling();
+        }
+    }
     public void SetVisible(bool b)
     {
         highlighter.gameObject.SetActive(b);

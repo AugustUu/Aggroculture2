@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class InvController : MonoBehaviour
@@ -13,9 +15,23 @@ public class InvController : MonoBehaviour
         }
     }
 
-    InvItem selected_item;
+    public InvItem Selected_item {
+        get => selected_item; 
+        set {
+            selected_item = value; 
+            if(value == null){
+                inv_highlighter.SetTop(true);
+            }
+            else{
+                inv_highlighter.SetTop(false);
+            }
+        }
+    }
+
+    private InvItem selected_item;
     InvItem overlap_item;
-    RectTransform rt;
+    RectTransform rt_held;
+    RectTransform rt_new;
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
@@ -33,11 +49,13 @@ public class InvController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            selected_item = GenerateRandomItem();
+            Selected_item = GenerateRandomItem();
+            rt_held = rt_new;
+            rt_new = null;
         }
 
         if(Input.GetKeyDown(KeyCode.W)){
-            //insert random item
+            InsertItem(GenerateRandomItem());
         }
 
         if(selected_item_grid != null){
@@ -48,18 +66,18 @@ public class InvController : MonoBehaviour
 
                 Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
 
-                if (Input.GetMouseButtonDown(0) && selected_item == null)
+                if (Input.GetMouseButtonDown(0) && Selected_item == null)
                 {
-                    selected_item = selected_item_grid.PickUpItem(mouse_pos);
-                    if (selected_item != null)
+                    Selected_item = selected_item_grid.PickUpItem(mouse_pos);
+                    if (Selected_item != null)
                     {
-                        rt = selected_item.GetComponent<RectTransform>();
+                        rt_held = Selected_item.GetComponent<RectTransform>();
                     }
                 }
-                if (Input.GetMouseButtonUp(0) && selected_item != null)
+                if (Input.GetMouseButtonUp(0) && Selected_item != null)
                 {
-                    if(selected_item_grid.PlaceItem(selected_item, mouse_pos, ref overlap_item)){
-                        selected_item = null;
+                    if(selected_item_grid.PlaceItem(Selected_item, mouse_pos, ref overlap_item)){
+                        Selected_item = null;
                     }
                     else{
                         if(overlap_item != null){
@@ -85,9 +103,10 @@ public class InvController : MonoBehaviour
         if(old_pos == mouse_grid_pos){ return; }
         old_pos = mouse_grid_pos;
         
-        if(selected_item == null){
+        if(Selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null){
+                inv_highlighter.SetTop(true);
                 inv_highlighter.SetVisible(true);
                 inv_highlighter.SetSize(highlighted_item);
                 inv_highlighter.SetParent(selected_item_grid);
@@ -98,29 +117,37 @@ public class InvController : MonoBehaviour
             }
         }
         else{
-            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
-            inv_highlighter.SetSize(selected_item);
+            inv_highlighter.SetTop(false);
+            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, Selected_item.item_data.width, Selected_item.item_data.height));
+            inv_highlighter.SetSize(Selected_item);
             inv_highlighter.SetParent(selected_item_grid);
-            inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
+            inv_highlighter.SetPosition(selected_item_grid, Selected_item, mouse_grid_pos);
         }
     }
 
     private InvItem GenerateRandomItem()
     {
         InvItem inv_item = Instantiate(item_prefab).GetComponent<InvItem>();
-        rt = inv_item.GetComponent<RectTransform>();
-        rt.SetParent(canvas_transform);
+        rt_new = inv_item.GetComponent<RectTransform>();
+        rt_new.SetParent(canvas_transform);
 
         int selected_item_ID = Random.Range(0, items.Count);
         inv_item.Set(items[selected_item_ID]);
         return inv_item;
     }
 
+    private void InsertItem(InvItem inserting_item){
+        Vector2Int? open_pos = selected_item_grid.FindSpace(inserting_item);
+        if(open_pos != null){
+            selected_item_grid.PlaceItem(inserting_item, open_pos.Value);
+        }
+    }
+
     private void DragItemIcon()
     {
-        if (selected_item != null)
+        if (Selected_item != null)
         {
-            rt.position = Input.mousePosition;
+            rt_held.position = Input.mousePosition;
         }
     }
 }

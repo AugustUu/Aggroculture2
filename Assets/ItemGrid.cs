@@ -72,6 +72,13 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
+        PlaceItem(inv_item, mouse_grid_pos);
+
+        return true;
+    }
+
+    public void PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos)
+    {
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
 
@@ -87,8 +94,6 @@ public class ItemGrid : MonoBehaviour
         Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
 
         item_rect_transform.localPosition = item_position;
-
-        return true;
     }
 
     public Vector2 GetItemPos(InvItem inv_item, Vector2Int mouse_pos)
@@ -122,5 +127,30 @@ public class ItemGrid : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public bool SpaceCheck(int pos_x, int pos_y, int width, int height){
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                if(inventory[pos_x + x, pos_y + y] != null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public Vector2Int? FindSpace(InvItem inserting_item){
+        int height = grid_height - inserting_item.item_data.height + 1;
+        int width = grid_width - inserting_item.item_data.width + 1;
+
+        for(int y = 0; y < height; y++){
+            for(int x = 0; x < width; x++){
+                if(SpaceCheck(x, y, inserting_item.item_data.width, inserting_item.item_data.height)){
+                    return new Vector2Int(x, y);
+                }
+            }
+        }
+        return null;
     }
 }
