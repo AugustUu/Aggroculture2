@@ -1,40 +1,70 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour
 {
-    public static Dictionary<int,string> interactables = new Dictionary<int,string>();
+
 
     [SerializeField]
     public TextMeshProUGUI text;
 
     public static TextMeshProUGUI ui_text;
 
-    void Start(){
+    public static Dictionary<int, (string,UnityEvent)> interactables = new Dictionary<int, (string,UnityEvent)>();
+
+    public static int index = 0;
+
+    void Start()
+    {
         ui_text = text;
     }
 
-    public static void onEnter(int id,String name){
-        interactables.Add(id,name);
-        Debug.Log(name);
+    public static void onEnter(int id, string name, UnityEvent input_event)
+    {
+        interactables.Add(id, (name,input_event));
+
 
         updateText();
     }
 
-    public static void onExit(int id){
+
+    public static void onExit(int id)
+    {
         interactables.Remove(id);
 
         updateText();
     }
 
-    static void updateText(){
-        ui_text.text = "";
-        foreach (String value in interactables.Values){
-            ui_text.text += value + "\n";
+    
+    public void Update()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            Debug.Log(interactables.ElementAt(index).Value.Item1);
+            interactables.ElementAt(index).Value.Item2.Invoke();
         }
     }
+
+    static void updateText()
+    {
+        ui_text.text = "";
+        int loop_index = 0;
+        foreach ((string,UnityEvent) value in interactables.Values)
+        {
+            if(index == loop_index){
+                ui_text.text += "[ " +value.Item1 + " ]" + "\n";
+                loop_index++;
+            }
+            ui_text.text += value.Item1 + "\n";
+        }
+    }
+
+
 }
