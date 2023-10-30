@@ -14,6 +14,7 @@ public class ItemGrid : MonoBehaviour
     RectTransform rect_transform;
     private void Start(){
         scaled_tile_size = local_tile_size * transform.localScale.y;
+        Debug.Log(scaled_tile_size);
         canvas_scale = canvas.transform.localScale.y;
         canvas_tile_size =  scaled_tile_size * canvas_scale;
         rect_transform = GetComponent<RectTransform>();
@@ -33,7 +34,7 @@ public class ItemGrid : MonoBehaviour
         Vector2 size = new Vector2(width * local_tile_size, height * local_tile_size);
         rect_transform.sizeDelta = size;
     }
-    public static float local_tile_size = 16;
+    [SerializeField] public static float local_tile_size = 32;
     public static float scaled_tile_size;
     public float canvas_scale;
     public static float canvas_tile_size;

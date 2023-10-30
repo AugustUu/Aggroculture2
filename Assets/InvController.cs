@@ -36,6 +36,7 @@ public class InvController : MonoBehaviour
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
+    [SerializeField] ItemGrid main_grid;
 
     InvHighlight inv_highlighter;
 
@@ -47,7 +48,7 @@ public class InvController : MonoBehaviour
     {
         DragItemIcon();
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && Selected_item == null)
         {
             Selected_item = GenerateRandomItem();
             rt_held = rt_new;
@@ -137,9 +138,12 @@ public class InvController : MonoBehaviour
     }
 
     private void InsertItem(InvItem inserting_item){
-        Vector2Int? open_pos = selected_item_grid.FindSpace(inserting_item);
+        Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
         if(open_pos != null){
-            selected_item_grid.PlaceItem(inserting_item, open_pos.Value);
+            main_grid.PlaceItem(inserting_item, open_pos.Value);
+        }
+        else{
+            Destroy(inserting_item.gameObject);
         }
     }
 

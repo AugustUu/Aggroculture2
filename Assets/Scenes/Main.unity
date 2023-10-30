@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 74166962}
   - component: {fileID: 74166963}
   m_Layer: 5
-  m_Name: Grid
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ RectTransform:
   m_GameObject: {fileID: 74166958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2047849635}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48b669a53415d9843a6b7452a505250f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e5ff527ed98b5b4ba74acff03166e14, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.25490198}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -930,7 +930,7 @@ RectTransform:
   m_GameObject: {fileID: 1339139474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2047849635}
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48b669a53415d9843a6b7452a505250f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e2819534f274c64e9a00b36e9c4e8d2, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1120,8 +1120,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3146f198ebe7a644c87afc12be3b0c96, type: 2}
   - {fileID: 11400000, guid: e809cff7b382af945bc172ee5f6ec3a4, type: 2}
   - {fileID: 11400000, guid: 4c14a1daeb963c742906b3ce8777def3, type: 2}
+  - {fileID: 11400000, guid: 5e8dec0abe0ab3a4aa36fc65b5523b97, type: 2}
+  - {fileID: 11400000, guid: 64f686687cf28994bb63fc7c4e498a60, type: 2}
   item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   canvas_transform: {fileID: 2047849635}
+  main_grid: {fileID: 74166962}
 --- !u!114 &1411216150
 MonoBehaviour:
   m_ObjectHideFlags: 0
