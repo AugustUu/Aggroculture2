@@ -32,11 +32,14 @@ public class InvController : MonoBehaviour
     InvItem overlap_item;
     RectTransform rt_held;
     RectTransform rt_new;
+    ItemGrid origin_grid;
+    Vector2 origin_pos;
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
     [SerializeField] ItemGrid main_grid;
+    [SerializeField] GameObject inv_parent;
 
     InvHighlight inv_highlighter;
 
@@ -73,6 +76,8 @@ public class InvController : MonoBehaviour
                     if (Selected_item != null)
                     {
                         rt_held = Selected_item.GetComponent<RectTransform>();
+                        rt_held.SetParent(inv_parent.transform);
+                        origin_grid = selected_item_grid;
                     }
                 }
                 if (Input.GetMouseButtonUp(0) && Selected_item != null)
@@ -153,5 +158,10 @@ public class InvController : MonoBehaviour
         {
             rt_held.position = Input.mousePosition;
         }
+    }
+
+    private void ReturnItem()
+    {
+        origin_grid.PlaceItem(Selected_item);
     }
 }
