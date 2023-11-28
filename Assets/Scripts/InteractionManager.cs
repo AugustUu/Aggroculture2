@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -17,7 +17,7 @@ public class InteractionManager : MonoBehaviour
 
     public static TextMeshProUGUI ui_text;
 
-    public static Dictionary<int, (string,UnityEvent)> interactables = new Dictionary<int, (string,UnityEvent)>();
+    public static SortedDictionary<int, (string,UnityEvent)> interactables = new SortedDictionary<int, (string,UnityEvent)>();
 
     public static int index = 0;
 
@@ -47,8 +47,14 @@ public class InteractionManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            Debug.Log(interactables.ElementAt(index).Value.Item1);
+            //Debug.Log(interactables.ElementAt(index).Value.Item1);
             interactables.ElementAt(index).Value.Item2.Invoke();
+        }
+        if(Input.GetButtonDown("index")){
+            index += (int)Input.GetAxisRaw("index");
+            index = Math.Clamp(index,0,interactables.Count-1);
+            Debug.Log(index);
+            updateText();
         }
     }
 
@@ -60,9 +66,10 @@ public class InteractionManager : MonoBehaviour
         {
             if(index == loop_index){
                 ui_text.text += "[ " +value.Item1 + " ]" + "\n";
-                loop_index++;
+            }else{
+                ui_text.text += value.Item1 + "\n";
             }
-            ui_text.text += value.Item1 + "\n";
+            loop_index++;
         }
     }
 
