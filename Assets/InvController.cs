@@ -29,11 +29,13 @@ public class InvController : MonoBehaviour
     }
 
     private InvItem selected_item;
+
+    private Vector3 drag_offset;
     InvItem overlap_item;
     RectTransform rt_held;
     RectTransform rt_new;
     ItemGrid origin_grid;
-    Vector2 origin_pos;
+    Vector2Int origin_pos;
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
@@ -68,14 +70,18 @@ public class InvController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
-                Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
+                Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition - drag_offset);
 
                 if (Input.GetMouseButtonDown(0) && Selected_item == null)
                 {
+
                     Selected_item = selected_item_grid.PickUpItem(mouse_pos);
                     if (Selected_item != null)
                     {
                         rt_held = Selected_item.GetComponent<RectTransform>();
+                        drag_offset = Input.mousePosition - rt_held.position;
+                        Debug.Log(drag_offset);
+
                         rt_held.SetParent(inv_parent.transform);
                         origin_grid = selected_item_grid;
                     }
@@ -92,6 +98,7 @@ public class InvController : MonoBehaviour
                         }
                         Debug.Log("goop wee");
                     }
+                    drag_offset = Vector3.zero;
                 }
             }
         }
@@ -105,7 +112,7 @@ public class InvController : MonoBehaviour
     Vector2Int old_pos;
     private void HandleHighlight()
     {
-        Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition);
+        Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition - drag_offset);
         if(old_pos == mouse_grid_pos){ return; }
         old_pos = mouse_grid_pos;
         
@@ -156,12 +163,12 @@ public class InvController : MonoBehaviour
     {
         if (Selected_item != null)
         {
-            rt_held.position = Input.mousePosition;
+            rt_held.position = Input.mousePosition - drag_offset;
         }
     }
 
     private void ReturnItem()
     {
-        origin_grid.PlaceItem(Selected_item);
+        origin_grid.PlaceItem(Selected_item, origin_pos);
     }
 }

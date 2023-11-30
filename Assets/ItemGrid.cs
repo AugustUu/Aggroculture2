@@ -68,10 +68,7 @@ public class ItemGrid : MonoBehaviour
     {
         if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
 
-        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item))
-        {
-            return false;
-        }
+        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
 
         PlaceItem(inv_item, mouse_grid_pos);
 
