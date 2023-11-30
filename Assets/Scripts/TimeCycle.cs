@@ -21,7 +21,7 @@ public class TimeCycle : MonoBehaviour
         // Sets sun rotation right as the game starts
         transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
         // Runs addTime after 1 second every second
-        InvokeRepeating("addTime", 1.0f, 1.0f);
+        InvokeRepeating("addTime", 1.0f, 0.1f);
         if (minutes < 10)
         {
             dayGUI.text = hours + " : 0" + minutes;
@@ -38,8 +38,9 @@ public class TimeCycle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
+        transform.rotation = Quaternion.Euler((float)Mathf.LerpAngle(transform.rotation.eulerAngles.x,(float)((hours* 60 + minutes) / 1440.0 * 360 - 90),Time.deltaTime), 0, 0);
+        //transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
     }
     void addTime()
     {
@@ -48,7 +49,6 @@ public class TimeCycle : MonoBehaviour
 
         minutes += 5;
         recalculateTime();
-        transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
         if (minutes < 10)
         {
             dayGUI.text = hours + " : 0" + minutes;

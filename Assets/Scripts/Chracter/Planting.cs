@@ -12,11 +12,17 @@ public class PlayerInteraction : MonoBehaviour
 
     }
 
+    public void OnKeyDown(){
+        Debug.Log("KEY DOWN");
+    }
+    
     // Update is called once per frame
+
     void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
         {
+            
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit_object;
 
