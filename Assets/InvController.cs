@@ -31,6 +31,7 @@ public class InvController : MonoBehaviour
     private InvItem selected_item;
 
     private Vector3 drag_offset;
+    private Vector2Int tile_offset;
     InvItem overlap_item;
     RectTransform rt_held;
     RectTransform rt_new;
@@ -70,7 +71,7 @@ public class InvController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
-                Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition - drag_offset);
+                Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
 
                 if (Input.GetMouseButtonDown(0) && Selected_item == null)
                 {
@@ -80,7 +81,10 @@ public class InvController : MonoBehaviour
                     {
                         rt_held = Selected_item.GetComponent<RectTransform>();
                         drag_offset = Input.mousePosition - rt_held.position;
-                        Debug.Log(drag_offset);
+                        
+                        tile_offset = selected_item.grid_pos - mouse_pos;
+                        
+                        origin_pos = selected_item.grid_pos;
 
                         rt_held.SetParent(inv_parent.transform);
                         origin_grid = selected_item_grid;
@@ -88,8 +92,9 @@ public class InvController : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0) && Selected_item != null)
                 {
-                    if(selected_item_grid.PlaceItem(Selected_item, mouse_pos, ref overlap_item)){
+                    if(selected_item_grid.PlaceItem(Selected_item, mouse_pos + tile_offset, ref overlap_item)){
                         Selected_item = null;
+                        tile_offset = Vector2Int.zero;
                     }
                     else{
                         if(overlap_item != null){
@@ -97,8 +102,8 @@ public class InvController : MonoBehaviour
                             overlap_item = null;
                         }
                         Debug.Log("goop wee");
+                        ReturnItem();
                     }
-                    drag_offset = Vector3.zero;
                 }
             }
         }
@@ -112,7 +117,7 @@ public class InvController : MonoBehaviour
     Vector2Int old_pos;
     private void HandleHighlight()
     {
-        Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition - drag_offset);
+        Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         if(old_pos == mouse_grid_pos){ return; }
         old_pos = mouse_grid_pos;
         
@@ -170,5 +175,7 @@ public class InvController : MonoBehaviour
     private void ReturnItem()
     {
         origin_grid.PlaceItem(Selected_item, origin_pos);
+        Selected_item = null;
+        tile_offset = Vector2Int.zero;
     }
 }
