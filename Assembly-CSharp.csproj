@@ -55,14 +55,14 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TimeCycle.cs" />
-    <Compile Include="Assets\InvItem.cs" />
-    <Compile Include="Assets\InvHighlight.cs" />
-    <Compile Include="Assets\Movement.cs" />
-    <Compile Include="Assets\ItemData.cs" />
-    <Compile Include="Assets\ItemGrid.cs" />
-    <Compile Include="Assets\InvController.cs" />
-    <Compile Include="Assets\GridInteract.cs" />
+    <Compile Include="Assets\Scripts\InvHighlight.cs" />
+    <Compile Include="Assets\Scripts\ItemGrid.cs" />
+    <Compile Include="Assets\Scripts\GridInteract.cs" />
+    <Compile Include="Assets\Scripts\ItemData.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\TimeCycle.cs" />
+    <Compile Include="Assets\Scripts\InvItem.cs" />
+    <Compile Include="Assets\Scripts\InvController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
