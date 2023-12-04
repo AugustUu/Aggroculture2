@@ -39,7 +39,7 @@ public class TimeCycle : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        transform.rotation = Quaternion.Euler((float)Mathf.LerpAngle(transform.rotation.eulerAngles.x,(float)((hours* 60 + minutes) / 1440.0 * 360 - 90),Time.deltaTime), 0, 0);
+        //transform.rotation = Quaternion.Euler((float)Mathf.LerpAngle(transform.rotation.eulerAngles.x,(float)((hours* 60 + minutes) / 1440.0 * 360 - 90),Time.deltaTime), 0, 0);
         //transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
     }
     void addTime()
@@ -61,6 +61,8 @@ public class TimeCycle : MonoBehaviour
         {
             dayGUI.text = "0" + dayGUI.text;
         }
+
+        transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
 
     }
     void recalculateTime()
