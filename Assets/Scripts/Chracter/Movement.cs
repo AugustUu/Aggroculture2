@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private Vector3 player_velocity;
     private bool grounded_player;
 
-    private float rotation = 0;
+    public static float rotation = 0;
     private float mouse_start = 0;
 
     private void Start()
@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
             mouse_start = mouse_pos.x;
         }
 
-        if (Input.GetButton("Aim"))
+        if (Input.GetButton("Aim") || Input.GetMouseButton(0))
         {
             rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y);
             rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg + Mathf.PI;
