@@ -9,9 +9,9 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public InvController inv_controller;
     public ItemGrid item_grid;
 
+
     public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("yo");
+    {        
         inv_controller.Selected_item_grid = item_grid;
     }
 
