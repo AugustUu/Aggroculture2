@@ -28,7 +28,13 @@ public class PlayerInteraction : MonoBehaviour
         if(gun_mode){
             if (Input.GetMouseButton(0)){
                 
-                Ray ray = new Ray(this.transform.position, model_transform.forward);
+                Vector3 forward = new Vector3();
+
+                forward.x = (float)(Math.Cos(0.0) * Math.Sin(Movement.rotation)); 
+                forward.z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation));
+                Debug.Log(forward);
+                //Debug.Log(model_transform.forward);
+                Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit hit_object;
                 if (Physics.Raycast(ray, out hit_object)){
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
