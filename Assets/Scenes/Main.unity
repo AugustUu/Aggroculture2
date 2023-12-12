@@ -1186,7 +1186,7 @@ MonoBehaviour:
   camera: {fileID: 19397675}
   placeable: {fileID: 4731878773796962094, guid: a6eaf1f67d79901438560d341443d59c, type: 3}
   model_transform: {fileID: 1445140665}
-  gun_mode: 1
+  gun_mode: 0
 --- !u!1001 &1224095750
 PrefabInstance:
   m_ObjectHideFlags: 0
