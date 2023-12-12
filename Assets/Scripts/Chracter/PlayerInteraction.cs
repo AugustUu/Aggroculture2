@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
                 forward.z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation));
                 Debug.Log(forward);
                 //Debug.Log(model_transform.forward);
-                Ray ray = new Ray(this.transform.position, forward);
+                Ray ray = new Ray(this.transform.position, forward);    
                 RaycastHit hit_object;
                 if (Physics.Raycast(ray, out hit_object)){
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
@@ -62,6 +62,8 @@ public class PlayerInteraction : MonoBehaviour
                     if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
                     {
                         GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                        FarmlandScript script = farmland.GetComponent<FarmlandScript>();
+                    
                         Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
                     }
                     else
