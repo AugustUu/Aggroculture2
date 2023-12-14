@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5684298608195299677}
   - component: {fileID: 1357351834128644143}
   - component: {fileID: 8013294351247318267}
+  - component: {fileID: 3018627527790644557}
   m_Layer: 0
-  m_Name: Inventories
+  m_Name: Inventory Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,8 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2676382582015038601}
-  - {fileID: 8837900109961360405}
+  - {fileID: 3748997010701155650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1357351834128644143
@@ -71,13 +71,58 @@ MonoBehaviour:
   canvas_transform: {fileID: 0}
   main_grid: {fileID: 2095174749707495473}
   inv_parent: {fileID: 1339073391158019100}
+--- !u!114 &3018627527790644557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339073391158019100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f31deb503e3494985dde1f7428e674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5837177170558003271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3748997010701155650}
+  m_Layer: 0
+  m_Name: Inventory Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3748997010701155650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837177170558003271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2676382582015038601}
+  - {fileID: 8837900109961360405}
+  m_Father: {fileID: 5684298608195299677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3427245645331087242
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5684298608195299677}
+    m_TransformParent: {fileID: 3748997010701155650}
     m_Modifications:
     - target: {fileID: 6140238708384156575, guid: 6e2c462ae612c314794068f22ee1cbef, type: 3}
       propertyPath: m_Pivot.x
@@ -179,7 +224,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5684298608195299677}
+    m_TransformParent: {fileID: 3748997010701155650}
     m_Modifications:
     - target: {fileID: 598897983077417669, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: m_Name

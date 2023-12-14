@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class InvManager : MonoBehaviour
 {
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Inventory"))
         {
+            ToggleInv();
+        }
+        if (Input.GetButtonDown("schmeezer"))
+        {
+            GetComponent<InvController>().InsertItemID(0);   
         }
     }
 
-    static void ToggleInv(){
-        // SetInvActive(!activeSelf)
+    public void ToggleInv(){
+        SetInvActive(!gameObject.transform.GetChild(0).gameObject.activeSelf);
     }
-    static void SetInvActive(bool active){
-
+    public void SetInvActive(bool active){
+        gameObject.transform.GetChild(0).gameObject.SetActive(active);
     }
 }

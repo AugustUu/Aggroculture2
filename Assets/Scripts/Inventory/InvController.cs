@@ -56,13 +56,13 @@ public class InvController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && Selected_item == null)
         {
-            Selected_item = GenerateRandomItem();
+            Selected_item = GenerateItem(Random.Range(0, items.Count));
             rt_held = rt_new;
             rt_new = null;
         }
 
         if(Input.GetKeyDown(KeyCode.W)){
-            InsertItem(GenerateRandomItem());
+            InsertItem(GenerateItem(Random.Range(0, items.Count)));
         }
 
         if(selected_item_grid != null){
@@ -147,14 +147,14 @@ public class InvController : MonoBehaviour
         }
     }
 
-    private InvItem GenerateRandomItem()
+    
+    private InvItem GenerateItem(int item_ID)
     {
         InvItem inv_item = Instantiate(item_prefab).GetComponent<InvItem>();
         rt_new = inv_item.GetComponent<RectTransform>();
         rt_new.SetParent(canvas_transform);
 
-        int selected_item_ID = Random.Range(0, items.Count);
-        inv_item.Set(items[selected_item_ID]);
+        inv_item.Set(items[item_ID]);
         return inv_item;
     }
 
@@ -166,6 +166,10 @@ public class InvController : MonoBehaviour
         else{
             Destroy(inserting_item.gameObject);
         }
+    }
+
+    public void InsertItemID(int item_ID){
+        InsertItem(GenerateItem(item_ID));
     }
 
     private void DragItemIcon()
