@@ -22,7 +22,12 @@ public class PlayerInteraction : MonoBehaviour
     }
     
     // Update is called once per frame
-
+    void Update(){
+        if(Input.GetButtonDown("BuildShoot")){
+            gun_mode = !gun_mode;
+            Debug.Log(gun_mode+" gunmode");
+        }
+    }
     void FixedUpdate()
     {
         if(gun_mode){
