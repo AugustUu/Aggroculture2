@@ -40,6 +40,8 @@ public class ItemGrid : MonoBehaviour
     public static float canvas_tile_size;
 
     InvItem[,] inventory;
+    List<InvItem> item_list = new List<InvItem>();
+    int last_index = 0;
 
     Vector2 grid_pos = new Vector2();
     Vector2Int tile_grid_pos = new Vector2Int();
@@ -72,6 +74,12 @@ public class ItemGrid : MonoBehaviour
 
         PlaceItem(inv_item, mouse_grid_pos);
 
+        foreach(InvItem i in inventory){
+            if(i != null){
+                Debug.Log(i.item_data.name);
+            }
+        }
+
         return true;
     }
 
@@ -85,6 +93,7 @@ public class ItemGrid : MonoBehaviour
             for (int y = 0; y < inv_item.item_data.height; y++)
             {
                 inventory[mouse_grid_pos.x + x, mouse_grid_pos.y + y] = inv_item;
+                item_list.Add(inv_item);
             }
         }
 

@@ -19,12 +19,7 @@ public class InvController : MonoBehaviour
         get => selected_item; 
         set {
             selected_item = value; 
-            if(value == null){
-                inv_highlighter.SetTop(true);
-            }
-            else{
-                inv_highlighter.SetTop(false);
-            }
+            HandleHighlight(false);
         }
     }
 
@@ -67,7 +62,7 @@ public class InvController : MonoBehaviour
 
         if(selected_item_grid != null){
 
-            HandleHighlight();
+            HandleHighlight(true);
 
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
@@ -101,7 +96,7 @@ public class InvController : MonoBehaviour
                             Debug.Log(overlap_item);
                             overlap_item = null;
                         }
-                        Debug.Log("goop wee");
+                        Debug.Log("item dropped on other item");
                         ReturnItem();
                     }
                 }
@@ -111,7 +106,7 @@ public class InvController : MonoBehaviour
             inv_highlighter.SetVisible(false);
             if (Input.GetMouseButtonUp(0) && Selected_item != null){
                 ReturnItem();
-                Debug.Log("asdf beans");
+                Debug.Log("item dropped outside inv");
             }
         }
         
@@ -119,16 +114,17 @@ public class InvController : MonoBehaviour
 
     InvItem highlighted_item;
     Vector2Int old_pos;
-    private void HandleHighlight()
+    private void HandleHighlight(bool check_mouse)
     {
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
-        if(old_pos == mouse_grid_pos){ return; }
+        if(check_mouse){
+            if(old_pos == mouse_grid_pos){ return; }
+        }
         old_pos = mouse_grid_pos;
         
         if(Selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null){
-                inv_highlighter.SetTop(true);
                 inv_highlighter.SetVisible(true);
                 inv_highlighter.SetSize(highlighted_item);
                 inv_highlighter.SetParent(selected_item_grid);
@@ -139,14 +135,12 @@ public class InvController : MonoBehaviour
             }
         }
         else{
-            inv_highlighter.SetTop(false);
             inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, Selected_item.item_data.width, Selected_item.item_data.height));
             inv_highlighter.SetSize(Selected_item);
             inv_highlighter.SetParent(selected_item_grid);
             inv_highlighter.SetPosition(selected_item_grid, Selected_item, mouse_grid_pos);
         }
     }
-
     
     private InvItem GenerateItem(int item_ID)
     {
@@ -165,6 +159,7 @@ public class InvController : MonoBehaviour
         }
         else{
             Destroy(inserting_item.gameObject);
+            Debug.Log("found no space for inserting item, debug destroying item");
         }
     }
 

@@ -9,8 +9,10 @@ using UnityEngine.UI;
 public class InvItem : MonoBehaviour
 {
     public ItemData item_data;
-    
+    public int count;
+
     public Vector2Int grid_pos;
+    public int list_index;
     public void Awake(){
         
     }

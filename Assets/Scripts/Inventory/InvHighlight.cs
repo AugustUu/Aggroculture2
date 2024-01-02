@@ -7,14 +7,7 @@ public class InvHighlight : MonoBehaviour
     [SerializeField] RectTransform highlighter;
 
 
-    public void SetTop(bool b){
-        if(b){
-            highlighter.SetAsLastSibling();
-        }
-        else{
-            highlighter.SetAsFirstSibling();
-        }
-    }
+    
     public void SetVisible(bool b)
     {
         highlighter.gameObject.SetActive(b);
@@ -42,5 +35,6 @@ public class InvHighlight : MonoBehaviour
     {
         if(target_grid == null){ return; }
         highlighter.SetParent(target_grid.GetComponent<RectTransform>());
+        highlighter.SetAsLastSibling();
     }
 }
