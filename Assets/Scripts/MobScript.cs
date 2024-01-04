@@ -23,13 +23,13 @@ public class MobScript : MonoBehaviour
 
         forward.x = (float)(Math.Sin(rotation));
         forward.z = (float)(Math.Cos(rotation));
-
+//ray shooting infront of enemy
         Ray ray = new Ray(this.transform.position, forward);    
         RaycastHit hit_object;
         if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
         }else{
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 0.01f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
         rotation += 0.78539816339f;
@@ -39,9 +39,9 @@ public class MobScript : MonoBehaviour
 
         ray = new Ray(this.transform.position, forward);    
         if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
         }else{
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 0.01f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
         rotation -= 0.78539816339f*2;
@@ -51,9 +51,9 @@ public class MobScript : MonoBehaviour
 
         ray = new Ray(this.transform.position, forward);    
         if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
         }else{
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 0.01f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
         
