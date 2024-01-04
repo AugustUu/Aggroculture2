@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ItemGrid : MonoBehaviour
+public class Hotbar : MonoBehaviour
 {
     [SerializeField] ItemGrid selected_item_grid;
-    [SerializeField] public int grid_width;
-    [SerializeField] public int grid_height;
+    [SerializeField] public int grid_width = 10;
+    [SerializeField] public int grid_height = 1;
     [SerializeField] public GameObject canvas;
 
 
@@ -17,7 +17,6 @@ public class ItemGrid : MonoBehaviour
         Debug.Log(scaled_tile_size);
         canvas_scale = canvas.transform.localScale.y;
         canvas_tile_size =  scaled_tile_size * canvas_scale;
-        Debug.Log("" + local_tile_size + ", " + scaled_tile_size + ", " + canvas_tile_size);
         rect_transform = GetComponent<RectTransform>();
         InvInit(grid_width, grid_height);
     }
@@ -38,7 +37,7 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] public static float local_tile_size = 32;
     public static float scaled_tile_size;
     public float canvas_scale;
-    public float canvas_tile_size;
+    public static float canvas_tile_size;
 
     InvItem[,] inventory;
     List<InvItem> item_list = new List<InvItem>();
@@ -52,7 +51,6 @@ public class ItemGrid : MonoBehaviour
         grid_pos.y = rect_transform.position.y - mouse_pos.y;
         tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / canvas_tile_size), 0, grid_width - 1);
         tile_grid_pos.y = Mathf.Clamp((int) (grid_pos.y / canvas_tile_size), 0, grid_height - 1);
-        Debug.Log("" + tile_grid_pos + ", " + canvas_tile_size);
         return tile_grid_pos;
     }
 

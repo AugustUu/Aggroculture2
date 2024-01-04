@@ -33,4 +33,8 @@ public class InvItem : MonoBehaviour
         };
         rt.sizeDelta = new Vector2(size.x, size.y);
     }
+
+    public void IncreaseCount(int adding){
+        count += adding;
+    }
 }
