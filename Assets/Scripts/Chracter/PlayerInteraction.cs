@@ -41,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
                 //Debug.Log(model_transform.forward);
                 Ray ray = new Ray(this.transform.position, forward);    
                 RaycastHit hit_object;
-                if (Physics.Raycast(ray, out hit_object)){
+                if (Physics.Raycast(ray, out hit_object,300f, 1 << 11)){
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
                 }
             }
