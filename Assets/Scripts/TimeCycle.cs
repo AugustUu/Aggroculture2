@@ -7,11 +7,11 @@ using UnityEngine;
 public class TimeCycle : MonoBehaviour
 {
     [SerializeField]
-    public float minutes = 0.0f;
+    static public float minutes = 0.0f;
     [SerializeField]
-    public float hours = 0.0f;
+    static public float hours = 0.0f;
     [SerializeField]
-    public int days = 0;
+    static public int days = 0;
     [SerializeField]
     TextMeshProUGUI dayGUI;
 
