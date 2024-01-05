@@ -1362,6 +1362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: interactable (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6254818884057760903, guid: 5f665585cefef8042891caf879bc2a95, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6893499061868475509, guid: 5f665585cefef8042891caf879bc2a95, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2320,6 +2324,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 2047849631}
+    - target: {fileID: 8355553793124470547, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
+      propertyPath: is_main
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2364,7 +2372,10 @@ MonoBehaviour:
   grid_width: 10
   grid_height: 5
   canvas: {fileID: 2047849631}
+  is_main: 0
+  scaled_tile_size: 0
   canvas_scale: 0
+  canvas_tile_size: 0
 --- !u!114 &8547288820144413755
 MonoBehaviour:
   m_ObjectHideFlags: 0

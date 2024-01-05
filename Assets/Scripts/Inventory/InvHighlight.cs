@@ -13,12 +13,20 @@ public class InvHighlight : MonoBehaviour
         highlighter.gameObject.SetActive(b);
     }
 
-    public void SetSize(InvItem held_item)
+    public void SetSize(InvItem held_item, ItemGrid? selected_grid)
     {
-        highlighter.sizeDelta = new Vector2(
-            held_item.item_data.width * ItemGrid.scaled_tile_size, 
-            held_item.item_data.height * ItemGrid.scaled_tile_size
+        if(selected_grid != null){
+            highlighter.sizeDelta = new Vector2(
+            held_item.item_data.width * selected_grid.scaled_tile_size, 
+            held_item.item_data.height * selected_grid.scaled_tile_size
         );
+        }
+        else{
+            highlighter.sizeDelta = new Vector2(
+            held_item.item_data.width * InvController.main_scaled_tile_size, 
+            held_item.item_data.height * InvController.main_scaled_tile_size
+        );
+        }
     }
 
     public void SetPosition(ItemGrid target_grid, InvItem held_item)

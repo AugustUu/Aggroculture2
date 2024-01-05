@@ -34,6 +34,8 @@ public class InvController : MonoBehaviour
     RectTransform rt_new;
     ItemGrid origin_grid;
     Vector2Int origin_pos;
+    public static float main_scaled_tile_size;
+    public static float main_canvas_tile_size;
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
@@ -43,7 +45,7 @@ public class InvController : MonoBehaviour
 
     InvHighlight inv_highlighter;
 
-    void Awake(){
+    void Start(){
         inv_highlighter = GetComponent<InvHighlight>();
     }
 
@@ -76,10 +78,18 @@ public class InvController : MonoBehaviour
                     Selected_item = selected_item_grid.PickUpItem(mouse_pos);
                     if (selected_item != null)
                     {
+                        selected_item.Rescale(main_canvas_tile_size);
                         rt_held = selected_item.GetComponent<RectTransform>();
-                        drag_offset = Input.mousePosition - rt_held.position;
-                        
+
                         tile_offset = selected_item.grid_pos - mouse_pos;
+                        float offset_scale = selected_item_grid.canvas_tile_size - main_canvas_tile_size;
+                        Vector2 offset_tiles = new Vector2(-tile_offset.x - ((selected_item.item_data.width / 2.0f) - 0.5f), -(-tile_offset.y - ((selected_item.item_data.height / 2.0f) - 0.5f))); // LOL this line sucks so bad
+                        
+                        Vector2 scale_offset = new Vector2(offset_tiles.x * offset_scale, offset_tiles.y * offset_scale);
+
+                        drag_offset = Input.mousePosition - rt_held.position;
+                        drag_offset.x -= scale_offset.x;
+                        drag_offset.y -= scale_offset.y;
                         
                         origin_pos = selected_item.grid_pos;
 
@@ -97,8 +107,8 @@ public class InvController : MonoBehaviour
                         if(overlap_item != null){
                             Debug.Log(overlap_item);
                             overlap_item = null;
+                            Debug.Log("item dropped on other item");
                         }
-                        Debug.Log("item dropped on other item");
                         ReturnItem();
                     }
                 }
@@ -128,7 +138,7 @@ public class InvController : MonoBehaviour
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null){
                 inv_highlighter.SetVisible(true);
-                inv_highlighter.SetSize(highlighted_item);
+                inv_highlighter.SetSize(highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(selected_item_grid);
                 inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
             }
@@ -138,7 +148,7 @@ public class InvController : MonoBehaviour
         }
         else{
             inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
-            inv_highlighter.SetSize(selected_item);
+            inv_highlighter.SetSize(selected_item, selected_item_grid);
             inv_highlighter.SetParent(selected_item_grid);
             inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
         }
