@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class MobScript : MonoBehaviour
 {
+    int mealth = 100;
     void Start()
     {
         
