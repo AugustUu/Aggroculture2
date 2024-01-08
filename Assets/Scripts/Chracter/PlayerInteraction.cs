@@ -37,12 +37,17 @@ public class PlayerInteraction : MonoBehaviour
 
                 forward.x = (float)(Math.Cos(0.0) * Math.Sin(Movement.rotation)); 
                 forward.z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation));
-                Debug.Log(forward);
+                //Debug.Log(forward);
                 //Debug.Log(model_transform.forward);
                 Ray ray = new Ray(this.transform.position, forward);    
                 RaycastHit hit_object;
                 if (Physics.Raycast(ray, out hit_object,300f, 1 << 11)){
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+                    MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
+                    if(mob != null){
+                        mob.hit(25);
+                        Debug.Log(mob); 
+                    }
                 }
             }
         }else{
