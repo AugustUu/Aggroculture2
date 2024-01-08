@@ -19,7 +19,7 @@ public class MobScript : MonoBehaviour
         if(health <= 0){
             Destroy(this.transform.gameObject);
         }
-        Debug.Log("Shot: "+health);
+        Debug.Log("Shot2: "+health);
     }
 
 
