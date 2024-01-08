@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,10 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    [SerializeField] ItemGrid selected_item_grid;
     [SerializeField] public int grid_width;
     [SerializeField] public int grid_height;
     [SerializeField] public GameObject canvas;
+    [SerializeField] public bool is_main;
 
 
     RectTransform rect_transform;
@@ -17,6 +18,10 @@ public class ItemGrid : MonoBehaviour
         Debug.Log(scaled_tile_size);
         canvas_scale = canvas.transform.localScale.y;
         canvas_tile_size =  scaled_tile_size * canvas_scale;
+        if(is_main){
+            InvController.main_canvas_tile_size = canvas_tile_size;
+            InvController.main_scaled_tile_size = scaled_tile_size;
+        }
         Debug.Log("" + local_tile_size + ", " + scaled_tile_size + ", " + canvas_tile_size);
         rect_transform = GetComponent<RectTransform>();
         InvInit(grid_width, grid_height);
@@ -36,7 +41,7 @@ public class ItemGrid : MonoBehaviour
         rect_transform.sizeDelta = size;
     }
     [SerializeField] public static float local_tile_size = 32;
-    public static float scaled_tile_size;
+    public float scaled_tile_size;
     public float canvas_scale;
     public float canvas_tile_size;
 
@@ -52,7 +57,6 @@ public class ItemGrid : MonoBehaviour
         grid_pos.y = rect_transform.position.y - mouse_pos.y;
         tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / canvas_tile_size), 0, grid_width - 1);
         tile_grid_pos.y = Mathf.Clamp((int) (grid_pos.y / canvas_tile_size), 0, grid_height - 1);
-        Debug.Log("" + tile_grid_pos + ", " + canvas_tile_size);
         return tile_grid_pos;
     }
 
@@ -74,13 +78,9 @@ public class ItemGrid : MonoBehaviour
 
         if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
 
-        PlaceItem(inv_item, mouse_grid_pos);
+        inv_item.Rescale(canvas_tile_size);
 
-        foreach(InvItem i in inventory){
-            if(i != null){
-                Debug.Log(i.item_data.name);
-            }
-        }
+        PlaceItem(inv_item, mouse_grid_pos);
 
         return true;
     }
@@ -89,6 +89,8 @@ public class ItemGrid : MonoBehaviour
     {
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
+
+        inv_item.Rescale(canvas_tile_size);
 
         for (int x = 0; x < inv_item.item_data.width; x++)
         {

@@ -1878,8 +1878,8 @@ GameObject:
   - component: {fileID: 5459214274103258662}
   - component: {fileID: 9184651121710306820}
   - component: {fileID: 8547288820144413755}
-  - component: {fileID: 8355553794218054302}
   - component: {fileID: 4237095963120448583}
+  - component: {fileID: 9184651121710306821}
   m_Layer: 5
   m_Name: hart bart
   m_TagString: Untagged
@@ -2059,7 +2059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inv_controller: {fileID: 8013294352447808765}
-  item_grid: {fileID: 8355553794218054302}
+  item_grid: {fileID: 0}
 --- !u!224 &5459214274103258662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2262,11 +2262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459214273059779499, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 5459214273059779499, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 240
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 5459214273059779499, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2320,6 +2320,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 2047849631}
+    - target: {fileID: 8355553793124470547, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
+      propertyPath: is_main
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2348,23 +2352,6 @@ MonoBehaviour:
   canvas_transform: {fileID: 2047849635}
   main_grid: {fileID: 1939139243}
   inv_parent: {fileID: 1339073392377134106}
---- !u!114 &8355553794218054302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598897981983678280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903e9b7dcdb4ee0438190fa2f0a5a737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected_item_grid: {fileID: 0}
-  grid_width: 10
-  grid_height: 5
-  canvas: {fileID: 2047849631}
-  canvas_scale: 0
 --- !u!114 &8547288820144413755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2403,6 +2390,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598897981983678280}
   m_CullTransparentMesh: 1
+--- !u!114 &9184651121710306821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598897981983678280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fe81a4272801d4e8da01c5b169bcb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 10
+  canvas: {fileID: 2047849631}
+  canvas_scale: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

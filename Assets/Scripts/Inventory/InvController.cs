@@ -41,6 +41,9 @@ public class InvController : MonoBehaviour
     [SerializeField] ItemGrid main_grid;
     [SerializeField] GameObject inv_parent;
 
+    public static float main_canvas_tile_size;
+    public static float main_scaled_tile_size;
+
     InvHighlight inv_highlighter;
 
     void Awake(){
@@ -76,8 +79,11 @@ public class InvController : MonoBehaviour
                     Selected_item = selected_item_grid.PickUpItem(mouse_pos);
                     if (selected_item != null)
                     {
+                        selected_item.Rescale(main_canvas_tile_size);
                         rt_held = selected_item.GetComponent<RectTransform>();
-                        drag_offset = Input.mousePosition - rt_held.position;
+
+                        float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
+                        drag_offset = (rt_held.position - Input.mousePosition) * offset_scale;
                         
                         tile_offset = selected_item.grid_pos - mouse_pos;
                         
@@ -127,20 +133,20 @@ public class InvController : MonoBehaviour
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null){
-                inv_highlighter.SetVisible(true);
-                inv_highlighter.SetSize(highlighted_item);
+                inv_highlighter.SetSize(highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(selected_item_grid);
                 inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
+                inv_highlighter.SetVisible(true);
             }
             else{
                 inv_highlighter.SetVisible(false);
             }
         }
         else{
-            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
-            inv_highlighter.SetSize(selected_item);
+            inv_highlighter.SetSize(selected_item, selected_item_grid);
             inv_highlighter.SetParent(selected_item_grid);
             inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
+            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
         }
     }
     
@@ -173,7 +179,7 @@ public class InvController : MonoBehaviour
     {
         if (selected_item != null)
         {
-            rt_held.position = Input.mousePosition - drag_offset;
+            rt_held.position = Input.mousePosition + drag_offset;
         }
     }
 

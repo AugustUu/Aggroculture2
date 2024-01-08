@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Hotbar : MonoBehaviour
 {
-    [SerializeField] ItemGrid selected_item_grid;
-    [SerializeField] public int grid_width = 10;
-    [SerializeField] public int grid_height = 1;
+    [SerializeField] public int length = 10;
     [SerializeField] public GameObject canvas;
 
 
@@ -18,7 +16,7 @@ public class Hotbar : MonoBehaviour
         canvas_scale = canvas.transform.localScale.y;
         canvas_tile_size =  scaled_tile_size * canvas_scale;
         rect_transform = GetComponent<RectTransform>();
-        InvInit(grid_width, grid_height);
+        InvInit(length);
     }
 
     private void Update(){
@@ -29,9 +27,9 @@ public class Hotbar : MonoBehaviour
 
     }
 
-    private void InvInit(int width, int height){
-        inventory = new InvItem[width, height];
-        Vector2 size = new Vector2(width * local_tile_size, height * local_tile_size);
+    private void InvInit(int length){
+        inventory = new InvItem[length];
+        Vector2 size = new Vector2(length * local_tile_size, local_tile_size);
         rect_transform.sizeDelta = size;
     }
     [SerializeField] public static float local_tile_size = 32;
@@ -39,46 +37,34 @@ public class Hotbar : MonoBehaviour
     public float canvas_scale;
     public static float canvas_tile_size;
 
-    InvItem[,] inventory;
+    InvItem[] inventory;
     List<InvItem> item_list = new List<InvItem>();
     int last_index = 0;
 
     Vector2 grid_pos = new Vector2();
     Vector2Int tile_grid_pos = new Vector2Int();
     
+    
     public Vector2Int GetGridPos(Vector2 mouse_pos){
         grid_pos.x = mouse_pos.x - rect_transform.position.x;
-        grid_pos.y = rect_transform.position.y - mouse_pos.y;
-        tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / canvas_tile_size), 0, grid_width - 1);
-        tile_grid_pos.y = Mathf.Clamp((int) (grid_pos.y / canvas_tile_size), 0, grid_height - 1);
+        grid_pos.y = 1;
+        tile_grid_pos.x = Mathf.Clamp((int) (grid_pos.x / canvas_tile_size), 0, length - 1);
         return tile_grid_pos;
     }
 
     public InvItem PickUpItem(Vector2Int mouse_pos){
-        InvItem picked_up_item = inventory[mouse_pos.x, mouse_pos.y];
+        InvItem picked_up_item = inventory[mouse_pos.x];
         if(picked_up_item != null){
-            for(int x = 0; x < picked_up_item.item_data.width; x++){
-                for(int y = 0; y < picked_up_item.item_data.height; y++){
-                    inventory[picked_up_item.grid_pos.x + x, picked_up_item.grid_pos.y + y] = null;
-                }
-            }
+            inventory[picked_up_item.grid_pos.x] = null;
         }
         return picked_up_item;
     }
 
     public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
     {
-        if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
-
-        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
+        if (!OverlapCheck(mouse_grid_pos, ref overlap_item)) { return false; }
 
         PlaceItem(inv_item, mouse_grid_pos);
-
-        foreach(InvItem i in inventory){
-            if(i != null){
-                Debug.Log(i.item_data.name);
-            }
-        }
 
         return true;
     }
@@ -88,14 +74,8 @@ public class Hotbar : MonoBehaviour
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
 
-        for (int x = 0; x < inv_item.item_data.width; x++)
-        {
-            for (int y = 0; y < inv_item.item_data.height; y++)
-            {
-                inventory[mouse_grid_pos.x + x, mouse_grid_pos.y + y] = inv_item;
-                item_list.Add(inv_item);
-            }
-        }
+        inventory[mouse_grid_pos.x] = inv_item;
+        item_list.Add(inv_item);
 
         inv_item.grid_pos = mouse_grid_pos;
         Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
@@ -114,28 +94,17 @@ public class Hotbar : MonoBehaviour
     }
 
     public InvItem GetItem(Vector2Int pos){
-        return inventory[pos.x, pos.y];
+        return inventory[pos.x];
     }
 
-    public bool BoundsCheck(Vector2Int pos, int width, int height){
-        if(pos.x < 0 || pos.y < 0 || pos.x + width - 1 >= grid_width || pos.y + height - 1 >= grid_height){
+    public bool OverlapCheck(Vector2Int pos, ref InvItem overlap_item){
+        if(inventory[pos.x] != null){
+            overlap_item = inventory[pos.x];
             return false;
         }
         return true;
     }
-
-    public bool OverlapCheck(Vector2Int pos, int width, int height, ref InvItem overlap_item){
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
-                if(inventory[pos.x + x, pos.y + y] != null){
-                    overlap_item = inventory[pos.x + x, pos.y + y];
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
+/*
     public bool SpaceCheck(int pos_x, int pos_y, int width, int height){
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
@@ -160,4 +129,5 @@ public class Hotbar : MonoBehaviour
         }
         return null;
     }
+    */ // pretty sure dont need any of this spacecheck stuff but leaving just in case heheahe
 }
