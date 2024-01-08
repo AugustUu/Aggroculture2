@@ -6,13 +6,22 @@ using UnityEngine.AI;
 
 public class MobScript : MonoBehaviour
 {
-    int mealth = 100;
-    void Start()
-    {
-        
+
+    private Transform target;
+    public int health = 100;
+
+    void Start(){
+        target = GameObject.Find("Player").transform;
     }
 
-    public Transform target;
+    public void hit(int dammage){
+        health -= dammage;
+        if(health <= 0){
+            Destroy(this.transform.gameObject);
+        }
+        Debug.Log("Shot3: "+health);
+    }
+
 
     void Update(){
         
@@ -24,7 +33,7 @@ public class MobScript : MonoBehaviour
 
         forward.x = (float)(Math.Sin(rotation));
         forward.z = (float)(Math.Cos(rotation));
-//ray shooting infront of enemy
+
         Ray ray = new Ray(this.transform.position, forward);    
         RaycastHit hit_object;
         if (Physics.Raycast(ray, out hit_object)){
@@ -33,7 +42,7 @@ public class MobScript : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
-        rotation += 0.78539816339f;
+        rotation += 0.78539816339f; // check 45deg to right 
         
         forward.x = (float)(Math.Sin(rotation));
         forward.z = (float)(Math.Cos(rotation));
@@ -45,7 +54,7 @@ public class MobScript : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
-        rotation -= 0.78539816339f*2;
+        rotation -= 0.78539816339f*2; // check 45deg to left 
         
         forward.x = (float)(Math.Sin(rotation));
         forward.z = (float)(Math.Cos(rotation));
