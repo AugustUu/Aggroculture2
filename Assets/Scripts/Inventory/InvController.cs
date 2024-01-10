@@ -11,7 +11,7 @@ public class InvController : MonoBehaviour
         get => selected_item_grid; 
         set {
             selected_item_grid = value;
-            inv_highlighter.SetParent(selected_item_grid);
+            inv_highlighter.SetParent(0, selected_item_grid);
         }
     }
 
@@ -26,6 +26,7 @@ public class InvController : MonoBehaviour
     }
 
     private InvItem selected_item;
+    public InvItem equipped_item;
 
     private Vector3 drag_offset;
     private Vector2Int tile_offset;
@@ -109,9 +110,12 @@ public class InvController : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetMouseButtonDown(1) && selected_item == null){
+                EquipItem();
+            }
         }
         else{
-            inv_highlighter.SetVisible(false);
+            inv_highlighter.SetVisible(0, false);
             if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
                 Debug.Log("item dropped outside inv");
@@ -133,20 +137,20 @@ public class InvController : MonoBehaviour
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null){
-                inv_highlighter.SetSize(highlighted_item, selected_item_grid);
-                inv_highlighter.SetParent(selected_item_grid);
-                inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
-                inv_highlighter.SetVisible(true);
+                inv_highlighter.SetSize(0, highlighted_item, selected_item_grid);
+                inv_highlighter.SetParent(0, selected_item_grid);
+                inv_highlighter.SetPosition(0, selected_item_grid, highlighted_item);
+                inv_highlighter.SetVisible(0, true);
             }
             else{
-                inv_highlighter.SetVisible(false);
+                inv_highlighter.SetVisible(0, false);
             }
         }
         else{
-            inv_highlighter.SetSize(selected_item, selected_item_grid);
-            inv_highlighter.SetParent(selected_item_grid);
-            inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
-            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
+            inv_highlighter.SetSize(0, selected_item, selected_item_grid);
+            inv_highlighter.SetParent(0, selected_item_grid);
+            inv_highlighter.SetPosition(0, selected_item_grid, selected_item, mouse_grid_pos);
+            inv_highlighter.SetVisible(0, selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
         }
     }
     
@@ -188,5 +192,23 @@ public class InvController : MonoBehaviour
         origin_grid.PlaceItem(selected_item, origin_pos);
         tile_offset = Vector2Int.zero;
         Selected_item = null;
+    }
+
+    InvItem to_equip_item;
+    private void EquipItem(){
+        Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
+        to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
+        Debug.Log("un");
+        if(to_equip_item != null){
+            Debug.Log("aggga");
+            Debug.Log("aeious");
+            equipped_item = to_equip_item;
+            inv_highlighter.SetSize(1, highlighted_item, selected_item_grid);
+            inv_highlighter.SetParent(1, selected_item_grid);
+            inv_highlighter.SetPosition(1, selected_item_grid, highlighted_item);
+            inv_highlighter.SetVisible(1, true);
+            
+
+        }
     }
 }
