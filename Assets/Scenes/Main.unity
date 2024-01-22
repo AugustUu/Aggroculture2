@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 19397674}
   - component: {fileID: 19397676}
   - component: {fileID: 19397677}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57c15418eccee4da45a54eb4670382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob_base: {fileID: 1424756746}
+  mob_base: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
 --- !u!4 &569643498
 Transform:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 300, y: 1, z: 300}
+  m_LocalScale: {x: 800, y: 1, z: 800}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 1023784122}
   - component: {fileID: 1023784123}
   - component: {fileID: 1023784124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 1211266391}
   - component: {fileID: 1211266392}
   - component: {fileID: 1211266398}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1374,11 +1374,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5684298608195299677, guid: 0d5a44570d69bc34b8750572d7007fe8, type: 3}
   m_PrefabInstance: {fileID: 1224095750}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1424756746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
-  m_PrefabInstance: {fileID: 310346158947110197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1445140664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,7 +1386,7 @@ GameObject:
   - component: {fileID: 1445140668}
   - component: {fileID: 1445140667}
   - component: {fileID: 1445140666}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
