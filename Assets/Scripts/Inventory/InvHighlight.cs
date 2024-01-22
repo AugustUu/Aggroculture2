@@ -37,10 +37,22 @@ public class InvHighlight : MonoBehaviour
         sprites[index].localPosition = target_grid.GetItemPos(held_item, mouse_grid_pos);
     }
 
+    public void SetPositionRaw(int index, Vector3 pos){
+        sprites[index].position = pos;
+        // Debug.Log("" + pos + ", " + sprites[index].localPosition);
+    }
+
     public void SetParent(int index, ItemGrid target_grid)
     {
         if(target_grid == null){ return; }
         sprites[index].SetParent(target_grid.GetComponent<RectTransform>());
+        sprites[index].SetAsLastSibling();
+    }
+
+    public void SetParent(int index, Transform target_obj)
+    {
+        if(target_obj == null){ return; }
+        sprites[index].SetParent(target_obj);
         sprites[index].SetAsLastSibling();
     }
 }

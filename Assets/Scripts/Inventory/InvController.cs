@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class InvController : MonoBehaviour
 {
-    [HideInInspector] private ItemGrid selected_item_grid;
+    public ItemGrid selected_item_grid;
     public ItemGrid Selected_item_grid { 
         get => selected_item_grid; 
         set {
@@ -91,6 +91,9 @@ public class InvController : MonoBehaviour
                         origin_pos = selected_item.grid_pos;
 
                         rt_held.SetParent(inv_parent.transform);
+                        if(equipped_item == selected_item){
+                            inv_highlighter.SetParent(1, inv_parent.transform);
+                        }
                         origin_grid = selected_item_grid;
                     }
                 }
@@ -107,6 +110,9 @@ public class InvController : MonoBehaviour
                         }
                         Debug.Log("item dropped on other item");
                         ReturnItem();
+                    }
+                    if(equipped_item != null){
+                        // inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
                     }
                 }
             }
@@ -184,6 +190,10 @@ public class InvController : MonoBehaviour
         if (selected_item != null)
         {
             rt_held.position = Input.mousePosition + drag_offset;
+            Debug.Log(rt_held.position);
+            if(equipped_item == selected_item){
+                inv_highlighter.SetPositionRaw(1, Input.mousePosition + drag_offset);
+            }
         }
     }
 
@@ -198,17 +208,18 @@ public class InvController : MonoBehaviour
     private void EquipItem(){
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
-        Debug.Log("un");
-        if(to_equip_item != null){
-            Debug.Log("aggga");
-            Debug.Log("aeious");
+        if(to_equip_item == equipped_item){
+            inv_highlighter.SetVisible(1, false);
+            equipped_item = null;
+            Debug.Log("item unequipped");
+        }
+        else if(to_equip_item != null){
             equipped_item = to_equip_item;
-            inv_highlighter.SetSize(1, highlighted_item, selected_item_grid);
+            inv_highlighter.SetSize(1, equipped_item, selected_item_grid);
             inv_highlighter.SetParent(1, selected_item_grid);
-            inv_highlighter.SetPosition(1, selected_item_grid, highlighted_item);
+            inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
             inv_highlighter.SetVisible(1, true);
-            
-
+            Debug.Log("item equipped");
         }
     }
 }
