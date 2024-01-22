@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public Slider slider;
+    public Slider health_points;
     int life;
+
     
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,12 @@ public class HealthSystem : MonoBehaviour
 
     public void setHealth(int health){
         life = health;
-        slider.value = life;
+        health_points.value = life;
     }
 
     public void changeHealth (int healthChange){
         life += healthChange;
-        slider.value = life;
+        health_points.value = life;
     }
 
     public int getHealth(){

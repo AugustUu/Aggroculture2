@@ -10,6 +10,8 @@ public class MobScript : MonoBehaviour
     private Transform target;
     public int health = 100;
 
+    public GameObject xp_orb;
+
     void Start(){
         target = GameObject.Find("Player").transform;
     }
@@ -17,6 +19,7 @@ public class MobScript : MonoBehaviour
     public void hit(int dammage){
         health -= dammage;
         if(health <= 0){
+            Instantiate(xp_orb, this.transform.position, this.transform.rotation);
             Destroy(this.transform.gameObject);
         }
         Debug.Log("Shot3: "+health);
