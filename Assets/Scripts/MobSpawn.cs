@@ -19,7 +19,6 @@ public class MobSpawn : MonoBehaviour
         int multiplier = TimeCycle.days * Random.Range(1, 3);
         if (TimeCycle.hours == 1 && spawned_wave == false)
         {
-            Debug.Log("yoo " + multiplier);
             for (int i = 0; i < multiplier; i++)
             {
                 float spawn_magnitude = Random.Range(50f, 100f);
