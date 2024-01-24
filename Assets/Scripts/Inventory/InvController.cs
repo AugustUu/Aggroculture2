@@ -33,7 +33,7 @@ public class InvController : MonoBehaviour
     InvItem overlap_item;
     RectTransform rt_held;
     RectTransform rt_new;
-    ItemGrid origin_grid;
+    [SerializeField] ItemGrid origin_grid;
     Vector2Int origin_pos;
 
     [SerializeField] List<ItemData> items;
@@ -100,8 +100,11 @@ public class InvController : MonoBehaviour
                 if (Input.GetMouseButtonUp(0) && selected_item != null)
                 {
                     if(selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item)){
-                        Selected_item = null;
                         tile_offset = Vector2Int.zero;
+                        if(equipped_item == selected_item){
+                            inv_highlighter.SetParent(1, selected_item_grid);
+                            inv_highlighter.SetPosition(1, selected_item_grid, selected_item);
+                        }
                     }
                     else{
                         if(overlap_item != null){
@@ -110,10 +113,13 @@ public class InvController : MonoBehaviour
                         }
                         Debug.Log("item dropped on other item");
                         ReturnItem();
+                        if(equipped_item == selected_item){
+                            inv_highlighter.SetParent(1, origin_grid);
+                            inv_highlighter.SetPosition(1, origin_grid, selected_item);
+                        }
                     }
-                    if(equipped_item != null){
-                        // inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
-                    }
+                    
+                    Selected_item = null;
                 }
             }
             if (Input.GetMouseButtonDown(1) && selected_item == null){
@@ -124,6 +130,7 @@ public class InvController : MonoBehaviour
             inv_highlighter.SetVisible(0, false);
             if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
+                Selected_item = null;
                 Debug.Log("item dropped outside inv");
             }
         }
@@ -201,7 +208,6 @@ public class InvController : MonoBehaviour
     {
         origin_grid.PlaceItem(selected_item, origin_pos);
         tile_offset = Vector2Int.zero;
-        Selected_item = null;
     }
 
     InvItem to_equip_item;

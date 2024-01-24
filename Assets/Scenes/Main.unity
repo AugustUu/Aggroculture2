@@ -2045,7 +2045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.25490198}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2350,7 +2350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973222c367bcb524a8381a485878313a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected_item_grid: {fileID: 0}
   equipped_item: {fileID: 0}
+  origin_grid: {fileID: 0}
   items:
   - {fileID: 11400000, guid: b0faa540bcb535c44bf55976596c882d, type: 2}
   - {fileID: 11400000, guid: 3146f198ebe7a644c87afc12be3b0c96, type: 2}
