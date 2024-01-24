@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering;
 
 public class xpScript : MonoBehaviour
 {
-    [SerializeField]
-    public UnityEvent xp_event; 
+    
+    Transform player_position;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("enter " + other.GetInstanceID() + " " + other.name);
-        InteractionManager.onEnter(this.GetInstanceID(), this.name, xp_event);
-    }
-    // Start is called before the first frame update
     void Start()
     {
-        
+        player_position = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void FixedUpdate(){
+        if(Vector3.Distance(player_position.transform.position, this.transform.position) < 5){
+            XpSystem.changeExp(5);
+            Destroy(this.transform.gameObject);
+        }
     }
     
 }

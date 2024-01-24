@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class xp : MonoBehaviour
+public class XpSystem : MonoBehaviour
 {
     public Slider experience_points;
-    int exp;
+
+    private static Slider experience_points_rf;
+    static int exp;
     // Start is called before the first frame update
     void Start()
     {
+        experience_points_rf = experience_points;
         setExp(0);
     }
 
     void Update(){
-        changeExp(1);
+        //changeExp(1);
     }
 
-    public void setExp(int xp){
+    public static void setExp(int xp){
         exp = xp;
-        experience_points.value = exp;
+        experience_points_rf.value = exp;
     }
 
-    public void changeExp (int xpChange){
+    public static void changeExp (int xpChange){
         exp += xpChange;
-        experience_points.value = exp;
+        experience_points_rf.value = exp;
     }
 
     public int getExp(){
