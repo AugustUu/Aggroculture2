@@ -15,4 +15,6 @@ MonoBehaviour:
   width: 1
   height: 2
   stackable: 0
+  equippable: 1
   item_icon: {fileID: 21300000, guid: f2e20955aa64db84f845a2fbd700b988, type: 3}
+  item_type: 1

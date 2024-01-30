@@ -76,35 +76,30 @@ public class InvController : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0) && selected_item == null)
                 {
+                    if(selected_item_grid.GetItem(mouse_pos) != equipped_item){
+                        Selected_item = selected_item_grid.PickUpItem(mouse_pos);
+                        if (selected_item != null)
+                        {
+                            selected_item.Rescale(main_canvas_tile_size);
+                            rt_held = selected_item.GetComponent<RectTransform>();
 
-                    Selected_item = selected_item_grid.PickUpItem(mouse_pos);
-                    if (selected_item != null)
-                    {
-                        selected_item.Rescale(main_canvas_tile_size);
-                        rt_held = selected_item.GetComponent<RectTransform>();
+                            float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
+                            drag_offset = (rt_held.position - Input.mousePosition) * offset_scale;
+                            
+                            tile_offset = selected_item.grid_pos - mouse_pos;
+                            
+                            origin_pos = selected_item.grid_pos;
 
-                        float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
-                        drag_offset = (rt_held.position - Input.mousePosition) * offset_scale;
-                        
-                        tile_offset = selected_item.grid_pos - mouse_pos;
-                        
-                        origin_pos = selected_item.grid_pos;
-
-                        rt_held.SetParent(inv_parent.transform);
-                        if(equipped_item == selected_item){
-                            inv_highlighter.SetParent(1, inv_parent.transform);
+                            rt_held.SetParent(inv_parent.transform);
+                            origin_grid = selected_item_grid;
                         }
-                        origin_grid = selected_item_grid;
                     }
+                    
                 }
                 if (Input.GetMouseButtonUp(0) && selected_item != null)
                 {
                     if(selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item)){
                         tile_offset = Vector2Int.zero;
-                        if(equipped_item == selected_item){
-                            inv_highlighter.SetParent(1, selected_item_grid);
-                            inv_highlighter.SetPosition(1, selected_item_grid, selected_item);
-                        }
                     }
                     else{
                         if(overlap_item != null){
@@ -149,7 +144,7 @@ public class InvController : MonoBehaviour
         
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
-            if(highlighted_item != null){
+            if(highlighted_item != null && highlighted_item != equipped_item){
                 inv_highlighter.SetSize(0, highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(0, selected_item_grid);
                 inv_highlighter.SetPosition(0, selected_item_grid, highlighted_item);
@@ -197,10 +192,6 @@ public class InvController : MonoBehaviour
         if (selected_item != null)
         {
             rt_held.position = Input.mousePosition + drag_offset;
-            Debug.Log(rt_held.position);
-            if(equipped_item == selected_item){
-                inv_highlighter.SetPositionRaw(1, Input.mousePosition + drag_offset);
-            }
         }
     }
 
@@ -214,9 +205,11 @@ public class InvController : MonoBehaviour
     private void EquipItem(){
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
-        if(to_equip_item == equipped_item){
+        if(to_equip_item.item_data.equippable){
+            if(to_equip_item == equipped_item){
             inv_highlighter.SetVisible(1, false);
             equipped_item = null;
+            HandleHighlight(false);
             Debug.Log("item unequipped");
         }
         else if(to_equip_item != null){
@@ -225,7 +218,9 @@ public class InvController : MonoBehaviour
             inv_highlighter.SetParent(1, selected_item_grid);
             inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
             inv_highlighter.SetVisible(1, true);
+            inv_highlighter.SetVisible(0, false);
             Debug.Log("item equipped");
+        }
         }
     }
 }

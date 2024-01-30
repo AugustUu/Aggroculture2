@@ -6,6 +6,13 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ItemType{
+    Produce,
+    Seeds,
+    Gun,
+    Misc
+}
+
 public class InvItem : MonoBehaviour
 {
     public ItemData item_data;

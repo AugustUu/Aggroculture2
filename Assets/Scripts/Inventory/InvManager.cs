@@ -24,4 +24,8 @@ public class InvManager : MonoBehaviour
     public void SetInvActive(bool active){
         gameObject.transform.GetChild(0).gameObject.SetActive(active);
     }
+
+    void Start(){
+        ToggleInv();
+    }
 }
