@@ -226,9 +226,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plant: 0
   growth: 0
-  stage: {fileID: 2722178066217241162, guid: b8ac54a732d320c499a4d24e8712cbb3, type: 3}
-  stages:
-  - {fileID: 2722178066217241162, guid: b8ac54a732d320c499a4d24e8712cbb3, type: 3}
-  - {fileID: -7497473628032008842, guid: b8ac54a732d320c499a4d24e8712cbb3, type: 3}
-  - {fileID: 7603760564840547013, guid: b8ac54a732d320c499a4d24e8712cbb3, type: 3}
-  - {fileID: -4626276407418588849, guid: b8ac54a732d320c499a4d24e8712cbb3, type: 3}
