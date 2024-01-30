@@ -21,7 +21,7 @@ public class WorldScript : MonoBehaviour
 
                 if (sample > 0.99)
                 {
-                    Instantiate(trees[Random.Range(0, trees.Length)], new Vector3(x, 8, y), Quaternion.Euler(0,Random.Range(0, 180),0));
+                    Instantiate(trees[Random.Range(0, trees.Length)], new Vector3(x, 0, y), Quaternion.Euler(0,Random.Range(0, 360),0));
                 }
             }
 

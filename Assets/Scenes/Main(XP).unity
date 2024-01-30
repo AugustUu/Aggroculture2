@@ -528,7 +528,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 644440833}
-  tree: {fileID: 8207423881771575452, guid: 3bdbe78cfdd733342b0383e101d40e78, type: 3}
+  trees:
+  - {fileID: 4221934609491923668, guid: 9663610428b02bc46a399cb7f0eb7b1b, type: 3}
+  - {fileID: 4221934609491923668, guid: c727f9d616daa1e41a5c35153673bc55, type: 3}
+  - {fileID: 4221934609491923668, guid: 86dd26916ac42814bba6efa999bfde72, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
