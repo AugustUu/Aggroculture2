@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 
@@ -14,5 +15,9 @@ public class ItemData : ScriptableObject
     public bool equippable;
     public Sprite item_icon;
     public ItemType item_type;
+    
+
+    [SerializeField]
+    public UnityEvent on_use; 
     
 }

@@ -30,6 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     void FixedUpdate()
     {
+        /*
         if(gun_mode){
             if (Input.GetMouseButton(0)){
                 
@@ -98,7 +99,7 @@ public class PlayerInteraction : MonoBehaviour
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
                 }
             } 
-        }
+        }*/
     
     }
 }

@@ -197,7 +197,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -100
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -528,7 +528,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 644440833}
-  trees: []
+  trees:
+  - {fileID: 4221934609491923668, guid: 9663610428b02bc46a399cb7f0eb7b1b, type: 3}
+  - {fileID: 4221934609491923668, guid: 86dd26916ac42814bba6efa999bfde72, type: 3}
+  - {fileID: 4221934609491923668, guid: 458b69ea1ce4a144c95b06553c164fc4, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

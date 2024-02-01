@@ -26,7 +26,7 @@ public class InvController : MonoBehaviour
     }
 
     private InvItem selected_item;
-    public InvItem equipped_item;
+    public static InvItem equipped_item;
 
     private Vector3 drag_offset;
     private Vector2Int tile_offset;
