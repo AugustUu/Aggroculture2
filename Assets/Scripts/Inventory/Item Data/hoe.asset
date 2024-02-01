@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
   m_Name: hoe
   m_EditorClassIdentifier: 
-  width: 0
-  height: 0
+  width: 1
+  height: 3
   stackable: 0
-  equippable: 0
-  item_icon: {fileID: 0}
-  item_type: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: 772fef1ea7b4f664c834d14ecd30284e, type: 3}
+  item_type: 4
   on_use:
     m_PersistentCalls:
       m_Calls: []

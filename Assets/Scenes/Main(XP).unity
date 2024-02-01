@@ -2913,7 +2913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_item_grid: {fileID: 0}
-  equipped_item: {fileID: 0}
   origin_grid: {fileID: 0}
   items:
   - {fileID: 11400000, guid: b0faa540bcb535c44bf55976596c882d, type: 2}
@@ -2922,6 +2921,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c14a1daeb963c742906b3ce8777def3, type: 2}
   - {fileID: 11400000, guid: 5e8dec0abe0ab3a4aa36fc65b5523b97, type: 2}
   - {fileID: 11400000, guid: 64f686687cf28994bb63fc7c4e498a60, type: 2}
+  - {fileID: 11400000, guid: afc7c6e90221eb24a828dd68387fde4a, type: 2}
   item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   canvas_transform: {fileID: 2047849635}
   main_grid: {fileID: 3494923188440057975}
