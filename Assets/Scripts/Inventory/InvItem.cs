@@ -10,6 +10,8 @@ public enum ItemType{
     Produce,
     Seeds,
     Gun,
+    Melee,
+    Tool,
     Misc
 }
 
