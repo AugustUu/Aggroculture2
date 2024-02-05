@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +20,8 @@ public class ItemData : ScriptableObject
 
     [SerializeField]
     public UnityEvent on_use; 
+
+    [SerializeField]
+    public event Action<int> OnScoreChanged = delegate { };
     
 }

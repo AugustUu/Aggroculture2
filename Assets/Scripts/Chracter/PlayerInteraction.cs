@@ -28,8 +28,19 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(gun_mode+" gunmode");
         }
     }
+
+    public void test(){
+        Debug.Log("yo");
+    }
     void FixedUpdate()
     {
+        if (Input.GetMouseButton(0)){
+            Debug.Log("click");
+            if(InvController.equipped_item != null && InvController.equipped_item.item_data.on_use != null){
+                Debug.Log("use");
+                InvController.equipped_item.item_data.on_use.Invoke();
+            }
+        }
         /*
         if(gun_mode){
             if (Input.GetMouseButton(0)){
