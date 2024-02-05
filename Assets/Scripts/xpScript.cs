@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering;
 
-public class xpScript : MonoBehaviour
+public class XPScript : MonoBehaviour
 {
     
     Transform player_position;
@@ -16,9 +16,9 @@ public class xpScript : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate(){
-        if(Vector3.Distance(player_position.transform.position, this.transform.position) < 5){
-            XpSystem.changeExp(5);
-            Destroy(this.transform.gameObject);
+        if(Vector3.Distance(player_position.transform.position, transform.position) < 5){
+            XPSystem.changeExp(5);
+            Destroy(transform.gameObject);
         }
     }
     
