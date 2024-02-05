@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
+  m_Name: gozoman
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
+  stackable: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: b856401d94c26eb4cac084a8eac043e3, type: 3}
+  item_type: 2
