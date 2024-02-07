@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ public class XpSystem : MonoBehaviour
             exp_req = (int)(exp_req *1.2);
             experience_points.maxValue = exp_req;
             display.text = levels.ToString();
+            //pauses for level menu
+            //Time.timeScale = 0;                                                                                                                                                                                                                                                                                                            
         }
     }
 
