@@ -4,14 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class XpSystem : MonoBehaviour
+public class XPSystem : MonoBehaviour
 {
     public Slider experience_points;
     public TextMeshProUGUI display;
 
     private static Slider experience_points_rf;
     static int exp;
-    int exp_req = 100;
+    int level_up_req = 100;
     int levels = 1;
     // Start is called before the first frame update
     void Start()
@@ -22,27 +22,28 @@ public class XpSystem : MonoBehaviour
     }
 
     void Update(){
-        //changeExp(1);
-        if(exp >= exp_req){
-            exp = 0;
-            levels += 1;
-            exp_req = (int)(exp_req *1.2);
-            experience_points.maxValue = exp_req;
-            display.text = levels.ToString();
+        if(exp >= level_up_req)
+        {
+            LevelUp(level_up_req);
         }
+    }
+
+    private void LevelUp(int exp_req)
+    {
+        exp -= exp_req;
+        levels += 1;
+        exp_req = (int)(exp_req * 1.2);
+        experience_points.maxValue = exp_req;
+        display.text = levels.ToString();
     }
 
     public static void setExp(int xp){
         exp = xp;
-        experience_points_rf.value = exp;
+        experience_points_rf.value = xp;
     }
 
     public static void changeExp (int xpChange){
         exp += xpChange;
         experience_points_rf.value = exp;
-    }
-
-    public int getExp(){
-        return exp;
     }
 }

@@ -16,7 +16,7 @@ public class MobSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int multiplier = TimeCycle.days * Random.Range(1, 3);
+        int multiplier = TimeCycle.days * Random.Range(1, 4);
         if (TimeCycle.hours == 1 && spawned_wave == false)
         {
             for (int i = 0; i < multiplier; i++)

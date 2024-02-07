@@ -18,10 +18,4 @@ public class ItemData : ScriptableObject
     public ItemType item_type;
     
 
-    [SerializeField]
-    public UnityEvent on_use; 
-
-    [SerializeField]
-    public event Action<int> OnScoreChanged = delegate { };
-    
 }
