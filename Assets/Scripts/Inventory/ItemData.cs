@@ -2,25 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
 {
-
     
-    [Serializable]
-    public struct GunStats{
-        public int fire_rate;
-        public int dammage;
-        public int recoil;
-    }
-    
-    public int width = 1;
-    public int height = 1;
-
+    public int width;
+    public int height;
+    public bool stackable;
+    public bool equippable;
     public Sprite item_icon;
+    public ItemType item_type;
+    
 
-    public int item_type = 1;
-    public GunStats gunStats;
 }

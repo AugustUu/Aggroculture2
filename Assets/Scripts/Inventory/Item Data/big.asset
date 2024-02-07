@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
+  stackable: 1
+  equippable: 0
   item_icon: {fileID: 21300000, guid: 833c49b2f5a2964449c61b5ad00be283, type: 3}
+  item_type: 5
+  on_use:
+    m_PersistentCalls:
+      m_Calls: []
