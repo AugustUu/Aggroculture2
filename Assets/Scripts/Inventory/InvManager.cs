@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class InvManager : MonoBehaviour
 {
+    GameObject inv_container;
+    void Start(){
+        ToggleInv();
+        inv_container = gameObject.transform.GetChild(0).gameObject;
+    }
     void Update()
     {
         if (Input.GetButtonDown("Inventory"))
@@ -19,13 +24,14 @@ public class InvManager : MonoBehaviour
     }
 
     public void ToggleInv(){
-        SetInvActive(!gameObject.transform.GetChild(0).gameObject.activeSelf);
+        SetInvActive(!inv_container.activeSelf);
     }
     public void SetInvActive(bool active){
-        gameObject.transform.GetChild(0).gameObject.SetActive(active);
+        if(!active){
+            InvController.selected_item_grid = null;
+        }
+        inv_container.SetActive(active);
     }
 
-    void Start(){
-        ToggleInv();
-    }
+    
 }

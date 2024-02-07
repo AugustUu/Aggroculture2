@@ -72,6 +72,16 @@ public class ItemGrid : MonoBehaviour
         return picked_up_item;
     }
 
+    public void PickUpItem(InvItem picked_up_item){
+        if(picked_up_item != null){
+            for(int x = 0; x < picked_up_item.item_data.width; x++){
+                for(int y = 0; y < picked_up_item.item_data.height; y++){
+                    inventory[picked_up_item.grid_pos.x + x, picked_up_item.grid_pos.y + y] = null;
+                }
+            }
+        }
+    }
+
     public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
     {
         if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }

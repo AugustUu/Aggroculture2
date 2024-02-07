@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class InvController : MonoBehaviour
 {
-    public ItemGrid selected_item_grid;
+    public static ItemGrid selected_item_grid;
     public ItemGrid Selected_item_grid { 
         get => selected_item_grid; 
         set {
@@ -207,20 +207,26 @@ public class InvController : MonoBehaviour
         to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
         if(to_equip_item.item_data.equippable){
             if(to_equip_item == equipped_item){
-            inv_highlighter.SetVisible(1, false);
-            equipped_item = null;
-            HandleHighlight(false);
-            Debug.Log("item unequipped");
+                inv_highlighter.SetVisible(1, false);
+                equipped_item = null;
+                HandleHighlight(false);
+                Debug.Log("item unequipped");
+            }
+            else if(to_equip_item != null){
+                equipped_item = to_equip_item;
+                inv_highlighter.SetSize(1, equipped_item, selected_item_grid);
+                inv_highlighter.SetParent(1, selected_item_grid);
+                inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
+                inv_highlighter.SetVisible(1, true);
+                inv_highlighter.SetVisible(0, false);
+                Debug.Log("item equipped");
+            }
         }
-        else if(to_equip_item != null){
-            equipped_item = to_equip_item;
-            inv_highlighter.SetSize(1, equipped_item, selected_item_grid);
-            inv_highlighter.SetParent(1, selected_item_grid);
-            inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
-            inv_highlighter.SetVisible(1, true);
+        else if(to_equip_item.item_data.item_type == ItemType.Food){
+            selected_item_grid.PickUpItem(to_equip_item);
+            HealthSystem.changeHealth(2);
+            Destroy(to_equip_item.gameObject);
             inv_highlighter.SetVisible(0, false);
-            Debug.Log("item equipped");
-        }
         }
     }
 }
