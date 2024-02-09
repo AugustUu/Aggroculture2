@@ -22,7 +22,6 @@ public class MobScript : MonoBehaviour
             Instantiate(xp_orb, this.transform.position, this.transform.rotation);
             Destroy(this.transform.gameObject);
         }
-        Debug.Log("Shot3: "+health);
     }
 
 
