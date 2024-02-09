@@ -18,3 +18,9 @@ MonoBehaviour:
   equippable: 1
   item_icon: {fileID: 21300000, guid: b856401d94c26eb4cac084a8eac043e3, type: 3}
   item_type: 2
+  gun_stats:
+    firerate: 1000
+    max_ammo: 0
+    mag_size: 0
+    damage: 1
+    recoil: 0

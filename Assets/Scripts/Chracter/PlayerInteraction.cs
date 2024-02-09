@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,25 +10,6 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject placeable;
 
     public Transform model_transform;
-
-    public bool gun_mode = true;
-
-    void Start()
-    {
-
-    }
-
-    public void OnKeyDown(){
-        Debug.Log("KEY DOWN");
-    }
-    
-    // Update is called once per frame
-    void Update(){
-        if(Input.GetButtonDown("BuildShoot")){
-            gun_mode = !gun_mode;
-            Debug.Log(gun_mode+" gunmode");
-        }
-    }
 
     public void test(){
         Debug.Log("yo");
@@ -65,28 +47,37 @@ public class PlayerInteraction : MonoBehaviour
     
     }
 
-        public void soot(){
-               
-                Vector3 forward = new Vector3();
+    double lastShot = 0;
+    public void shoot(GunStats stats){
+        double dealy = 1.0/stats.firerate;
+        Debug.Log(dealy);
+        if(Time.timeSinceLevelLoadAsDouble - lastShot >= dealy){
 
-                forward.x = (float)(Math.Cos(0.0) * Math.Sin(Movement.rotation)); 
-                forward.z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation));
-                //Debug.Log(forward);
-                //Debug.Log(model_transform.forward);
-                Ray ray = new Ray(this.transform.position, forward);    
-                RaycastHit hit_object;
-                if (Physics.Raycast(ray, out hit_object,300f, 1 << 11)){
-                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
-                    MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
-                    if(mob != null){
-                        mob.hit(25);
-                        Debug.Log(mob); 
-                    }
+            lastShot = Time.timeSinceLevelLoadAsDouble;
+
+            Vector3 forward = new Vector3
+            {
+                x = (float)(Math.Cos(0.0) * Math.Sin(Movement.rotation)),
+                z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation))
+            };
+
+            Ray ray = new Ray(this.transform.position, forward);    
+            RaycastHit hit_object;
+            if (Physics.Raycast(ray, out hit_object,300f, 1 << 11)){
+                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
+                MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
+                if(mob != null){
+                    mob.hit(stats.damage);
+                    Debug.Log(mob); 
                 }
+            }else{
+                Debug.DrawRay(this.transform.position, forward * 10, Color.red, 1f);
+            }
         }
+    }
 
 
-    void FixedUpdate(){
+    void Update(){
     
         
         if (Input.GetMouseButton(0)){
@@ -94,7 +85,7 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log(InvController.equipped_item.item_data.name);
                 switch(InvController.equipped_item.item_data.item_type){
                     case ItemType.Gun:
-                        soot();
+                        shoot(InvController.equipped_item.item_data.gun_stats);
                         break;
                     case ItemType.Tool:
                         hoe();
