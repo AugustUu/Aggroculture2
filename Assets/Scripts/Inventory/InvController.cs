@@ -6,25 +6,20 @@ using UnityEngine;
 
 public class InvController : MonoBehaviour
 {
-    public ItemGrid selected_item_grid;
-    public ItemGrid Selected_item_grid
-    {
-        get => selected_item_grid;
-        set
-        {
+    public static ItemGrid selected_item_grid;
+    public ItemGrid Selected_item_grid { 
+        get => selected_item_grid; 
+        set {
             selected_item_grid = value;
             inv_highlighter.SetParent(0, selected_item_grid);
         }
     }
 
-    public InvItem Selected_item
-    {
-        get => selected_item;
-        set
-        {
-            selected_item = value;
-            if (Selected_item_grid != null)
-            {
+    public InvItem Selected_item {
+        get => selected_item; 
+        set {
+            selected_item = value; 
+            if(Selected_item_grid != null){
                 HandleHighlight(false);
             }
         }
@@ -52,8 +47,7 @@ public class InvController : MonoBehaviour
 
     InvHighlight inv_highlighter;
 
-    void Awake()
-    {
+    void Awake(){
         inv_highlighter = GetComponent<InvHighlight>();
     }
 
@@ -61,36 +55,28 @@ public class InvController : MonoBehaviour
     {
         DragItemIcon();
 
-        if (Input.GetKeyDown(KeyCode.Q) && selected_item == null)
+        if(Input.GetKeyDown(KeyCode.Q) && selected_item == null)
         {
             Selected_item = GenerateItem(Random.Range(0, items.Count));
             rt_held = rt_new;
             rt_new = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            //InsertItem(GenerateItem(Random.Range(0, items.Count)));
-            for (int i = 0; i < items.Count; i++)
-            {
-                InsertItem(GenerateItem(i));
-            }
+        if(Input.GetKeyDown(KeyCode.W)){
+            InsertItem(GenerateItem(Random.Range(0, items.Count)));
         }
 
-        if (selected_item_grid != null)
-        {
+        if(selected_item_grid != null){
 
             HandleHighlight(true);
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
-            {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
                 Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
 
                 if (Input.GetMouseButtonDown(0) && selected_item == null)
                 {
-                    if (selected_item_grid.GetItem(mouse_pos) != equipped_item)
-                    {
+                    if(selected_item_grid.GetItem(mouse_pos) != equipped_item){
                         Selected_item = selected_item_grid.PickUpItem(mouse_pos);
                         if (selected_item != null)
                         {
@@ -99,58 +85,51 @@ public class InvController : MonoBehaviour
 
                             float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
                             drag_offset = (rt_held.position - Input.mousePosition) * offset_scale;
-
+                            
                             tile_offset = selected_item.grid_pos - mouse_pos;
-
+                            
                             origin_pos = selected_item.grid_pos;
 
                             rt_held.SetParent(inv_parent.transform);
                             origin_grid = selected_item_grid;
                         }
                     }
-
+                    
                 }
                 if (Input.GetMouseButtonUp(0) && selected_item != null)
                 {
-                    if (selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item))
-                    {
+                    if(selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item)){
                         tile_offset = Vector2Int.zero;
                     }
-                    else
-                    {
-                        if (overlap_item != null)
-                        {
+                    else{
+                        if(overlap_item != null){
                             Debug.Log(overlap_item);
                             overlap_item = null;
                         }
                         Debug.Log("item dropped on other item");
                         ReturnItem();
-                        if (equipped_item == selected_item)
-                        {
+                        if(equipped_item == selected_item){
                             inv_highlighter.SetParent(1, origin_grid);
                             inv_highlighter.SetPosition(1, origin_grid, selected_item);
                         }
                     }
-
+                    
                     Selected_item = null;
                 }
             }
-            if (Input.GetMouseButtonDown(1) && selected_item == null)
-            {
+            if (Input.GetMouseButtonDown(1) && selected_item == null){
                 EquipItem();
             }
         }
-        else
-        {
+        else{
             inv_highlighter.SetVisible(0, false);
-            if (Input.GetMouseButtonUp(0) && selected_item != null)
-            {
+            if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
                 Selected_item = null;
                 Debug.Log("item dropped outside inv");
             }
         }
-
+        
     }
 
     InvItem highlighted_item;
@@ -158,36 +137,31 @@ public class InvController : MonoBehaviour
     private void HandleHighlight(bool check_mouse)
     {
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
-        if (check_mouse)
-        {
-            if (old_pos == mouse_grid_pos) { return; }
+        if(check_mouse){
+            if(old_pos == mouse_grid_pos){ return; }
         }
         old_pos = mouse_grid_pos;
-
-        if (selected_item == null)
-        {
+        
+        if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
-            if (highlighted_item != null && highlighted_item != equipped_item)
-            {
+            if(highlighted_item != null && highlighted_item != equipped_item){
                 inv_highlighter.SetSize(0, highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(0, selected_item_grid);
                 inv_highlighter.SetPosition(0, selected_item_grid, highlighted_item);
                 inv_highlighter.SetVisible(0, true);
             }
-            else
-            {
+            else{
                 inv_highlighter.SetVisible(0, false);
             }
         }
-        else
-        {
+        else{
             inv_highlighter.SetSize(0, selected_item, selected_item_grid);
             inv_highlighter.SetParent(0, selected_item_grid);
             inv_highlighter.SetPosition(0, selected_item_grid, selected_item, mouse_grid_pos);
             inv_highlighter.SetVisible(0, selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
         }
     }
-
+    
     private InvItem GenerateItem(int item_ID)
     {
         InvItem inv_item = Instantiate(item_prefab).GetComponent<InvItem>();
@@ -198,22 +172,18 @@ public class InvController : MonoBehaviour
         return inv_item;
     }
 
-    private void InsertItem(InvItem inserting_item)
-    {
+    private void InsertItem(InvItem inserting_item){
         Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
-        if (open_pos != null)
-        {
+        if(open_pos != null){
             main_grid.PlaceItem(inserting_item, open_pos.Value);
         }
-        else
-        {
+        else{
             Destroy(inserting_item.gameObject);
             Debug.Log("found no space for inserting item, debug destroying item");
         }
     }
 
-    public void InsertItemID(int item_ID)
-    {
+    public void InsertItemID(int item_ID){
         InsertItem(GenerateItem(item_ID));
     }
 
@@ -232,21 +202,17 @@ public class InvController : MonoBehaviour
     }
 
     InvItem to_equip_item;
-    private void EquipItem()
-    {
+    private void EquipItem(){
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
-        if (to_equip_item.item_data.equippable)
-        {
-            if (to_equip_item == equipped_item)
-            {
+        if(to_equip_item.item_data.equippable){
+            if(to_equip_item == equipped_item){
                 inv_highlighter.SetVisible(1, false);
                 equipped_item = null;
                 HandleHighlight(false);
                 Debug.Log("item unequipped");
             }
-            else if (to_equip_item != null)
-            {
+            else if(to_equip_item != null){
                 equipped_item = to_equip_item;
                 inv_highlighter.SetSize(1, equipped_item, selected_item_grid);
                 inv_highlighter.SetParent(1, selected_item_grid);
@@ -255,6 +221,12 @@ public class InvController : MonoBehaviour
                 inv_highlighter.SetVisible(0, false);
                 Debug.Log("item equipped");
             }
+        }
+        else if(to_equip_item.item_data.item_type == ItemType.Food){
+            selected_item_grid.PickUpItem(to_equip_item);
+            HealthSystem.changeHealth(2);
+            Destroy(to_equip_item.gameObject);
+            inv_highlighter.SetVisible(0, false);
         }
     }
 }
