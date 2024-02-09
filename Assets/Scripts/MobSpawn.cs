@@ -17,7 +17,7 @@ public class MobSpawn : MonoBehaviour
     void Update()
     {
         int multiplier = TimeCycle.days * Random.Range(1, 4);
-        if (TimeCycle.hours == 1 && spawned_wave == false)
+        if (TimeCycle.hours == 0 && spawned_wave == false)
         {
             for (int i = 0; i < multiplier; i++)
             {

@@ -5,6 +5,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+[Serializable]
+public class GunStats{
+    public int firerate;
+    public int max_ammo;
+    public int mag_size;
+    public int damage;
+    public int recoil;
+}
+
 
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
@@ -16,6 +25,7 @@ public class ItemData : ScriptableObject
     public bool equippable;
     public Sprite item_icon;
     public ItemType item_type;
-    
 
+    public GunStats gun_stats;
+    
 }

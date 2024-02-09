@@ -12,24 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
   m_Name: stockedAK
   m_EditorClassIdentifier: 
-  width: 4
+  width: 8
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 37b273b10d56f92499a73f2221389896, type: 3}
+  item_icon: {fileID: 21300000, guid: 7a9868a26dafdfd48937b4d2327c3519, type: 3}
   item_type: 2
-  on_use:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1375446873584930804, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
-        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
-        m_MethodName: soot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: test
-          m_BoolArgument: 0
-        m_CallState: 1
+  gun_stats:
+    firerate: 10
+    max_ammo: 0
+    mag_size: 0
+    damage: 25
+    recoil: 0

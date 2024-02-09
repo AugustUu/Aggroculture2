@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum ItemType{
-    Produce,
+    Food,
     Seeds,
     Gun,
     Melee,
