@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: stockedAK
+  m_Name: stocklessAK
   m_EditorClassIdentifier: 
-  width: 4
+  width: 3
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 37b273b10d56f92499a73f2221389896, type: 3}
+  item_icon: {fileID: 21300000, guid: 3e0d12ad5e5748f48a12bacc70e6429a, type: 3}
   item_type: 2

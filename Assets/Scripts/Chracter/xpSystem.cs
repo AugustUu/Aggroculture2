@@ -32,7 +32,7 @@ public class XPSystem : MonoBehaviour
     {
         exp -= exp_req;
         levels += 1;
-        exp_req = (int)(exp_req * 1.2);
+        level_up_req = (int)(exp_req * 1.2);
         experience_points.maxValue = exp_req;
         display.text = levels.ToString();
     }
