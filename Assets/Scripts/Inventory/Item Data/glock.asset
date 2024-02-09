@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: stocklessAK
+  m_Name: glock
   m_EditorClassIdentifier: 
-  width: 6
+  width: 3
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 7558c99f266a5114289eee7f3ea656dd, type: 3}
+  item_icon: {fileID: 21300000, guid: 9d7aeb7f3bc3ca1449ba29eb9e45f367, type: 3}
   item_type: 2
   gun_stats:
     firerate: 0
