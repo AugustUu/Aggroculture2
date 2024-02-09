@@ -62,9 +62,14 @@ public class InvController : MonoBehaviour
             rt_new = null;
         }
 
-        if(Input.GetKeyDown(KeyCode.W)){
-            InsertItem(GenerateItem(Random.Range(0, items.Count)));
+        if (Input.GetKeyDown(KeyCode.O)){
+            //InsertItem(GenerateItem(Random.Range(0, items.Count)));
+            for (int i = 0; i < items.Count; i++)
+            {
+                InsertItem(GenerateItem(i));
+            }
         }
+
 
         if(selected_item_grid != null){
 
@@ -223,7 +228,7 @@ public class InvController : MonoBehaviour
             }
         }
         else if(to_equip_item.item_data.item_type == ItemType.Food){
-            selected_item_grid.PickUpItem(to_equip_item);
+            selected_item_grid.PickUpItem(to_equip_item.grid_pos);
             HealthSystem.changeHealth(2);
             Destroy(to_equip_item.gameObject);
             inv_highlighter.SetVisible(0, false);
