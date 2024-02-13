@@ -11,7 +11,7 @@ public class InvController : MonoBehaviour
         get => selected_item_grid; 
         set {
             selected_item_grid = value;
-            inv_highlighter.SetParent(0, selected_item_grid);
+            inv_highlighter.SetParent(selected_item_grid);
         }
     }
 
@@ -41,15 +41,11 @@ public class InvController : MonoBehaviour
     [SerializeField] Transform canvas_transform;
     [SerializeField] ItemGrid main_grid;
     [SerializeField] GameObject inv_parent;
+    [SerializeField] InvHighlight inv_highlighter;
+    [SerializeField] InvHighlight equip_highlighter;
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
-
-    InvHighlight inv_highlighter;
-
-    void Awake(){
-        inv_highlighter = GetComponent<InvHighlight>();
-    }
 
     void Update()
     {
@@ -105,6 +101,10 @@ public class InvController : MonoBehaviour
                 {
                     if(selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item)){
                         tile_offset = Vector2Int.zero;
+                        selected_item.back_highlighter.SetSize(selected_item, selected_item_grid);
+                        selected_item.back_highlighter.SetParent(selected_item_grid);
+                        selected_item.back_highlighter.SetPosition(selected_item_grid, highlighted_item);
+                        selected_item.back_highlighter.SetVisible(true);
                     }
                     else{
                         if(overlap_item != null){
@@ -114,8 +114,8 @@ public class InvController : MonoBehaviour
                         Debug.Log("item dropped on other item");
                         ReturnItem();
                         if(equipped_item == selected_item){
-                            inv_highlighter.SetParent(1, origin_grid);
-                            inv_highlighter.SetPosition(1, origin_grid, selected_item);
+                            inv_highlighter.SetParent(origin_grid);
+                            inv_highlighter.SetPosition(origin_grid, selected_item);
                         }
                     }
                     
@@ -127,7 +127,7 @@ public class InvController : MonoBehaviour
             }
         }
         else{
-            inv_highlighter.SetVisible(0, false);
+            inv_highlighter.SetVisible(false);
             if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
                 Selected_item = null;
@@ -150,20 +150,20 @@ public class InvController : MonoBehaviour
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null && highlighted_item != equipped_item){
-                inv_highlighter.SetSize(0, highlighted_item, selected_item_grid);
-                inv_highlighter.SetParent(0, selected_item_grid);
-                inv_highlighter.SetPosition(0, selected_item_grid, highlighted_item);
-                inv_highlighter.SetVisible(0, true);
+                inv_highlighter.SetSize(highlighted_item, selected_item_grid);
+                inv_highlighter.SetParent(selected_item_grid);
+                inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
+                inv_highlighter.SetVisible(true);
             }
             else{
-                inv_highlighter.SetVisible(0, false);
+                inv_highlighter.SetVisible(false);
             }
         }
         else{
-            inv_highlighter.SetSize(0, selected_item, selected_item_grid);
-            inv_highlighter.SetParent(0, selected_item_grid);
-            inv_highlighter.SetPosition(0, selected_item_grid, selected_item, mouse_grid_pos);
-            inv_highlighter.SetVisible(0, selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
+            inv_highlighter.SetSize(selected_item, selected_item_grid);
+            inv_highlighter.SetParent(selected_item_grid);
+            inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
+            inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
         }
     }
     
@@ -210,28 +210,31 @@ public class InvController : MonoBehaviour
     private void EquipItem(){
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         to_equip_item = selected_item_grid.GetItem(mouse_grid_pos);
-        if(to_equip_item.item_data.equippable){
-            if(to_equip_item == equipped_item){
-                inv_highlighter.SetVisible(1, false);
-                equipped_item = null;
-                HandleHighlight(false);
-                Debug.Log("item unequipped");
+        if(to_equip_item != null){
+            if(to_equip_item.item_data.equippable){
+                if(to_equip_item == equipped_item){
+                    equip_highlighter.SetVisible(false);
+                    equipped_item = null;
+                    HandleHighlight(false);
+                    Debug.Log("item unequipped");
+                }
+                else if(to_equip_item != null){
+                    equipped_item = to_equip_item;
+                    equip_highlighter.SetSize(equipped_item, selected_item_grid);
+                    equip_highlighter.SetParent(selected_item_grid);
+                    equip_highlighter.SetPosition(selected_item_grid, equipped_item);
+                    equip_highlighter.SetVisible(true);
+                    inv_highlighter.SetVisible(false);
+                    Debug.Log("item equipped");
+                }
             }
-            else if(to_equip_item != null){
-                equipped_item = to_equip_item;
-                inv_highlighter.SetSize(1, equipped_item, selected_item_grid);
-                inv_highlighter.SetParent(1, selected_item_grid);
-                inv_highlighter.SetPosition(1, selected_item_grid, equipped_item);
-                inv_highlighter.SetVisible(1, true);
-                inv_highlighter.SetVisible(0, false);
-                Debug.Log("item equipped");
+            else if(to_equip_item.item_data.item_type == ItemType.Food){
+                selected_item_grid.PickUpItem(to_equip_item.grid_pos);
+                HealthSystem.changeHealth(2);
+                Destroy(to_equip_item.gameObject);
+                inv_highlighter.SetVisible(false);
+                Debug.Log("food eaten");
             }
-        }
-        else if(to_equip_item.item_data.item_type == ItemType.Food){
-            selected_item_grid.PickUpItem(to_equip_item.grid_pos);
-            HealthSystem.changeHealth(2);
-            Destroy(to_equip_item.gameObject);
-            inv_highlighter.SetVisible(0, false);
         }
     }
 }

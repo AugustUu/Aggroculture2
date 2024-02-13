@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class InvManager : MonoBehaviour
 {
-    GameObject inv_container;
+    [SerializeField] GameObject inv_container;
+
     void Start(){
         ToggleInv();
-        inv_container = gameObject.transform.GetChild(0).gameObject;
     }
     void Update()
     {
