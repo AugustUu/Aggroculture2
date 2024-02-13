@@ -206,6 +206,10 @@ public class InvController : MonoBehaviour
         tile_offset = Vector2Int.zero;
     }
 
+    private void PlaceItem(InvItem selected_item, Vector2Int pos, ItemGrid grid){
+        
+    }
+
     InvItem to_equip_item;
     private void EquipItem(){
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
