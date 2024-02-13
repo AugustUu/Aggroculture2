@@ -2404,6 +2404,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0dd5864845c85de4792563988dbfbe0c, type: 2}
   - {fileID: 11400000, guid: b26500f27ecd5a448a4e4236e1152435, type: 2}
   - {fileID: 11400000, guid: a9ad8e9d1dc0ec74fb81ac41e56d0273, type: 2}
+  - {fileID: 11400000, guid: ab74175c4df829b47a8b01e7ac0d0069, type: 2}
   item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   canvas_transform: {fileID: 2047849635}
   main_grid: {fileID: 3494923188440057975}
