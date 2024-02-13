@@ -889,6 +889,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1100570789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5784618704388466382, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+  m_PrefabInstance: {fileID: 1739942321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1510297366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1261,18 @@ PrefabInstance:
     - target: {fileID: 3394176229663608367, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531392621818451026, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: guns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531392621818451026, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: guns.Array.data[4]
+      value: 
+      objectReference: {fileID: 1100570789}
+    - target: {fileID: 7949810277712396258, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
