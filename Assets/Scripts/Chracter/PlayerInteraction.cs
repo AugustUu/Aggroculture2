@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -11,11 +9,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public Transform model_transform;
 
-    public void test(){
-        Debug.Log("yo");
-    }
-
-    public void hoe(){
+    public void hoe()
+    {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit_object;
 
@@ -31,12 +26,12 @@ public class PlayerInteraction : MonoBehaviour
                 hit_object.point.y,
                 Mathf.Round(hit_object.point.z / scale.z) * scale.z
             );
-                                                                            
+
             if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
             {
                 GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
                 FarmlandScript script = farmland.GetComponent<FarmlandScript>();
-            
+
                 Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
             }
             else
@@ -44,46 +39,64 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
             }
         }
-    
+
     }
 
     double lastShot = 0;
-    public void shoot(GunStats stats){
-        double dealy = 1.0/stats.firerate;
-        Debug.Log(dealy);
-        if(Time.timeSinceLevelLoadAsDouble - lastShot >= dealy){
+    public void shoot(GunStats stats)
+    {
+        double dealy = 1.0 / stats.firerate;
+        if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
+        {
 
             lastShot = Time.timeSinceLevelLoadAsDouble;
 
-            Vector3 forward = new Vector3
+            for (int i = 0; i <= stats.extra_shots; i++)
             {
-                x = (float)(Math.Cos(0.0) * Math.Sin(Movement.rotation)),
-                z = (float)(Math.Cos(0.0) * Math.Cos(Movement.rotation))
-            };
 
-            Ray ray = new Ray(this.transform.position, forward);    
-            RaycastHit hit_object;
-            if (Physics.Raycast(ray, out hit_object,300f, 1 << 11)){
-                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
-                MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
-                if(mob != null){
-                    mob.hit(stats.damage);
-                    Debug.Log(mob); 
+                Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
+                Vector3 mouse_pos = Input.mousePosition;
+
+                float rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y) + Mathf.PI;
+
+                Vector3 forward = new Vector3
+                {
+                    x = (float)(Math.Cos(0.0) * Math.Sin(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad),
+                    z = (float)(Math.Cos(0.0) * Math.Cos(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad)
+                };
+
+                Ray ray = new Ray(this.transform.position, forward);
+                RaycastHit hit_object;
+                if (Physics.Raycast(ray, out hit_object, 300f, 1 << 11))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
+                    MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
+                    if (mob != null)
+                    {
+                        mob.hit(stats.damage);
+                        Debug.Log(mob);
+                    }
                 }
-            }else{
-                Debug.DrawRay(this.transform.position, forward * 10, Color.red, 1f);
+                else
+                {
+                    Debug.DrawRay(this.transform.position, forward * 10, Color.red, 1f);
+                }
             }
         }
     }
 
 
-    void Update(){
-    
-        
-        if (Input.GetMouseButton(0)){
-            if(InvController.equipped_item != null ){
-                Debug.Log(InvController.equipped_item.item_data.name);
-                switch(InvController.equipped_item.item_data.item_type){
+    void Update()
+    {
+
+
+        if (Input.GetMouseButton(0))
+        {
+            if (InvController.equipped_item != null)
+            {
+                //Debug.Log(InvController.equipped_item.item_data.name);
+                switch (InvController.equipped_item.item_data.item_type)
+                {
                     case ItemType.Gun:
                         shoot(InvController.equipped_item.item_data.gun_stats);
                         break;
@@ -166,7 +179,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
             } 
         }*/
-    
+
     }
 
 }
