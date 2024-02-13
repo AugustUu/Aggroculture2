@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
   m_Name: glock
   m_EditorClassIdentifier: 
-  width: 3
+  width: 2
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 9d7aeb7f3bc3ca1449ba29eb9e45f367, type: 3}
+  item_icon: {fileID: 21300000, guid: fdfafb34cb11b1c4884577e909ec759b, type: 3}
   item_type: 2
   gun_stats:
     firerate: 0

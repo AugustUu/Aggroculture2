@@ -28,26 +28,26 @@ public class InteractionManager : MonoBehaviour
 
     public static void onEnter(int id, string name, UnityEvent input_event)
     {
-        interactables.Add(id, (name,input_event));
-
-
-        updateText();
+        if(!interactables.ContainsKey(id)){
+            interactables.Add(id, (name,input_event));
+            updateText();
+        }
     }
 
 
     public static void onExit(int id)
     {
-        interactables.Remove(id);
-
-        updateText();
+        if(interactables.ContainsKey(id)){
+            interactables.Remove(id);
+            updateText();
+        }
     }
 
     
     public void Update()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact") && index < interactables.Count)
         {
-            //Debug.Log(interactables.ElementAt(index).Value.Item1);
             interactables.ElementAt(index).Value.Item2.Invoke();
         }
         if(Input.GetButtonDown("index")){

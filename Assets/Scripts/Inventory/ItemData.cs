@@ -12,6 +12,10 @@ public class GunStats{
     public int mag_size;
     public int damage;
     public int recoil;
+
+    public float spread;
+
+    public int extra_shots;
 }
 
 

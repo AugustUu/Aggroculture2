@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: stockedAK
+  m_Name: shoel
   m_EditorClassIdentifier: 
-  width: 8
-  height: 2
+  width: 2
+  height: 6
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 7a9868a26dafdfd48937b4d2327c3519, type: 3}
-  item_type: 2
+  item_icon: {fileID: 21300000, guid: 730252a3f5cfc6d4ab3525cec21874d7, type: 3}
+  item_type: 4
   gun_stats:
-    firerate: 10
+    firerate: 0
     max_ammo: 0
     mag_size: 0
-    damage: 25
+    damage: 0
     recoil: 0
-    spread: 5
-    bullets_per_shot: 0
+    spread: 0
+    extra_shots: 0

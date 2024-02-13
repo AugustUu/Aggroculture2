@@ -31,10 +31,12 @@ public class XPSystem : MonoBehaviour
     private void LevelUp(int exp_req)
     {
         exp -= exp_req;
+        experience_points_rf.value = exp;
         levels += 1;
         level_up_req = (int)(exp_req * 1.2);
-        experience_points.maxValue = exp_req;
+        experience_points.maxValue = level_up_req;
         display.text = levels.ToString();
+        
     }
 
     public static void setExp(int xp){
