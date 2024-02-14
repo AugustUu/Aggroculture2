@@ -18,6 +18,7 @@ public class GunSelectVisibility : MonoBehaviour
     void Update()
     {
         if (InvController.equipped_item != null){
+            Debug.Log(InvController.equipped_item.item_data.name);
             for (int i = 0; i <= guns.Length - 1; i++){
                 if (InvController.equipped_item.item_data.name.Equals(guns[i].name)){
                     guns[i].SetActive(true);
@@ -29,13 +30,12 @@ public class GunSelectVisibility : MonoBehaviour
                 }
             }
         }
-        //Debug.Log(InvController.equipped_item.item_data.name);
         
-        if (InvController.equipped_item = null){
+        if (InvController.equipped_item == null){
             for (int j = 0; j <= guns.Length - 1;j++){
                 guns[j].SetActive(false);
                 //Debug.Log("kys");
             }
-        } 
+        }
     }
 }
