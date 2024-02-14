@@ -10,7 +10,7 @@ public class GunSelectVisibility : MonoBehaviour
     {
         for (int i = 0; i <= guns.Length - 1; i++){
             Debug.Log(guns[i].name);
-            //guns[i].SetActive(false);
+            guns[i].SetActive(false);
         }
     }
 
@@ -23,7 +23,7 @@ public class GunSelectVisibility : MonoBehaviour
                     guns[i].SetActive(true);
                     for (int j = 0; j <= guns.Length - 1;j++){
                         if(j != i){
-                            //guns[j].SetActive(false);
+                            guns[j].SetActive(false);
                         }             
                     }
                 }
