@@ -57,9 +57,9 @@ public class PlayerInteraction : MonoBehaviour
                 Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
                 Vector3 mouse_pos = Input.mousePosition;
 
-                float rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y) + Mathf.PI;
+                float rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y) + Mathf.PI + transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
 
-                Vector3 forward = new Vector3
+                Vector3 forward = new Vector3 
                 {
                     x = (float)(Math.Cos(0.0) * Math.Sin(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad),
                     z = (float)(Math.Cos(0.0) * Math.Cos(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad)
@@ -67,8 +67,10 @@ public class PlayerInteraction : MonoBehaviour
 
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit hit_object;
+                // use raycast all
                 if (Physics.Raycast(ray, out hit_object, 300f, 1 << 11))
                 {
+                    
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
                     MobScript mob = hit_object.transform.gameObject.GetComponent<MobScript>();
                     if (mob != null)
