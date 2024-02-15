@@ -55,12 +55,13 @@ public class InvController : MonoBehaviour
     {
         DragItemIcon();
 
+        /*
         if(Input.GetKeyDown(KeyCode.Q) && selected_item == null)
         {
             Selected_item = GenerateItem(Random.Range(0, items.Count));
             rt_held = rt_new;
             rt_new = null;
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.O)){
             //InsertItem(GenerateItem(Random.Range(0, items.Count)));
