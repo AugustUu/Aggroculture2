@@ -28,7 +28,7 @@ public class InvManager : MonoBehaviour
     }
     public void SetInvActive(bool active){
         if(!active){
-            InvController.selected_item_grid = null;
+            gameObject.GetComponent<InvController>().selected_item_grid = null;
         }
         inv_container.SetActive(active);
     }

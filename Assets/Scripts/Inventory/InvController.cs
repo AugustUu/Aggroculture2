@@ -6,20 +6,13 @@ using UnityEngine;
 
 public class InvController : MonoBehaviour
 {
-    public static ItemGrid selected_item_grid;
-    public ItemGrid Selected_item_grid { 
-        get => selected_item_grid; 
-        set {
-            selected_item_grid = value;
-            inv_highlighter.SetParent(selected_item_grid);
-        }
-    }
+    public ItemGrid selected_item_grid;
 
     public InvItem Selected_item {
         get => selected_item; 
         set {
             selected_item = value; 
-            if(Selected_item_grid != null){
+            if(selected_item_grid != null){
                 HandleHighlight(false);
             }
         }
@@ -81,7 +74,6 @@ public class InvController : MonoBehaviour
                         Selected_item = selected_item_grid.PickUpItem(mouse_pos);
                         if (selected_item != null)
                         {
-                            selected_item.Rescale(main_canvas_tile_size);
                             rt_held = selected_item.GetComponent<RectTransform>();
 
                             float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
@@ -103,7 +95,9 @@ public class InvController : MonoBehaviour
                         tile_offset = Vector2Int.zero;
                         selected_item.back_highlighter.SetSize(selected_item, selected_item_grid);
                         selected_item.back_highlighter.SetParent(selected_item_grid);
+                        selected_item.back_highlighter.SetSibling(false);
                         selected_item.back_highlighter.SetPosition(selected_item_grid, highlighted_item);
+                        selected_item.back_highlighter.SetScale(1 / selected_item_grid.gameObject.GetComponent<RectTransform>().localScale.x); // I DONT KNOW WHY THIS WORKS
                         selected_item.back_highlighter.SetVisible(true);
                     }
                     else{
@@ -113,10 +107,6 @@ public class InvController : MonoBehaviour
                         }
                         Debug.Log("item dropped on other item");
                         ReturnItem();
-                        if(equipped_item == selected_item){
-                            inv_highlighter.SetParent(origin_grid);
-                            inv_highlighter.SetPosition(origin_grid, selected_item);
-                        }
                     }
                     
                     Selected_item = null;
@@ -152,6 +142,7 @@ public class InvController : MonoBehaviour
             if(highlighted_item != null && highlighted_item != equipped_item){
                 inv_highlighter.SetSize(highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(selected_item_grid);
+                inv_highlighter.SetSibling(true);
                 inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
                 inv_highlighter.SetVisible(true);
             }
@@ -162,6 +153,7 @@ public class InvController : MonoBehaviour
         else{
             inv_highlighter.SetSize(selected_item, selected_item_grid);
             inv_highlighter.SetParent(selected_item_grid);
+            inv_highlighter.SetSibling(true);
             inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
             inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
         }
@@ -181,6 +173,12 @@ public class InvController : MonoBehaviour
         Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
         if(open_pos != null){
             main_grid.PlaceItem(inserting_item, open_pos.Value);
+            selected_item.back_highlighter.SetSize(inserting_item, main_grid);
+            selected_item.back_highlighter.SetParent(main_grid);
+            selected_item.back_highlighter.SetSibling(false);
+            selected_item.back_highlighter.SetPosition(main_grid, highlighted_item);
+            selected_item.back_highlighter.SetScale(1 / main_grid.gameObject.GetComponent<RectTransform>().localScale.x); // I DONT KNOW WHY THIS WORKS
+            selected_item.back_highlighter.SetVisible(true);
         }
         else{
             Destroy(inserting_item.gameObject);
@@ -226,6 +224,7 @@ public class InvController : MonoBehaviour
                     equipped_item = to_equip_item;
                     equip_highlighter.SetSize(equipped_item, selected_item_grid);
                     equip_highlighter.SetParent(selected_item_grid);
+                    equip_highlighter.SetSibling(true);
                     equip_highlighter.SetPosition(selected_item_grid, equipped_item);
                     equip_highlighter.SetVisible(true);
                     inv_highlighter.SetVisible(false);

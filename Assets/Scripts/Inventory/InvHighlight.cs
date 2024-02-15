@@ -55,6 +55,19 @@ public class InvHighlight : MonoBehaviour
     {
         if(target_grid == null){ return; }
         rt.SetParent(target_grid.GetComponent<RectTransform>());
-        rt.SetAsLastSibling();
+    }
+
+    public void SetSibling(bool front){
+        if(front){
+            rt.SetAsLastSibling();
+        }
+        else{
+            rt.SetAsFirstSibling();
+        }
+        
+    }
+
+    public void SetScale(float scale){
+        rt.localScale = new Vector3(scale, scale, 1);
     }
 }
