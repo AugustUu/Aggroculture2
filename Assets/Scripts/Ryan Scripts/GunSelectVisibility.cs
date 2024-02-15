@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GunSelectVisibility : MonoBehaviour
 {
-    public GameObject[] guns;
+    public GameObject[] tools;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i <= guns.Length - 1; i++){
-            Debug.Log(guns[i].name);
-            guns[i].SetActive(false);
+        for (int i = 0; i <= tools.Length - 1; i++){
+            Debug.Log(tools[i].name);
+            tools[i].SetActive(false);
         }
     }
 
@@ -19,12 +19,12 @@ public class GunSelectVisibility : MonoBehaviour
     {
         if (InvController.equipped_item != null){
             Debug.Log(InvController.equipped_item.item_data.name);
-            for (int i = 0; i <= guns.Length - 1; i++){
-                if (InvController.equipped_item.item_data.name.Equals(guns[i].name)){
-                    guns[i].SetActive(true);
-                    for (int j = 0; j <= guns.Length - 1;j++){
+            for (int i = 0; i <= tools.Length - 1; i++){
+                if (InvController.equipped_item.item_data.name.Equals(tools[i].name)){
+                    tools[i].SetActive(true);
+                    for (int j = 0; j <= tools.Length - 1;j++){
                         if(j != i){
-                            guns[j].SetActive(false);
+                            tools[j].SetActive(false);
                         }             
                     }
                 }
@@ -32,9 +32,8 @@ public class GunSelectVisibility : MonoBehaviour
         }
         
         if (InvController.equipped_item == null){
-            for (int j = 0; j <= guns.Length - 1;j++){
-                guns[j].SetActive(false);
-                //Debug.Log("kys");
+            for (int j = 0; j <= tools.Length - 1;j++){
+                tools[j].SetActive(false);
             }
         }
     }
