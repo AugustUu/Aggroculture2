@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -44,13 +46,6 @@ public class InvController : MonoBehaviour
     {
         DragItemIcon();
 
-        if(Input.GetKeyDown(KeyCode.Q) && selected_item == null)
-        {
-            Selected_item = GenerateItem(Random.Range(0, items.Count));
-            rt_held = rt_new;
-            rt_new = null;
-        }
-
         if (Input.GetKeyDown(KeyCode.O)){
             //InsertItem(GenerateItem(Random.Range(0, items.Count)));
             for (int i = 0; i < items.Count; i++)
@@ -67,6 +62,7 @@ public class InvController : MonoBehaviour
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
 
                 Vector2Int mouse_pos = selected_item_grid.GetGridPos(Input.mousePosition);
+                
 
                 if (Input.GetMouseButtonDown(0) && selected_item == null)
                 {
@@ -75,9 +71,8 @@ public class InvController : MonoBehaviour
                         if (selected_item != null)
                         {
                             rt_held = selected_item.GetComponent<RectTransform>();
-
-                            float offset_scale = main_canvas_tile_size / selected_item_grid.canvas_tile_size;
-                            drag_offset = (rt_held.position - Input.mousePosition) * offset_scale;
+                            
+                            drag_offset = rt_held.position - Input.mousePosition;
                             
                             tile_offset = selected_item.grid_pos - mouse_pos;
                             
@@ -173,12 +168,8 @@ public class InvController : MonoBehaviour
         Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
         if(open_pos != null){
             main_grid.PlaceItem(inserting_item, open_pos.Value);
-            selected_item.back_highlighter.SetSize(inserting_item, main_grid);
-            selected_item.back_highlighter.SetParent(main_grid);
-            selected_item.back_highlighter.SetSibling(false);
-            selected_item.back_highlighter.SetPosition(main_grid, highlighted_item);
-            selected_item.back_highlighter.SetScale(1 / main_grid.gameObject.GetComponent<RectTransform>().localScale.x); // I DONT KNOW WHY THIS WORKS
-            selected_item.back_highlighter.SetVisible(true);
+            HandleBackHighlight(inserting_item, main_grid);
+            inserting_item.Rescale(main_canvas_tile_size);
         }
         else{
             Destroy(inserting_item.gameObject);
@@ -188,6 +179,12 @@ public class InvController : MonoBehaviour
 
     public void InsertItemID(int item_ID){
         InsertItem(GenerateItem(item_ID));
+    }
+
+    public void InsertRandomItem(){
+        int rand_index = UnityEngine.Random.Range(0, items.Count);
+        InsertItemID(rand_index);
+        Debug.Log(items[rand_index].item_type);
     }
 
     private void DragItemIcon()
@@ -201,11 +198,17 @@ public class InvController : MonoBehaviour
     private void ReturnItem()
     {
         origin_grid.PlaceItem(selected_item, origin_pos);
+        HandleBackHighlight(selected_item, origin_grid);
         tile_offset = Vector2Int.zero;
     }
 
-    private void PlaceItem(InvItem selected_item, Vector2Int pos, ItemGrid grid){
-        
+    private void HandleBackHighlight(InvItem selected_item, ItemGrid grid){
+        selected_item.back_highlighter.SetSize(selected_item, grid);
+        selected_item.back_highlighter.SetParent(grid);
+        selected_item.back_highlighter.SetSibling(false);
+        selected_item.back_highlighter.SetPosition(grid, selected_item);
+        selected_item.back_highlighter.SetScale(1 / grid.gameObject.GetComponent<RectTransform>().localScale.x); // I DONT KNOW WHY THIS WORKS
+        selected_item.back_highlighter.SetVisible(true);
     }
 
     InvItem to_equip_item;
@@ -233,7 +236,7 @@ public class InvController : MonoBehaviour
             }
             else if(to_equip_item.item_data.item_type == ItemType.Food){
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
-                HealthSystem.changeHealth(2);
+                HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount);
                 Destroy(to_equip_item.gameObject);
                 inv_highlighter.SetVisible(false);
                 Debug.Log("food eaten");

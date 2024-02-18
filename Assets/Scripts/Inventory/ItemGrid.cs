@@ -80,10 +80,6 @@ public class ItemGrid : MonoBehaviour
 
         if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
 
-        inv_item.Rescale(canvas_tile_size);
-
-        inv_item.back_highlighter = Instantiate(back_highlighter_prefab).GetComponent<InvHighlight>();
-
         PlaceItem(inv_item, mouse_grid_pos);
 
         return true;
@@ -103,8 +99,12 @@ public class ItemGrid : MonoBehaviour
             }
         }
 
+        // inv_item.Rescale(canvas_tile_size);
+
         inv_item.grid_pos = mouse_grid_pos;
         Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
+
+        inv_item.back_highlighter = Instantiate(back_highlighter_prefab).GetComponent<InvHighlight>();
 
         item_rect_transform.localPosition = item_position;
     }
