@@ -10,6 +10,7 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] public int grid_height;
     [SerializeField] public GameObject canvas;
     [SerializeField] public bool is_main;
+    [SerializeField] public GameObject back_highlighter_prefab;
 
 
     RectTransform rect_transform;
@@ -66,20 +67,11 @@ public class ItemGrid : MonoBehaviour
             for(int x = 0; x < picked_up_item.item_data.width; x++){
                 for(int y = 0; y < picked_up_item.item_data.height; y++){
                     inventory[picked_up_item.grid_pos.x + x, picked_up_item.grid_pos.y + y] = null;
+                    Destroy(picked_up_item.back_highlighter.gameObject);
                 }
             }
         }
         return picked_up_item;
-    }
-
-    public void PickUpItem(InvItem picked_up_item){
-        if(picked_up_item != null){
-            for(int x = 0; x < picked_up_item.item_data.width; x++){
-                for(int y = 0; y < picked_up_item.item_data.height; y++){
-                    inventory[picked_up_item.grid_pos.x + x, picked_up_item.grid_pos.y + y] = null;
-                }
-            }
-        }
     }
 
     public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
@@ -87,8 +79,6 @@ public class ItemGrid : MonoBehaviour
         if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
 
         if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
-
-        inv_item.Rescale(canvas_tile_size);
 
         PlaceItem(inv_item, mouse_grid_pos);
 
@@ -100,8 +90,6 @@ public class ItemGrid : MonoBehaviour
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
 
-        inv_item.Rescale(canvas_tile_size);
-
         for (int x = 0; x < inv_item.item_data.width; x++)
         {
             for (int y = 0; y < inv_item.item_data.height; y++)
@@ -111,8 +99,12 @@ public class ItemGrid : MonoBehaviour
             }
         }
 
+        // inv_item.Rescale(canvas_tile_size);
+
         inv_item.grid_pos = mouse_grid_pos;
         Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
+
+        inv_item.back_highlighter = Instantiate(back_highlighter_prefab).GetComponent<InvHighlight>();
 
         item_rect_transform.localPosition = item_position;
     }

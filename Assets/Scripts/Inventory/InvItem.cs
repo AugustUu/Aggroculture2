@@ -22,6 +22,7 @@ public class InvItem : MonoBehaviour
 
     public Vector2Int grid_pos;
     public int list_index;
+    public InvHighlight back_highlighter;
     public void Awake(){
         
     }

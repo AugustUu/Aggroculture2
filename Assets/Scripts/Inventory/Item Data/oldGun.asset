@@ -17,10 +17,11 @@ MonoBehaviour:
   stackable: 0
   equippable: 1
   item_icon: {fileID: 21300000, guid: 7189001490fce364a9f3210e8b131c66, type: 3}
-  item_type: 0
+  item_type: 2
   gun_stats:
     firerate: 1
     max_ammo: 1
     mag_size: 1
     damage: 1
     recoil: 1
+  food_heal_amount: 0
