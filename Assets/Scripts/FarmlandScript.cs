@@ -5,18 +5,25 @@ using UnityEditor;
 
 public class FarmlandScript : MonoBehaviour
 {
-    public int plant = 0;
+    public SeedType plant;
     public int growth = 0;
 
 
 
     void Start()
     {
-        InvokeRepeating("grow", 0.0f, 1.0f);
+        // InvokeRepeating("grow", 0.0f, 1.0f);
     }
     void OnDrawGizmos()
     {
         Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
+    }
+
+    public void Plant(SeedType seed_type){
+        if(plant == SeedType.None){
+            plant = seed_type;
+            Debug.Log("planted " + plant);
+        }
     }
 
     void grow()

@@ -29,6 +29,7 @@ public class ItemData : ScriptableObject
     public bool equippable;
     public Sprite item_icon;
     public ItemType item_type;
+    public SeedType seed_type;
 
     public GunStats gun_stats;
     public int food_heal_amount;
