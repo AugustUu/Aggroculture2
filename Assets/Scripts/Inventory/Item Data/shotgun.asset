@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: schmeeze
+  m_Name: shotgun
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
+  width: 5
+  height: 2
   stackable: 0
-  equippable: 0
-  item_icon: {fileID: 21300000, guid: e7671c9259b6f8c47a6a6f2fb71bccdb, type: 3}
-  item_type: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: a4deaaacac6094443a5318b98cce23d6, type: 3}
+  item_type: 2
   gun_stats:
-    firerate: 0
+    firerate: 1
     max_ammo: 0
     mag_size: 0
-    damage: 0
+    damage: 8
     recoil: 0
-  food_heal_amount: 5
+    spread: 25
+    extra_shots: 6

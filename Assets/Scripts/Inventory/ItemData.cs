@@ -31,5 +31,5 @@ public class ItemData : ScriptableObject
     public ItemType item_type;
 
     public GunStats gun_stats;
-    
+    public int food_heal_amount;
 }

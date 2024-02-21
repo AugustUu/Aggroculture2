@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class InvManager : MonoBehaviour
 {
-    GameObject inv_container;
+    [SerializeField] GameObject inv_container;
+
     void Start(){
         ToggleInv();
-        inv_container = gameObject.transform.GetChild(0).gameObject;
     }
     void Update()
     {
@@ -28,7 +28,7 @@ public class InvManager : MonoBehaviour
     }
     public void SetInvActive(bool active){
         if(!active){
-            InvController.selected_item_grid = null;
+            gameObject.GetComponent<InvController>().selected_item_grid = null;
         }
         inv_container.SetActive(active);
     }
