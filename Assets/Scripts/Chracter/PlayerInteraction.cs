@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public new Camera camera;
     public GameObject placeable;
+    public InvController inv_controller;
 
     public Transform model_transform;
 
@@ -53,7 +54,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
             if(script != null){
-                script.Plant(seed_type);
+                if(script.growth >= 6){
+                    inv_controller.InsertItemID(Utils.farm_dict[seed_type]);
+                }
+                else{
+                    script.Plant(seed_type);
+                }
+                
             }
             
             Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);

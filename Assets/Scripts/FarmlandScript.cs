@@ -12,7 +12,7 @@ public class FarmlandScript : MonoBehaviour
 
     void Start()
     {
-        // InvokeRepeating("grow", 0.0f, 1.0f);
+        InvokeRepeating("grow", 5.0f, 5.0f);
     }
     void OnDrawGizmos()
     {
