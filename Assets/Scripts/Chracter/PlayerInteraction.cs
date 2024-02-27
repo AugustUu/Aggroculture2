@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -6,10 +8,11 @@ public class PlayerInteraction : MonoBehaviour
 {
     public new Camera camera;
     public GameObject placeable;
+    public InvController inv_controller;
 
     public Transform model_transform;
 
-    public void hoe()
+    public void dig()
     {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit_object;
@@ -30,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
             if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
             {
                 GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
-                FarmlandScript script = farmland.GetComponent<FarmlandScript>();
+                // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
 
                 Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
             }
@@ -40,6 +43,42 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
+    }
+
+    public void plant(SeedType seed_type)
+    {
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit_object;
+
+        if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7))
+        {
+            FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+            if(script != null){
+                if(script.plant == SeedType.None){
+                    script.Plant(seed_type);
+                }
+            }
+            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
+        }
+    }
+
+    public void Harvest()
+    {
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit_object;
+
+        if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7))
+        {
+            FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+            if(script != null){
+                if(script.growth >= 6){
+                    if(inv_controller.InsertItemID(Utils.farm_dict[script.plant])){
+                        script.Harvest();
+                    };
+                }
+            }
+            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
+        }
     }
 
     double lastShot = 0;
@@ -103,13 +142,19 @@ public class PlayerInteraction : MonoBehaviour
                         shoot(InvController.equipped_item.item_data.gun_stats);
                         break;
                     case ItemType.Tool:
-                        hoe();
+                        dig();
+                        break;
+                    case ItemType.Seeds:
+                        plant(InvController.equipped_item.item_data.seed_type);
                         break;
                     default:
                         break;
 
                 }
             }
+        }
+        else if(Input.GetMouseButton(1)){
+            Harvest(); // should probably end up as blanket interact script
         }
         /*
         if(gun_mode){
