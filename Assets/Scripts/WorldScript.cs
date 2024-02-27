@@ -15,8 +15,6 @@ public class WorldScript : MonoBehaviour
         {
             for (float y = -1 * (height / 2); y < height / 2; y++)
             {
-                //Debug.Log(x);
-
                 float sample = Mathf.PerlinNoise(width + x * 1.1f, height + y * 1.1f);
 
                 if (sample > 0.99)

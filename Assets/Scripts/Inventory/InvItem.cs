@@ -15,6 +15,13 @@ public enum ItemType{
     Misc
 }
 
+public enum SeedType{
+    None,
+    Carrot,
+    Potato,
+    Tomato
+}
+
 public class InvItem : MonoBehaviour
 {
     public ItemData item_data;

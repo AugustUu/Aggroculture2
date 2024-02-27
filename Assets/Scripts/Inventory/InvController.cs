@@ -164,21 +164,22 @@ public class InvController : MonoBehaviour
         return inv_item;
     }
 
-    private void InsertItem(InvItem inserting_item){
+    private bool InsertItem(InvItem inserting_item){
         Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
         if(open_pos != null){
             main_grid.PlaceItem(inserting_item, open_pos.Value);
             HandleBackHighlight(inserting_item, main_grid);
             inserting_item.Rescale(main_canvas_tile_size);
+            return true;
         }
         else{
             Destroy(inserting_item.gameObject);
-            Debug.Log("found no space for inserting item, debug destroying item");
+            return false;
         }
     }
 
-    public void InsertItemID(int item_ID){
-        InsertItem(GenerateItem(item_ID));
+    public bool InsertItemID(int item_ID){
+        return InsertItem(GenerateItem(item_ID));
     }
 
     public void InsertRandomItem(){

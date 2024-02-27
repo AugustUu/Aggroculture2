@@ -16,14 +16,14 @@ public class ItemGrid : MonoBehaviour
     RectTransform rect_transform;
     private void Start(){
         scaled_tile_size = local_tile_size * transform.localScale.y;
-        Debug.Log(scaled_tile_size);
+        //Debug.Log(scaled_tile_size);
         canvas_scale = canvas.transform.localScale.y;
         canvas_tile_size =  scaled_tile_size * canvas_scale;
         if(is_main){
             InvController.main_canvas_tile_size = canvas_tile_size;
             InvController.main_scaled_tile_size = scaled_tile_size;
         }
-        Debug.Log("" + local_tile_size + ", " + scaled_tile_size + ", " + canvas_tile_size);
+        //Debug.Log("" + local_tile_size + ", " + scaled_tile_size + ", " + canvas_tile_size);
         rect_transform = GetComponent<RectTransform>();
         InvInit(grid_width, grid_height);
     }
