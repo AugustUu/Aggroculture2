@@ -54,15 +54,29 @@ public class PlayerInteraction : MonoBehaviour
         {
             FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
             if(script != null){
-                if(script.growth >= 6){
-                    inv_controller.InsertItemID(Utils.farm_dict[seed_type]);
-                }
-                else{
+                if(script.plant == SeedType.None){
                     script.Plant(seed_type);
                 }
-                
             }
-            
+            Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
+        }
+    }
+
+    public void Harvest()
+    {
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit_object;
+
+        if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7))
+        {
+            FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+            if(script != null){
+                if(script.growth >= 6){
+                    if(inv_controller.InsertItemID(Utils.farm_dict[script.plant])){
+                        script.Harvest();
+                    };
+                }
+            }
             Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
         }
     }
@@ -138,6 +152,9 @@ public class PlayerInteraction : MonoBehaviour
 
                 }
             }
+        }
+        else if(Input.GetMouseButton(1)){
+            Harvest(); // should probably end up as blanket interact script
         }
         /*
         if(gun_mode){
