@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -48,7 +49,6 @@ public class ItemGrid : MonoBehaviour
 
     InvItem[,] inventory;
     List<InvItem> item_list = new List<InvItem>();
-    int last_index = 0;
 
     Vector2 grid_pos = new Vector2();
     Vector2Int tile_grid_pos = new Vector2Int();
@@ -71,6 +71,8 @@ public class ItemGrid : MonoBehaviour
                 }
             }
         }
+        item_list.Remove(picked_up_item);
+        Debug.Log(item_list.Count);
         return picked_up_item;
     }
 
@@ -96,6 +98,7 @@ public class ItemGrid : MonoBehaviour
             {
                 inventory[mouse_grid_pos.x + x, mouse_grid_pos.y + y] = inv_item;
                 item_list.Add(inv_item);
+                Debug.Log(item_list.Count);
             }
         }
 
