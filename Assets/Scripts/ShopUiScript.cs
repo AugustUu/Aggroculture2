@@ -30,12 +30,12 @@ public class ShopUiScript : MonoBehaviour
 
     [SerializeField] GameObject ShopParent;
 
+    static GameObject ShopParentStatic;
+
+
     int page = 0;
 
-    [SerializeField]
     public List<Trade> trades;
-
-
     public List<Button> buttons;
 
     private void loadPage(int page)
@@ -71,6 +71,8 @@ public class ShopUiScript : MonoBehaviour
     {
         loadPage(page);
 
+        ShopParentStatic =  ShopParent;
+
         left.interactable = page - 1 >= 0;
 
         right.interactable = (page+1) * 3 < trades.Count;
@@ -99,5 +101,9 @@ public class ShopUiScript : MonoBehaviour
         page += 1;
 
         on_click();
+    }
+
+    public static void toggle_trade_menu(){
+        ShopParentStatic.SetActive(!ShopParentStatic.activeSelf);
     }
 }
