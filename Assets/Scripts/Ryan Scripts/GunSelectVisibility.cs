@@ -18,7 +18,7 @@ public class GunSelectVisibility : MonoBehaviour
     void Update()
     {
         if (InvController.equipped_item != null){
-            Debug.Log(InvController.equipped_item.item_data.name);
+            // Debug.Log(InvController.equipped_item.item_data.name);
             for (int i = 0; i <= tools.Length - 1; i++){
                 if (InvController.equipped_item.item_data.name.Equals(tools[i].name)){
                     tools[i].SetActive(true);
