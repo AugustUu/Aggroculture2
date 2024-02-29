@@ -32,9 +32,11 @@ public class InvController : MonoBehaviour
     Vector2Int origin_pos;
 
     [SerializeField] List<ItemData> items;
+    public static List<ItemData> items_static;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
     [SerializeField] ItemGrid main_grid;
+    public static ItemGrid main_grid_static;
     [SerializeField] GameObject inv_parent;
     [SerializeField] InvHighlight inv_highlighter;
     [SerializeField] InvHighlight equip_highlighter;
@@ -42,6 +44,10 @@ public class InvController : MonoBehaviour
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
 
+    void Start(){
+        items_static = items;
+        main_grid_static = main_grid;
+    }
     void Update()
     {
         DragItemIcon();
@@ -258,7 +264,7 @@ public class InvController : MonoBehaviour
         }
     }
 
-    public bool RemoveItemHeld(ItemList type, int count){
-        return main_grid.RemoveItemHeld(items[(int) type].name, count);
+    public static bool RemoveItemHeld(ItemList type, int count){
+        return main_grid_static.RemoveItemHeld(items_static[(int) type].name, count);
     }
 }
