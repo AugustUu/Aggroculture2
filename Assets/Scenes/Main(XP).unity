@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 644440834}
   - component: {fileID: 644440833}
   - component: {fileID: 644440837}
+  - component: {fileID: 644440838}
   m_Layer: 6
   m_Name: ground
   m_TagString: Untagged
@@ -766,6 +767,24 @@ MonoBehaviour:
   - {fileID: 4221934609491923668, guid: 9663610428b02bc46a399cb7f0eb7b1b, type: 3}
   - {fileID: 4221934609491923668, guid: 86dd26916ac42814bba6efa999bfde72, type: 3}
   - {fileID: 4221934609491923668, guid: 458b69ea1ce4a144c95b06553c164fc4, type: 3}
+--- !u!114 &644440838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644440832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c37129ff309c244b27aebf188003b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 644440833}
+  terrain:
+  - {fileID: 4480482449164173615, guid: 5b2fa4d49f033ff4f9cec7d01374cf91, type: 3}
+  - {fileID: 919132149155446097, guid: 5bf7084c01441ca468305c4fb0e392fa, type: 3}
+  - {fileID: 919132149155446097, guid: e0b9d661344225a418320e3c8d5fe4b5, type: 3}
+  test: 30
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
