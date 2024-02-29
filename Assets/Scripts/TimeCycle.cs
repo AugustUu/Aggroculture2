@@ -14,8 +14,6 @@ public class TimeCycle : MonoBehaviour
     static public int days = 0;
     [SerializeField]
     TextMeshProUGUI dayGUI;
-    [SerializeField]
-    public float speed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +21,7 @@ public class TimeCycle : MonoBehaviour
         // Sets sun rotation right as the game starts
         transform.rotation = Quaternion.Euler((float)((hours * 60 + minutes) / 1440.0 * 360 - 90), 0, 0);
         // Runs addTime after 1 second every second
-        InvokeRepeating("addTime", 1.0f, speed);
+        InvokeRepeating("addTime", 1.0f, 0.1f);
         if (minutes < 10)
         {
             dayGUI.text = hours + " : 0" + minutes;

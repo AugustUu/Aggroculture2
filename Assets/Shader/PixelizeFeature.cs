@@ -6,7 +6,6 @@ using UnityEngine.Rendering.Universal;
 
 public class PixelizeFeature : ScriptableRendererFeature
 {
-    
     [System.Serializable]
     public class CustomPassSettings
     {
