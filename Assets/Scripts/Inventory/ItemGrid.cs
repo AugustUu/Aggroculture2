@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -48,7 +49,6 @@ public class ItemGrid : MonoBehaviour
 
     InvItem[,] inventory;
     List<InvItem> item_list = new List<InvItem>();
-    int last_index = 0;
 
     Vector2 grid_pos = new Vector2();
     Vector2Int tile_grid_pos = new Vector2Int();
@@ -71,7 +71,20 @@ public class ItemGrid : MonoBehaviour
                 }
             }
         }
+        item_list.Remove(picked_up_item);
+        Debug.Log(item_list.Count);
         return picked_up_item;
+    }
+
+    public void RemoveItem(InvItem to_remove){
+        for(int x = 0; x < to_remove.item_data.width; x++){
+            for(int y = 0; y < to_remove.item_data.height; y++){
+                inventory[to_remove.grid_pos.x + x, to_remove.grid_pos.y + y] = null;
+                Destroy(to_remove.back_highlighter.gameObject);
+            }
+        }
+        item_list.Remove(to_remove);
+        Destroy(to_remove.gameObject);
     }
 
     public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
@@ -95,9 +108,9 @@ public class ItemGrid : MonoBehaviour
             for (int y = 0; y < inv_item.item_data.height; y++)
             {
                 inventory[mouse_grid_pos.x + x, mouse_grid_pos.y + y] = inv_item;
-                item_list.Add(inv_item);
             }
         }
+        item_list.Add(inv_item);
 
         // inv_item.Rescale(canvas_tile_size);
 
@@ -165,5 +178,21 @@ public class ItemGrid : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public bool CheckItemHeld(string name, int count){
+        return item_list.FindAll(e => e.item_data.name == name).Count >= count;
+    }
+
+    public bool RemoveItemHeld(string name, int count){
+        if(CheckItemHeld(name, count)){
+            for(int i = 0; i < count; i++){
+                InvItem to_remove = item_list.FindLast(e => e.item_data.name == name);
+                RemoveItem(to_remove);
+                item_list.Remove(to_remove);
+            }
+            return true;
+        }
+        return false;
     }
 }

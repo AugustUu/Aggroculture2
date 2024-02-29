@@ -23,7 +23,6 @@ public class FarmlandScript : MonoBehaviour
     public void Plant(SeedType seed_type){
         if(plant == SeedType.None){
             plant = seed_type;
-            Debug.Log("planted " + plant);
         }
         Invoke("grow", 1.0f);
     }

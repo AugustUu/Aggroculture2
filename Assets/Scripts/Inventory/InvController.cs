@@ -54,6 +54,15 @@ public class InvController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.PageUp)){
+            if(RemoveItemHeld(ItemList.schmeeze, 5)){
+                Debug.Log("removed");
+            }
+            else{
+                Debug.Log("not enough schmeeze");
+            }
+        }
+
 
         if(selected_item_grid != null){
 
@@ -182,6 +191,10 @@ public class InvController : MonoBehaviour
         return InsertItem(GenerateItem(item_ID));
     }
 
+    public bool InsertItemID(ItemList item_ID){
+        return InsertItem(GenerateItem((int) item_ID));
+    }
+
     public void InsertRandomItem(){
         int rand_index = UnityEngine.Random.Range(0, items.Count);
         InsertItemID(rand_index);
@@ -243,5 +256,9 @@ public class InvController : MonoBehaviour
                 Debug.Log("food eaten");
             }
         }
+    }
+
+    public bool RemoveItemHeld(ItemList type, int count){
+        return main_grid.RemoveItemHeld(items[(int) type].name, count);
     }
 }
