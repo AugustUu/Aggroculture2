@@ -8,6 +8,7 @@ public class MobScript : MonoBehaviour
 {
 
     private Transform target;
+    [SerializeField]
     public int health = 100;
 
     public GameObject xp_orb;

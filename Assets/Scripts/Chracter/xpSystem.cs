@@ -11,7 +11,7 @@ public class XPSystem : MonoBehaviour
 
     private static Slider experience_points_rf;
     static int exp;
-    int level_up_req = 100;
+    int level_up_req = 50;
     int levels = 1;
     // Start is called before the first frame update
     void Start()
