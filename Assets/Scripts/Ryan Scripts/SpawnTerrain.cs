@@ -17,7 +17,13 @@ public class SpawnTerrain : MonoBehaviour
         {
             int randNum1 = Random.Range(-(width / 2 - 5), width / 2 - 5);
             int randNum2 = Random.Range(-(height / 2 - 5), height / 2 - 5);
-            Instantiate(terrain[Random.Range(0, terrain.Length)], new Vector3(randNum1, 0.6f, randNum2), Quaternion.Euler(0, Random.Range(0, 360), 0));
+            float randRotation = Random.Range(0, 360);
+            while (!(randRotation >= 45 && randRotation <= 135) && !(randRotation >= 225 && randRotation <= 315))
+            {
+                randRotation = Random.Range(0, 360);
+            }
+            Instantiate(terrain[Random.Range(0, terrain.Length)], new Vector3(randNum1, 0.6f, randNum2), Quaternion.Euler(0, randRotation, 0));
+            
         }
     }
 

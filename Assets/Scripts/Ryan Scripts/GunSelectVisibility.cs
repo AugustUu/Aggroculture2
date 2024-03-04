@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunSelectVisibility : MonoBehaviour
 {
     public GameObject[] tools;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class GunSelectVisibility : MonoBehaviour
     void Update()
     {
         if (InvController.equipped_item != null){
-            // Debug.Log(InvController.equipped_item.item_data.name);
+            //Debug.Log(InvController.equipped_item.item_data.item_type);
             for (int i = 0; i <= tools.Length - 1; i++){
                 if (InvController.equipped_item.item_data.name.Equals(tools[i].name)){
                     tools[i].SetActive(true);
@@ -29,9 +30,18 @@ public class GunSelectVisibility : MonoBehaviour
                     }
                 }
             }
+            bool holdTool = InvController.equipped_item.item_data.item_type.ToString().Equals("Gun") || InvController.equipped_item.item_data.item_type.ToString().Equals("Tool");
+            if (holdTool)
+            {
+                animator.SetBool("HoldingTool", true);
+            }
+            if (!holdTool)
+            {
+                animator.SetBool("HoldingTool", false);
+            }
         }
-        
         if (InvController.equipped_item == null){
+            animator.SetBool("HoldingTool", false);
             for (int j = 0; j <= tools.Length - 1;j++){
                 tools[j].SetActive(false);
             }

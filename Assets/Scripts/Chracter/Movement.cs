@@ -22,8 +22,11 @@ public class Movement : MonoBehaviour
     public static float rotation = 0;
     private float mouse_start = 0;
 
+    public Animator animator;
+
     private void Start()
     {
+        //animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -56,8 +59,13 @@ public class Movement : MonoBehaviour
         }
         else if (direction != Vector3.zero)
         {
+            animator.SetBool("IsMoving", true);
             rotation = Mathf.Atan2(direction.x, direction.z);
             rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
         }
 
 

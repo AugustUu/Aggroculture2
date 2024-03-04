@@ -419,6 +419,7 @@ MonoBehaviour:
   model_transform: {fileID: 455905038153429413}
   player_speed: 10
   sens: 10
+  animator: {fileID: 295259322297904707}
 --- !u!114 &1375446873584930804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 6388355080024114070}
   placeable: {fileID: 4731878773796962094, guid: a6eaf1f67d79901438560d341443d59c, type: 3}
+  inv_controller: {fileID: 0}
   model_transform: {fileID: 455905038153429413}
 --- !u!1 &8502623075486325994
 GameObject:
@@ -489,6 +491,7 @@ MonoBehaviour:
   - {fileID: 1983584937193785773}
   - {fileID: 3775200170197571194}
   - {fileID: 486971182152838468}
+  animator: {fileID: 295259322297904707}
 --- !u!1 &8549138336732312862
 GameObject:
   m_ObjectHideFlags: 0

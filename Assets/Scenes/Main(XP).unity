@@ -425,6 +425,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f665585cefef8042891caf879bc2a95, type: 3}
+--- !u!95 &355498157 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 295259322297904707, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+  m_PrefabInstance: {fileID: 1739942321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &422950508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6254818884057760903, guid: 5f665585cefef8042891caf879bc2a95, type: 3}
@@ -2315,6 +2320,10 @@ PrefabInstance:
       propertyPath: inv_controller
       value: 
       objectReference: {fileID: 8639214405181510638}
+    - target: {fileID: 2056760562822530743, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 355498157}
     - target: {fileID: 2354004828751660686, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_Name
       value: Player
