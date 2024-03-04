@@ -42,6 +42,8 @@ public class InvController : MonoBehaviour
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
 
+    void Start(){
+    }
     void Update()
     {
         DragItemIcon();
@@ -259,6 +261,10 @@ public class InvController : MonoBehaviour
     }
 
     public bool RemoveItemHeld(ItemList type, int count){
+        return main_grid.RemoveItemHeld(items[(int) type].name, count);
+    }
+
+    public bool CheckItemHeld(ItemList type, int count){
         return main_grid.RemoveItemHeld(items[(int) type].name, count);
     }
 }
