@@ -22,7 +22,6 @@ public enum ItemList{
     stockedAK,
     shoel,
     stocklessAK,
-    goofyAK,
     oldGun,
     glock,
     shotgun,
