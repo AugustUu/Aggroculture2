@@ -11,7 +11,7 @@ using UnityEngine.UI;
 [Serializable]
 public class Item
 {
-    public int item;
+    public ItemList item;
     public int count;
 }
 
@@ -19,7 +19,7 @@ public class Item
 public class Trade
 {
     public List<Item> input;
-    public List<Item> output;
+    public Item output;
 }
 
 public class ShopUiScript : MonoBehaviour
@@ -31,6 +31,9 @@ public class ShopUiScript : MonoBehaviour
     [SerializeField] GameObject ShopParent;
 
     static GameObject ShopParentStatic;
+
+    public InvController inv_controller;
+
 
 
     int page = 0;
@@ -54,9 +57,24 @@ public class ShopUiScript : MonoBehaviour
                 buttons[i % 3].onClick.RemoveAllListeners();
                 buttons[i % 3].onClick.AddListener(() =>
                 {
+                    foreach(Item item in trades[a].input){
+                        if(!inv_controller.CheckItemHeld(item.item,item.count)){
+                            return;
+                        }
+                    }
+                    foreach(Item item in trades[a].input){
+                        inv_controller.RemoveItemHeld(item.item,item.count);
+                    }
                     Debug.Log(a + " " + trades[a]);
                 });
-                buttons[i % 3].GetComponentInChildren<TextMeshProUGUI>().text = trades[a] + " " + a;
+
+                string name = "";
+
+                foreach(Item item in trades[a].input){
+                    name += "" + item.count + " " + item.item + " ";
+                }
+                name += "For " + trades[a].output.item;
+                buttons[i % 3].GetComponentInChildren<TextMeshProUGUI>().text = name;
             }
             for (int i = max - page * 3; i < 3; i++)
             {
