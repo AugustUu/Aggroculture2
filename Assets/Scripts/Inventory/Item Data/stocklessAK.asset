@@ -16,8 +16,9 @@ MonoBehaviour:
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 7558c99f266a5114289eee7f3ea656dd, type: 3}
+  item_icon: {fileID: 21300000, guid: 3f092b47fe24ebe4c923393ab042b037, type: 3}
   item_type: 2
+  seed_type: 0
   gun_stats:
     firerate: 3
     max_ammo: 0
@@ -26,4 +27,4 @@ MonoBehaviour:
     recoil: 0
     spread: 5
     extra_shots: 10
-    peircing: 0
+  food_heal_amount: 0
