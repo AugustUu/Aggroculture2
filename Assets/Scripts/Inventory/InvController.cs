@@ -42,6 +42,8 @@ public class InvController : MonoBehaviour
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
 
+    void Start(){
+    }
     void Update()
     {
         DragItemIcon();
@@ -76,7 +78,7 @@ public class InvController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && selected_item == null)
                 {
                     if(selected_item_grid.GetItem(mouse_pos) != equipped_item){
-                        Selected_item = selected_item_grid.PickUpItem(mouse_pos);
+                        Selected_item = selected_item_grid.GetItem(mouse_pos);
                         if (selected_item != null)
                         {
                             rt_held = selected_item.GetComponent<RectTransform>();
@@ -95,7 +97,9 @@ public class InvController : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0) && selected_item != null)
                 {
-                    if(selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, ref overlap_item)){
+                    if(selected_item_grid.SpaceCheck(selected_item, mouse_pos + tile_offset, ref overlap_item)){
+                        origin_grid.RemoveItem(selected_item, false);
+                        selected_item_grid.PlaceItem(selected_item, mouse_pos + tile_offset, true);
                         tile_offset = Vector2Int.zero;
                         selected_item.back_highlighter.SetSize(selected_item, selected_item_grid);
                         selected_item.back_highlighter.SetParent(selected_item_grid);
@@ -176,7 +180,7 @@ public class InvController : MonoBehaviour
     private bool InsertItem(InvItem inserting_item){
         Vector2Int? open_pos = main_grid.FindSpace(inserting_item);
         if(open_pos != null){
-            main_grid.PlaceItem(inserting_item, open_pos.Value);
+            main_grid.PlaceItem(inserting_item, open_pos.Value, true);
             HandleBackHighlight(inserting_item, main_grid);
             inserting_item.Rescale(main_canvas_tile_size);
             return true;
@@ -211,7 +215,7 @@ public class InvController : MonoBehaviour
 
     private void ReturnItem()
     {
-        origin_grid.PlaceItem(selected_item, origin_pos);
+        origin_grid.PlaceItem(selected_item, origin_pos, false);
         HandleBackHighlight(selected_item, origin_grid);
         tile_offset = Vector2Int.zero;
     }
@@ -259,6 +263,10 @@ public class InvController : MonoBehaviour
     }
 
     public bool RemoveItemHeld(ItemList type, int count){
+        return main_grid.RemoveItemHeld(items[(int) type].name, count);
+    }
+
+    public bool CheckItemHeld(ItemList type, int count){
         return main_grid.RemoveItemHeld(items[(int) type].name, count);
     }
 }

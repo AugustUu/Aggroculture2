@@ -76,7 +76,7 @@ public class ItemGrid : MonoBehaviour
         return picked_up_item;
     }
 
-    public void RemoveItem(InvItem to_remove){
+    public void RemoveItem(InvItem to_remove, bool delete_object){
         for(int x = 0; x < to_remove.item_data.width; x++){
             for(int y = 0; y < to_remove.item_data.height; y++){
                 inventory[to_remove.grid_pos.x + x, to_remove.grid_pos.y + y] = null;
@@ -84,21 +84,21 @@ public class ItemGrid : MonoBehaviour
             }
         }
         item_list.Remove(to_remove);
-        Destroy(to_remove.gameObject);
+        if(delete_object){
+            Destroy(to_remove.gameObject);
+        }
     }
 
-    public bool PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
+    public bool SpaceCheck(InvItem inv_item, Vector2Int mouse_grid_pos, ref InvItem overlap_item)
     {
         if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
 
-        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return false; }
-
-        PlaceItem(inv_item, mouse_grid_pos);
+        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return overlap_item == inv_item; }
 
         return true;
     }
 
-    public void PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos)
+    public void PlaceItem(InvItem inv_item, Vector2Int mouse_grid_pos, bool instantiate_highlighter)
     {
         RectTransform item_rect_transform = inv_item.GetComponent<RectTransform>();
         item_rect_transform.SetParent(rect_transform);
@@ -116,9 +116,11 @@ public class ItemGrid : MonoBehaviour
 
         inv_item.grid_pos = mouse_grid_pos;
         Vector2 item_position = GetItemPos(inv_item, mouse_grid_pos);
-
-        inv_item.back_highlighter = Instantiate(back_highlighter_prefab).GetComponent<InvHighlight>();
-
+        
+        if(instantiate_highlighter){
+            inv_item.back_highlighter = Instantiate(back_highlighter_prefab).GetComponent<InvHighlight>();
+        }
+        
         item_rect_transform.localPosition = item_position;
     }
 
@@ -188,7 +190,7 @@ public class ItemGrid : MonoBehaviour
         if(CheckItemHeld(name, count)){
             for(int i = 0; i < count; i++){
                 InvItem to_remove = item_list.FindLast(e => e.item_data.name == name);
-                RemoveItem(to_remove);
+                RemoveItem(to_remove, true);
                 item_list.Remove(to_remove);
             }
             return true;
