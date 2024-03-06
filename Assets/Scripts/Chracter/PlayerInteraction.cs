@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Playables;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerInteraction : MonoBehaviour
     public InvController inv_controller;
 
     public Transform model_transform;
+
+    public ParticleSystem particle_system;
 
     public void dig()
     {
@@ -103,6 +106,12 @@ public class PlayerInteraction : MonoBehaviour
                     x = (float)(Math.Cos(0.0) * Math.Sin(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad),
                     z = (float)(Math.Cos(0.0) * Math.Cos(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad)
                 };
+
+                particle_system.transform.forward = forward;
+
+                EmitParams particle = new EmitParams();
+
+                particle_system.Emit(particle,1);
 
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit hit_object;
