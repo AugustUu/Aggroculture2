@@ -11,7 +11,7 @@ public class TimeCycle : MonoBehaviour
     [SerializeField]
     static public float hours = 0.0f;
     [SerializeField]
-    static public int days = 0;
+    static public int days = 1;
     [SerializeField]
     TextMeshProUGUI dayGUI;
 
