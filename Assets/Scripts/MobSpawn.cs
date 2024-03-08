@@ -78,7 +78,6 @@ public class MobSpawn : MonoBehaviour
     public void SpawnMob(int[] weights, double success_rate)
     {
         float rand = Random.value;
-        int debug_successes = 0;
         while(rand <= success_rate){
             success_rate -= 1;
             int spawn_type = GetRandomWeightedIndex(weights);
@@ -90,9 +89,7 @@ public class MobSpawn : MonoBehaviour
             position += spawn_pos;
             position.y = 0;
             Instantiate(mob_list[spawn_type], position, GameObject.Find("Player").transform.rotation);
-            debug_successes++;
         }
-        Debug.Log("succeeded " + debug_successes + " times");
         
     }
 
