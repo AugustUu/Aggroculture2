@@ -713,6 +713,7 @@ MonoBehaviour:
   rat: {fileID: 5890863077589170162, guid: b40acdb52cf1d4d4c990fec6a814c07e, type: 3}
   boar: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
   wolf: {fileID: 5890863077589170162, guid: c3103002529de294a8afed996a664a2c, type: 3}
+  mobParent: {fileID: 357463637}
 --- !u!4 &569643498
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +876,6 @@ GameObject:
   - component: {fileID: 644440834}
   - component: {fileID: 644440833}
   - component: {fileID: 644440837}
-  - component: {fileID: 644440838}
   m_Layer: 6
   m_Name: ground
   m_TagString: Untagged
@@ -993,24 +993,6 @@ MonoBehaviour:
   - {fileID: 6002133454693261144, guid: b130fb0f12edb1241bea643da06f5c97, type: 3}
   - {fileID: 5499726480253224292, guid: c3e76fdc98cc7f24d99fdeb64e075834, type: 3}
   rockParent: {fileID: 1758673879}
---- !u!114 &644440838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 644440832}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c37129ff309c244b27aebf188003b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 644440833}
-  terrain:
-  - {fileID: 4480482449164173615, guid: 5b2fa4d49f033ff4f9cec7d01374cf91, type: 3}
-  - {fileID: 919132149155446097, guid: 5bf7084c01441ca468305c4fb0e392fa, type: 3}
-  - {fileID: 919132149155446097, guid: e0b9d661344225a418320e3c8d5fe4b5, type: 3}
-  test: 30
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,8 @@ public class MobSpawn : MonoBehaviour
     int natural_spawn_amount = 1;
     int wave_spawn_amount = 15;
     int old_days = TimeCycle.days;
+
+    public Transform mobParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class MobSpawn : MonoBehaviour
                 Vector3 position = GameObject.Find("Player").transform.position;
                 position += spawn_pos;
                 position.y = 0;
-                Instantiate(rat, position, GameObject.Find("Player").transform.rotation);
+                Instantiate(rat, position, GameObject.Find("Player").transform.rotation, mobParent);
             }
         }
         
@@ -88,7 +90,7 @@ public class MobSpawn : MonoBehaviour
             Vector3 position = GameObject.Find("Player").transform.position;
             position += spawn_pos;
             position.y = 0;
-            Instantiate(mob_list[spawn_type], position, GameObject.Find("Player").transform.rotation);
+            Instantiate(mob_list[spawn_type], position, GameObject.Find("Player").transform.rotation, mobParent);
         }
         
     }
