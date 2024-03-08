@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -38,11 +39,17 @@ public class InvController : MonoBehaviour
     [SerializeField] GameObject inv_parent;
     [SerializeField] InvHighlight inv_highlighter;
     [SerializeField] InvHighlight equip_highlighter;
+    [SerializeField] GameObject tooltip;
+    TextMeshProUGUI tooltip_header;
+    TextMeshProUGUI tooltip_body;
+    
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
 
     void Start(){
+        tooltip_header = tooltip.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        tooltip_body = tooltip.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
@@ -137,17 +144,22 @@ public class InvController : MonoBehaviour
 
     InvItem highlighted_item;
     Vector2Int old_pos;
+    
     private void HandleHighlight(bool check_mouse)
     {
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
+        tooltip.transform.position = Input.mousePosition;
         if(check_mouse){
             if(old_pos == mouse_grid_pos){ return; }
         }
         old_pos = mouse_grid_pos;
         
+        
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
             if(highlighted_item != null && highlighted_item != equipped_item){
+                tooltip.SetActive(true);
+                tooltip_header.text = highlighted_item.item_data.name;
                 inv_highlighter.SetSize(highlighted_item, selected_item_grid);
                 inv_highlighter.SetParent(selected_item_grid);
                 inv_highlighter.SetSibling(true);
@@ -156,7 +168,9 @@ public class InvController : MonoBehaviour
             }
             else{
                 inv_highlighter.SetVisible(false);
+                tooltip.SetActive(false);
             }
+            
         }
         else{
             inv_highlighter.SetSize(selected_item, selected_item_grid);
