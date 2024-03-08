@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Drag"))
         {
             mouse_start = mouse_pos.x;
+
         }
         else if (Input.GetButton("Drag"))
         {
