@@ -12,13 +12,13 @@ public class interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter " + other.GetInstanceID() + " " + other.name);
+        // Debug.Log("enter " + other.GetInstanceID() + " " + other.name);
         InteractionManager.onEnter(this.GetInstanceID(), this.name,input_event);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("exit " + other.GetInstanceID() + " " + this.name);
+        // Debug.Log("exit " + other.GetInstanceID() + " " + this.name);
         InteractionManager.onExit(this.GetInstanceID());
     }
 

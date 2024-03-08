@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 public class MobSpawn : MonoBehaviour
 {
     [SerializeField]
@@ -14,7 +16,7 @@ public class MobSpawn : MonoBehaviour
     int minutes;
     int mobs_spawned = 0;
     int[] default_weights = {7, 2, 1};
-    int[] hard_weights = {0, 1, 0};
+    int[] hard_weights = {1, 1, 1};
     int natural_spawn_amount = 1;
     int wave_spawn_amount = 15;
     int old_days = TimeCycle.days;
@@ -32,6 +34,7 @@ public class MobSpawn : MonoBehaviour
     {
         if(old_days != TimeCycle.days){
             spawned_wave = false;
+            old_days = TimeCycle.days;
         }
         if(Input.GetKeyDown(KeyCode.Q)){ // debug
             for (int i = 0; i < 1; i++)
@@ -49,8 +52,7 @@ public class MobSpawn : MonoBehaviour
         
         if (TimeCycle.hours == 1 && spawned_wave == false)
         {
-            Debug.Log("wave spawned");
-            for (int i = 0; i < wave_spawn_amount * TimeCycle.days; i++)
+            for (int i = 0; i < wave_spawn_amount * Math.Pow(1.1, TimeCycle.days); i++)
             {
                 SpawnMob(hard_weights, 1);
             }
@@ -66,7 +68,7 @@ public class MobSpawn : MonoBehaviour
         {
             for (int i = 0; i < natural_spawn_amount * TimeCycle.days; i++)
             {
-                SpawnMob(default_weights, 0.1);
+                SpawnMob(default_weights, 0.1 * TimeCycle.days);
                 minutes = (int)TimeCycle.minutes;
             }
 
@@ -75,7 +77,10 @@ public class MobSpawn : MonoBehaviour
 
     public void SpawnMob(int[] weights, double success_rate)
     {
-        if(Random.value <= success_rate){
+        float rand = Random.value;
+        int debug_successes = 0;
+        while(rand <= success_rate){
+            success_rate -= 1;
             int spawn_type = GetRandomWeightedIndex(weights);
             float spawn_magnitude = Random.Range(50f, 100f);
             float spawn_angle = Random.Range(0f, Mathf.PI * 2);
@@ -85,7 +90,9 @@ public class MobSpawn : MonoBehaviour
             position += spawn_pos;
             position.y = 0;
             Instantiate(mob_list[spawn_type], position, GameObject.Find("Player").transform.rotation);
+            debug_successes++;
         }
+        Debug.Log("succeeded " + debug_successes + " times");
         
     }
 

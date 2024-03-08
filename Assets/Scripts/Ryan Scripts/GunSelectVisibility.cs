@@ -9,7 +9,7 @@ public class GunSelectVisibility : MonoBehaviour
     void Start()
     {
         for (int i = 0; i <= tools.Length - 1; i++){
-            Debug.Log(tools[i].name);
+            // Debug.Log(tools[i].name);
             tools[i].SetActive(false);
         }
     }
