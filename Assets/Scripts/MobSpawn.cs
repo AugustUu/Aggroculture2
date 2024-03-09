@@ -14,16 +14,15 @@ public class MobSpawn : MonoBehaviour
     List<GameObject> mob_list = new List<GameObject>();
     bool spawned_wave = false;
     int minutes;
-    int mobs_spawned = 0;
     int[] default_weights = {7, 2, 1};
-    int[] hard_weights = {1, 1, 1};
+    int[] wave_weights = {1, 1, 1};
     int natural_spawn_amount = 1;
     int wave_spawn_amount = 15;
     int old_days = TimeCycle.days;
     // Start is called before the first frame update
     void Start()
     {
-        int minutes = (int)TimeCycle.minutes;
+        minutes = (int)TimeCycle.minutes;
         mob_list.Add(rat);
         mob_list.Add(boar);
         mob_list.Add(wolf);
@@ -54,7 +53,7 @@ public class MobSpawn : MonoBehaviour
         {
             for (int i = 0; i < wave_spawn_amount * Math.Pow(1.1, TimeCycle.days); i++)
             {
-                SpawnMob(hard_weights, 1);
+                SpawnMob(wave_weights, 1);
             }
             spawned_wave = true;
         }
