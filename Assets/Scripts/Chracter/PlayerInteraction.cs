@@ -11,7 +11,6 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject placeable;
     public InvController inv_controller;
 
-    public Transform model_transform;
 
     public ParticleSystem particle_system;
 
@@ -108,6 +107,7 @@ public class PlayerInteraction : MonoBehaviour
                 };
 
                 particle_system.transform.forward = forward;
+                particle_system.transform.position = this.transform.position;
 
                 EmitParams particle = new EmitParams();
 

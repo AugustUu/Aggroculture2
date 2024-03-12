@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class XPSystem : MonoBehaviour
 {
+
+    //life time no die with particles
+
     public Slider experience_points;
     public TextMeshProUGUI display;
 
