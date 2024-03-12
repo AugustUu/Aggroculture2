@@ -2076,14 +2076,14 @@ MonoBehaviour:
   left: {fileID: 1424604220}
   right: {fileID: 1913909429}
   ShopParent: {fileID: 1356969111}
-  inv_controller: {fileID: 0}
+  inv_controller: {fileID: 8639214405181510638}
   trades:
   - input:
     - item: 0
       count: 0
     output:
       item: 0
-      count: 0
+      count: 1
   - input: []
     output:
       item: 0

@@ -65,6 +65,8 @@ public class ShopUiScript : MonoBehaviour
                     foreach(Item item in trades[a].input){
                         inv_controller.RemoveItemHeld(item.item,item.count);
                     }
+
+                    inv_controller.InsertItemID(trades[a].output.item);
                     Debug.Log(a + " " + trades[a]);
                 });
 
