@@ -255,6 +255,9 @@ public class InvController : MonoBehaviour
             case ItemType.Seeds:
                 tooltip_body2.text += data.seed_type.ToString().ToLower() + " seeds"; // only tolower because thats the current look
                 break;
+            case ItemType.Tool:
+                tooltip_body2.text += "plots: " + PlayerInteraction.plots + " / " + PlayerInteraction.max_plots;
+                break;
         }
     }
     
