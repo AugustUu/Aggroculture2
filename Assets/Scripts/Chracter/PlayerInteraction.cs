@@ -11,40 +11,46 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject placeable;
     public InvController inv_controller;
 
-    public Transform model_transform;
 
     public ParticleSystem particle_system;
+    public static int plots = 0;
+    public static int max_plots = 10;
 
     public void dig()
     {
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit_object;
+        if(plots < max_plots){
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit_object;
 
-        if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
-        {
-            if (hit_object.normal != Vector3.up) // dont place on walls
-                return;
-
-            Vector3 scale = placeable.transform.localScale;
-
-            Vector3 position = new Vector3(
-                Mathf.Round(hit_object.point.x / scale.x) * scale.x,
-                hit_object.point.y,
-                Mathf.Round(hit_object.point.z / scale.z) * scale.z
-            );
-
-            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
+            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
             {
-                GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
-                // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
+                if (hit_object.normal != Vector3.up) // dont place on walls
+                    return;
 
-                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
-            }
-            else
-            {
-                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+                Vector3 scale = placeable.transform.localScale;
+
+                Vector3 position = new Vector3(
+                    Mathf.Round(hit_object.point.x / scale.x) * scale.x,
+                    hit_object.point.y,
+                    Mathf.Round(hit_object.point.z / scale.z) * scale.z
+                );
+
+                if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
+                {
+                    GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                    // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
+                        
+                    plots++;
+                    
+                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
+                }
+                else
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
+                }
             }
         }
+        
 
     }
 
@@ -108,6 +114,7 @@ public class PlayerInteraction : MonoBehaviour
                 };
 
                 particle_system.transform.forward = forward;
+                particle_system.transform.position = this.transform.position;
 
                 EmitParams particle = new EmitParams();
 

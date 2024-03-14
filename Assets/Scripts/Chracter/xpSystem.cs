@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class XPSystem : MonoBehaviour
 {
-    public Slider experience_points;
-    public TextMeshProUGUI display;
 
-    private static Slider experience_points_rf;
+    //life time no die with particles
+
+    static Slider exp_bar;
+    TextMeshProUGUI display;
     static int exp;
     int level_up_req = 100;
     int levels = 1;
     // Start is called before the first frame update
     void Start()
     {
-        experience_points_rf = experience_points;
+        exp_bar = GetComponent<Slider>();
+        display = gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         setExp(0);
-        display.text = levels.ToString();
+        display.text = "lvl " + levels;
     }
 
     void Update(){
@@ -31,21 +34,21 @@ public class XPSystem : MonoBehaviour
     private void LevelUp(int exp_req)
     {
         exp -= exp_req;
-        experience_points_rf.value = exp;
+        exp_bar.value = exp;
         levels += 1;
         level_up_req = (int)(exp_req * 1.2);
-        experience_points.maxValue = level_up_req;
-        display.text = levels.ToString();
+        exp_bar.maxValue = level_up_req;
+        display.text = "lvl " + levels;
         
     }
 
     public static void setExp(int xp){
         exp = xp;
-        experience_points_rf.value = xp;
+        exp_bar.value = xp;
     }
 
     public static void changeExp (int xpChange){
         exp += xpChange;
-        experience_points_rf.value = exp;
+        exp_bar.value = exp;
     }
 }

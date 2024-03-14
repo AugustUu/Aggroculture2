@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -38,11 +39,21 @@ public class InvController : MonoBehaviour
     [SerializeField] GameObject inv_parent;
     [SerializeField] InvHighlight inv_highlighter;
     [SerializeField] InvHighlight equip_highlighter;
+    [SerializeField] GameObject tooltip;
+    TextMeshProUGUI tooltip_header;
+    TextMeshProUGUI tooltip_subtitle;
+    TextMeshProUGUI tooltip_body1;
+    TextMeshProUGUI tooltip_body2;
+    
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
 
     void Start(){
+        tooltip_header = tooltip.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        tooltip_subtitle = tooltip.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+        tooltip_body1 = tooltip.transform.GetChild(0).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
+        tooltip_body2 = tooltip.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
@@ -126,6 +137,8 @@ public class InvController : MonoBehaviour
         }
         else{
             inv_highlighter.SetVisible(false);
+            tooltip.SetActive(false);
+            old_pos = new Vector2Int(-1, -1); // just so check mouse moved thing is always false  theres gotta be a better way to do but idfk lol
             if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
                 Selected_item = null;
@@ -137,26 +150,38 @@ public class InvController : MonoBehaviour
 
     InvItem highlighted_item;
     Vector2Int old_pos;
+    
     private void HandleHighlight(bool check_mouse)
     {
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
+        tooltip.transform.position = Input.mousePosition;
         if(check_mouse){
             if(old_pos == mouse_grid_pos){ return; }
         }
         old_pos = mouse_grid_pos;
         
+        
         if(selected_item == null){
             highlighted_item = selected_item_grid.GetItem(mouse_grid_pos);
-            if(highlighted_item != null && highlighted_item != equipped_item){
-                inv_highlighter.SetSize(highlighted_item, selected_item_grid);
-                inv_highlighter.SetParent(selected_item_grid);
-                inv_highlighter.SetSibling(true);
-                inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
-                inv_highlighter.SetVisible(true);
+            if(highlighted_item != null){
+                HandleTooltip(highlighted_item);
+                
+                if(highlighted_item != equipped_item){
+                    inv_highlighter.SetSize(highlighted_item, selected_item_grid);
+                    inv_highlighter.SetParent(selected_item_grid);
+                    inv_highlighter.SetSibling(true);
+                    inv_highlighter.SetPosition(selected_item_grid, highlighted_item);
+                    inv_highlighter.SetVisible(true);
+                }
+                else{
+                    inv_highlighter.SetVisible(false);
+                }
             }
-            else{
+            if(highlighted_item == null){
                 inv_highlighter.SetVisible(false);
+                tooltip.SetActive(false);
             }
+            
         }
         else{
             inv_highlighter.SetSize(selected_item, selected_item_grid);
@@ -164,6 +189,75 @@ public class InvController : MonoBehaviour
             inv_highlighter.SetSibling(true);
             inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
             inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
+        }
+    }
+
+    private void HandleTooltip(InvItem item){
+        ItemData data = item.item_data;
+        tooltip.SetActive(true);
+        tooltip_header.text = "<color=#7b7b7b>";
+        tooltip_subtitle.text = "<color=#989898>";
+        tooltip_body1.text = "<color=#b7b13c>";
+        tooltip_body2.text = "<color=#a4a4a4>";
+
+        tooltip_header.text += data.name;
+        if(data.tooltip != ""){
+            tooltip_subtitle.text += data.tooltip;
+        }
+        // tooltip_body1.text += data.item_type.ToString();
+        if(item == equipped_item){
+            tooltip_body1.text += "equipped";
+        }
+
+        switch(data.item_type){
+            case ItemType.Gun:
+                if(equipped_item != null && equipped_item != item && equipped_item.item_data.item_type == ItemType.Gun){
+                    tooltip_body2.text += "firerate: ";
+                    if(equipped_item.item_data.gun_stats.firerate < data.gun_stats.firerate){
+                        tooltip_body2.text += "<color=#009e30>" + data.gun_stats.firerate + " ▲";
+                    }
+                    else if(equipped_item.item_data.gun_stats.firerate > data.gun_stats.firerate){
+                        tooltip_body2.text += "<color=#cb4747>" + data.gun_stats.firerate + " ▼";
+                    }
+                    else{
+                        tooltip_body2.text += data.gun_stats.firerate;
+                    }
+                    tooltip_body2.text += "\n<color=#a4a4a4>damage: ";
+                    if(equipped_item.item_data.gun_stats.damage < data.gun_stats.damage){
+                        tooltip_body2.text += "<color=#009e30>" + data.gun_stats.damage + " ▲";
+                    }
+                    else if(equipped_item.item_data.gun_stats.damage > data.gun_stats.damage){
+                        tooltip_body2.text += "<color=#cb4747>" + data.gun_stats.damage + " ▼";
+                    }
+                    else{
+                        tooltip_body2.text += data.gun_stats.damage;
+                    }
+                    tooltip_body2.text += "\n<color=#a4a4a4>shots fired: " ;
+                    if(equipped_item.item_data.gun_stats.extra_shots < data.gun_stats.extra_shots){
+                        tooltip_body2.text += "<color=#009e30>" + (data.gun_stats.extra_shots + 1) + " ▲";
+                    }
+                    else if(equipped_item.item_data.gun_stats.extra_shots > data.gun_stats.extra_shots){
+                        tooltip_body2.text += "<color=#cb4747>" + (data.gun_stats.extra_shots + 1) + " ▼";
+                    }
+                    else{
+                        tooltip_body2.text += data.gun_stats.extra_shots + 1;
+                        }
+                }
+                else{
+                    tooltip_body2.text += "firerate: " + data.gun_stats.firerate;
+                    tooltip_body2.text += "\ndamage: " + data.gun_stats.damage;
+                    tooltip_body2.text += "\nshots fired: " + (data.gun_stats.extra_shots + 1);
+                }
+                break;
+            case ItemType.Food:
+                tooltip_body2.text += "heals <color=#009e30>" + data.food_heal_amount + " health";
+                break;
+            case ItemType.Seeds:
+                tooltip_body2.text += data.seed_type.ToString().ToLower() + " seeds"; // only tolower because thats the current look
+                break;
+            case ItemType.Tool:
+                tooltip_body2.text += "plots: " + PlayerInteraction.plots + " / " + PlayerInteraction.max_plots;
+                break;
         }
     }
     
@@ -238,8 +332,6 @@ public class InvController : MonoBehaviour
                 if(to_equip_item == equipped_item){
                     equip_highlighter.SetVisible(false);
                     equipped_item = null;
-                    HandleHighlight(false);
-                    Debug.Log("item unequipped");
                 }
                 else if(to_equip_item != null){
                     equipped_item = to_equip_item;
@@ -248,17 +340,14 @@ public class InvController : MonoBehaviour
                     equip_highlighter.SetSibling(true);
                     equip_highlighter.SetPosition(selected_item_grid, equipped_item);
                     equip_highlighter.SetVisible(true);
-                    inv_highlighter.SetVisible(false);
-                    Debug.Log("item equipped");
                 }
             }
             else if(to_equip_item.item_data.item_type == ItemType.Food){
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
                 HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount);
                 Destroy(to_equip_item.gameObject);
-                inv_highlighter.SetVisible(false);
-                Debug.Log("food eaten");
             }
+            HandleHighlight(false);
         }
     }
 
@@ -267,6 +356,6 @@ public class InvController : MonoBehaviour
     }
 
     public bool CheckItemHeld(ItemList type, int count){
-        return main_grid.RemoveItemHeld(items[(int) type].name, count);
+        return main_grid.CheckItemHeld(items[(int) type].name, count);
     }
 }

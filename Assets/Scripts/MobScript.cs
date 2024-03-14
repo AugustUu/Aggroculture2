@@ -44,10 +44,10 @@ public class MobScript : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
-        rotation += 0.78539816339f; // check 45deg to right 
+        rotation += Mathf.PI / 4; // check 45deg to right 
         
-        forward.x = (float)(Math.Sin(rotation));
-        forward.z = (float)(Math.Cos(rotation));
+        forward.x = Mathf.Sin(rotation);
+        forward.z = Mathf.Cos(rotation);
 
         ray = new Ray(this.transform.position, forward);    
         if (Physics.Raycast(ray, out hit_object)){
@@ -56,10 +56,10 @@ public class MobScript : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
         }
 
-        rotation -= 0.78539816339f*2; // check 45deg to left 
+        rotation -= Mathf.PI / 2; // check 45deg to left 
         
-        forward.x = (float)(Math.Sin(rotation));
-        forward.z = (float)(Math.Cos(rotation));
+        forward.x = Mathf.Sin(rotation);
+        forward.z = Mathf.Cos(rotation);
 
         ray = new Ray(this.transform.position, forward);    
         if (Physics.Raycast(ray, out hit_object)){

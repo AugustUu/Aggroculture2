@@ -19,6 +19,7 @@ MonoBehaviour:
   item_icon: {fileID: 21300000, guid: 1e7aaa992bb25254780a01222f00ea5b, type: 3}
   item_type: 4
   seed_type: 0
+  tooltip: digs holes
   gun_stats:
     firerate: 0
     max_ammo: 0
