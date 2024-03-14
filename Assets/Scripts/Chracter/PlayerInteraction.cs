@@ -16,6 +16,8 @@ public class PlayerInteraction : MonoBehaviour
     public static int plots = 0;
     public static int max_plots = 10;
 
+    private Transform farmParent;
+
     public void dig()
     {
         if(plots < max_plots){
@@ -37,7 +39,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
                 {
-                    GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                    GameObject farmland = Instantiate(placeable, position, Quaternion.identity,farmParent);
                     // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
                         
                     plots++;
@@ -142,6 +144,10 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        farmParent = GameObject.Find("Farmland").GetComponent<Transform>();
+    }
 
     void Update()
     {
