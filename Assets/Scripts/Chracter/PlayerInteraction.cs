@@ -22,8 +22,24 @@ public class PlayerInteraction : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit_object;
 
-            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
+
+            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7)){
+                Debug.Log("babagaboosh");
+                FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+                if(script != null){
+                    if(script.plant == SeedType.None){
+                        Destroy(script.gameObject);
+                        plots--;
+                    }
+                    else if(script.growth < 6){
+                        script.RemovePlant();
+                    }
+                }
+                
+            }
+            else if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
             {
+                Debug.Log("bagabadoosh");
                 if (hit_object.normal != Vector3.up) // dont place on walls
                     return;
 
@@ -82,7 +98,7 @@ public class PlayerInteraction : MonoBehaviour
             if(script != null){
                 if(script.growth >= 6){
                     if(inv_controller.InsertItemID(Utils.farm_dict[script.plant])){
-                        script.Harvest();
+                        script.RemovePlant();
                     };
                 }
             }
@@ -151,17 +167,25 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (InvController.equipped_item != null)
             {
-                //Debug.Log(InvController.equipped_item.item_data.name);
-                switch (InvController.equipped_item.item_data.item_type)
+                if(Input.GetMouseButtonDown(0)){
+                    switch (InvController.equipped_item.item_data.item_type)
                 {
-                    case ItemType.Gun:
-                        shoot(InvController.equipped_item.item_data.gun_stats);
-                        break;
                     case ItemType.Tool:
                         dig();
                         break;
                     case ItemType.Seeds:
                         plant(InvController.equipped_item.item_data.seed_type);
+                        break;
+                    default:
+                        break;
+
+                }
+                }
+                //Debug.Log(InvController.equipped_item.item_data.name);
+                switch (InvController.equipped_item.item_data.item_type)
+                {
+                    case ItemType.Gun:
+                        shoot(InvController.equipped_item.item_data.gun_stats);
                         break;
                     default:
                         break;
