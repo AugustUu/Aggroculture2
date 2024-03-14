@@ -69,7 +69,10 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            animator.SetBool("IsDead", true);
+        }
 
 
 
