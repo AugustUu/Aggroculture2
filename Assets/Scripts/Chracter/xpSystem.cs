@@ -12,6 +12,7 @@ public class XPSystem : MonoBehaviour
 
     static Slider exp_bar;
     TextMeshProUGUI display;
+    public InvController inv_controller;
     static int exp;
     int level_up_req = 100;
     int levels = 1;
@@ -40,6 +41,9 @@ public class XPSystem : MonoBehaviour
         exp_bar.maxValue = level_up_req;
         display.text = "lvl " + levels;
         PlayerInteraction.max_plots++;
+        InvController.heal_level++;
+
+        inv_controller.HandleHighlight(false); // errors but still works ??
         
     }
 

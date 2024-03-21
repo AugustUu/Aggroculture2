@@ -44,6 +44,7 @@ public class InvController : MonoBehaviour
     TextMeshProUGUI tooltip_subtitle;
     TextMeshProUGUI tooltip_body1;
     TextMeshProUGUI tooltip_body2;
+    public static int heal_level = 0;
     
 
     public static float main_canvas_tile_size;
@@ -151,7 +152,7 @@ public class InvController : MonoBehaviour
     InvItem highlighted_item;
     Vector2Int old_pos;
     
-    private void HandleHighlight(bool check_mouse)
+    public void HandleHighlight(bool check_mouse)
     {
         Vector2Int mouse_grid_pos = selected_item_grid.GetGridPos(Input.mousePosition) + tile_offset;
         tooltip.transform.position = Input.mousePosition;
@@ -251,7 +252,7 @@ public class InvController : MonoBehaviour
                 }
                 break;
             case ItemType.Food:
-                tooltip_body2.text += "heals <color=#009e30>" + data.food_heal_amount + " health";
+                tooltip_body2.text += "heals <color=#009e30>" + (data.food_heal_amount + heal_level) + " health";
                 break;
             case ItemType.Seeds:
                 tooltip_body2.text += data.seed_type.ToString().ToLower() + " seeds"; // only tolower because thats the current look
@@ -345,7 +346,7 @@ public class InvController : MonoBehaviour
             }
             else if(to_equip_item.item_data.item_type == ItemType.Food){
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
-                HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount);
+                HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount + heal_level);
                 Destroy(to_equip_item.gameObject);
             }
             HandleHighlight(false);
