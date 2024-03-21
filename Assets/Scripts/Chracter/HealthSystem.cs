@@ -25,7 +25,12 @@ public class HealthSystem : MonoBehaviour
 
     public static void changeHealth (int hp_change){
         hp += hp_change;
-        hp = Math.Min(hp, 100);
+        if(hp_change >= 0){
+            
+        }
+        if(hp_change >= 0){
+        }
+        
         hp_bar.value = hp;
     }
 }

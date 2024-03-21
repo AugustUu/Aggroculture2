@@ -189,6 +189,7 @@ public class InvController : MonoBehaviour
             inv_highlighter.SetSibling(true);
             inv_highlighter.SetPosition(selected_item_grid, selected_item, mouse_grid_pos);
             inv_highlighter.SetVisible(selected_item_grid.BoundsCheck(mouse_grid_pos, selected_item.item_data.width, selected_item.item_data.height));
+            tooltip.SetActive(false);
         }
     }
 

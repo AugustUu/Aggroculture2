@@ -27,7 +27,7 @@ public class FarmlandScript : MonoBehaviour
         Invoke("grow", 1.0f);
     }
 
-    public void Harvest(){
+    public void RemovePlant(){
         growth = 0;
         plant = SeedType.None;
         CancelInvoke("grow");
