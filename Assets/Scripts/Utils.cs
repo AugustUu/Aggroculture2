@@ -11,6 +11,14 @@ public class Utils : MonoBehaviour
         {SeedType.Carrot, 0},
         {SeedType.Potato, 3}
     };
+
+    [SerializeField]
+    public List<PlantData> plant_list_init;
+    public static List<PlantData> plant_list;
+    
+    void Start(){
+        plant_list = plant_list_init;
+    }
 }
 
 public enum ItemList{

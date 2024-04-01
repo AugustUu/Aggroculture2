@@ -18,54 +18,53 @@ public class PlayerInteraction : MonoBehaviour
 
     public void dig()
     {
-        if(plots < max_plots){
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit_object;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit_object;
 
 
-            if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7)){
-                Debug.Log("babagaboosh");
-                FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
-                if(script != null){
-                    if(script.plant == SeedType.None){
-                        Destroy(script.gameObject);
-                        plots--;
-                    }
-                    else if(script.growth < 6){
-                        script.RemovePlant();
-                    }
+        if (Physics.Raycast(ray, out hit_object, 300f, 1 << 7)){
+            Debug.Log("babagaboosh");
+            FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
+            if(script != null){
+                if(script.plant == SeedType.None){
+                    Destroy(script.gameObject);
+                    plots--;
                 }
-                
+                else if(script.growth < Utils.plant_list[(int) script.plant].grow_time){
+                    script.RemovePlant();
+                }
             }
-            else if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6))
+            
+        }
+        else if (Physics.Raycast(ray, out hit_object, 300f, 1 << 6) && plots < max_plots)
+        {
+            Debug.Log("bagabadoosh");
+            if (hit_object.normal != Vector3.up) // dont place on walls
+                return;
+
+            Vector3 scale = placeable.transform.localScale;
+
+            Vector3 position = new Vector3(
+                Mathf.Round(hit_object.point.x / scale.x) * scale.x,
+                hit_object.point.y,
+                Mathf.Round(hit_object.point.z / scale.z) * scale.z
+            );
+
+            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
             {
-                Debug.Log("bagabadoosh");
-                if (hit_object.normal != Vector3.up) // dont place on walls
-                    return;
-
-                Vector3 scale = placeable.transform.localScale;
-
-                Vector3 position = new Vector3(
-                    Mathf.Round(hit_object.point.x / scale.x) * scale.x,
-                    hit_object.point.y,
-                    Mathf.Round(hit_object.point.z / scale.z) * scale.z
-                );
-
-                if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
-                {
-                    GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
-                    // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
-                        
-                    plots++;
+                GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
                     
-                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
-                }
-                else
-                {
-                    Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
-                }
+                plots++;
+                
+                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.red, 1f);
             }
         }
+
         
 
     }
@@ -96,8 +95,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
             if(script != null){
-                if(script.growth >= 6){
-                    if(inv_controller.InsertItemID(Utils.farm_dict[script.plant])){
+                if(script.growth >= Utils.plant_list[(int) script.plant].grow_time){
+                    if(inv_controller.InsertItemID(Utils.plant_list[(int) script.plant].produce_item)){
                         script.RemovePlant();
                     };
                 }
