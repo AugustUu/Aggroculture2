@@ -35,7 +35,7 @@ public class FarmlandScript : MonoBehaviour
 
     void grow()
     {
-        if(growth < Utils.plant_list[(int) plant].grow_time){
+        if(growth < 6){
             growth += 1;
         }
         Invoke("grow", growth_speed);

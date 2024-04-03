@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: Carrot Seeds
+  m_Name: aaaa
   m_EditorClassIdentifier: 
-  width: 2
+  width: 1
   height: 2
   stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 3eb1d18cb1b216f4e84b54a5ef0d1a16, type: 3}
+  item_icon: {fileID: 21300000, guid: f2e20955aa64db84f845a2fbd700b988, type: 3}
   item_type: 1
   seed_type: 1
-  tooltip: 
   gun_stats:
     firerate: 0
     max_ammo: 0
