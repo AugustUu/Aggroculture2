@@ -6,30 +6,24 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-    [SerializeField]
-    public List<PlantData> plant_list_init;
-    public static List<PlantData> plant_list;
-    
-    void Start(){
-        plant_list = plant_list_init;
-    }
+    public static Dictionary<SeedType, int> farm_dict =
+    new Dictionary<SeedType, int>{//seedtype, itemid
+        {SeedType.Carrot, 0},
+        {SeedType.Potato, 3}
+    };
 }
 
 public enum ItemList{
     schmeeze,
+    eeee,
+    aaaa,
+    big,
     gozoman,
-    tomato_seeds,
-    potato_seeds,
-    carrot_seeds,
-    tomato,
-    potato,
-    carrot,
-    shoel,
     stockedAK,
+    shoel,
     stocklessAK,
     oldGun,
     glock,
     shotgun,
     smg
-    
 }
