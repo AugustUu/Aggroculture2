@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   grow_time: 2
-  seed_item: 1
-  produce_item: 0
+  seed_item: 4
+  produce_item: 7
