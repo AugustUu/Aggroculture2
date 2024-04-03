@@ -17,15 +17,15 @@ public class Utils : MonoBehaviour
 
 public enum ItemList{
     schmeeze,
+    gozoman,
     tomato_seeds,
     potato_seeds,
     carrot_seeds,
     tomato,
     potato,
     carrot,
-    gozoman,
-    stockedAK,
     shoel,
+    stockedAK,
     stocklessAK,
     oldGun,
     glock,

@@ -95,10 +95,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
             if(script != null){
-                if(script.growth >= Utils.plant_list[(int) script.plant].grow_time){
-                    if(inv_controller.InsertItemID(Utils.plant_list[(int) script.plant].produce_item)){
-                        script.RemovePlant();
-                    };
+                if(script.plant != SeedType.None){
+                    if(script.growth >= Utils.plant_list[(int) script.plant].grow_time){
+                        if(inv_controller.InsertItemID(Utils.plant_list[(int) script.plant].produce_item)){
+                            script.RemovePlant();
+                        };
+                    }
                 }
             }
             Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.blue, 0.5f);
