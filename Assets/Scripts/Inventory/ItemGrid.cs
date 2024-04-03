@@ -93,7 +93,7 @@ public class ItemGrid : MonoBehaviour
     {
         if (!BoundsCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height)) { return false; }
 
-        if (!OverlapCheck(mouse_grid_pos, inv_item.item_data.width, inv_item.item_data.height, ref overlap_item)) { return overlap_item == inv_item; }
+        if (!OverlapCheck(mouse_grid_pos, inv_item, ref overlap_item)) { return false; }
 
         return true;
     }
@@ -145,10 +145,10 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public bool OverlapCheck(Vector2Int pos, int width, int height, ref InvItem overlap_item){
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
-                if(inventory[pos.x + x, pos.y + y] != null){
+    public bool OverlapCheck(Vector2Int pos, InvItem inv_item, ref InvItem overlap_item){
+        for(int x = 0; x < inv_item.item_data.width; x++){
+            for(int y = 0; y < inv_item.item_data.height; y++){
+                if(inventory[pos.x + x, pos.y + y] != null && inventory[pos.x + x, pos.y + y] != inv_item){
                     overlap_item = inventory[pos.x + x, pos.y + y];
                     return false;
                 }
