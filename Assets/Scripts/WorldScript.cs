@@ -75,9 +75,9 @@ public class WorldScript : MonoBehaviour
             int randNum2 = Random.Range(-(height / 2 - 5), height / 2 - 5);
             float randRotation = Random.Range(0, 360);
             int randRange = Random.Range(0, rocks.Length);
-            GameObject nerd = Instantiate(rocks[randRange], new Vector3(randNum1, 0, randNum2), Quaternion.Euler(0, Random.Range(0, 360), 0), rockParent);
+            GameObject rockSpawn = Instantiate(rocks[randRange], new Vector3(randNum1, 0, randNum2), Quaternion.Euler(0, Random.Range(0, 360), 0), rockParent);
             float randScale = Random.Range(0.5f, 2);
-            nerd.transform.localScale = new Vector3(randScale, randScale, randScale);
+            rockSpawn.transform.localScale = new Vector3(randScale, randScale, randScale);
         }
     }
 }
