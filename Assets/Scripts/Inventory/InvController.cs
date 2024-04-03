@@ -194,13 +194,19 @@ public class InvController : MonoBehaviour
         }
     }
 
+    private string dark_gray_color = "<color=#7b7b7b>";
+    private string mid_gray_color = "<color=#989898>";
+    private string light_gray_color = "<color=#a4a4a4>";
+    private string equip_color = "<color=#b7b13c>";
+    private string green_color = "<color=#009e30>";
+    private string red_color = "<color=#cb4747>";
     private void HandleTooltip(InvItem item){
         ItemData data = item.item_data;
         tooltip.SetActive(true);
-        tooltip_header.text = "<color=#7b7b7b>";
-        tooltip_subtitle.text = "<color=#989898>";
-        tooltip_body1.text = "<color=#b7b13c>";
-        tooltip_body2.text = "<color=#a4a4a4>";
+        tooltip_header.text = dark_gray_color;
+        tooltip_subtitle.text = mid_gray_color;
+        tooltip_body1.text = equip_color;
+        tooltip_body2.text = light_gray_color;
 
         tooltip_header.text += data.name;
         if(data.tooltip != ""){
@@ -216,30 +222,30 @@ public class InvController : MonoBehaviour
                 if(equipped_item != null && equipped_item != item && equipped_item.item_data.item_type == ItemType.Gun){
                     tooltip_body2.text += "firerate: ";
                     if(equipped_item.item_data.gun_stats.firerate < data.gun_stats.firerate){
-                        tooltip_body2.text += "<color=#009e30>" + data.gun_stats.firerate + " ▲";
+                        tooltip_body2.text += green_color + data.gun_stats.firerate + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.firerate > data.gun_stats.firerate){
-                        tooltip_body2.text += "<color=#cb4747>" + data.gun_stats.firerate + " ▼";
+                        tooltip_body2.text += red_color + data.gun_stats.firerate + " ▼";
                     }
                     else{
                         tooltip_body2.text += data.gun_stats.firerate;
                     }
-                    tooltip_body2.text += "\n<color=#a4a4a4>damage: ";
+                    tooltip_body2.text += "\n" + light_gray_color + "damage: ";
                     if(equipped_item.item_data.gun_stats.damage < data.gun_stats.damage){
-                        tooltip_body2.text += "<color=#009e30>" + data.gun_stats.damage + " ▲";
+                        tooltip_body2.text += green_color + data.gun_stats.damage + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.damage > data.gun_stats.damage){
-                        tooltip_body2.text += "<color=#cb4747>" + data.gun_stats.damage + " ▼";
+                        tooltip_body2.text += red_color + data.gun_stats.damage + " ▼";
                     }
                     else{
                         tooltip_body2.text += data.gun_stats.damage;
                     }
-                    tooltip_body2.text += "\n<color=#a4a4a4>shots fired: " ;
+                    tooltip_body2.text += "\n" + light_gray_color + "shots fired: " ;
                     if(equipped_item.item_data.gun_stats.extra_shots < data.gun_stats.extra_shots){
-                        tooltip_body2.text += "<color=#009e30>" + (data.gun_stats.extra_shots + 1) + " ▲";
+                        tooltip_body2.text += green_color + (data.gun_stats.extra_shots + 1) + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.extra_shots > data.gun_stats.extra_shots){
-                        tooltip_body2.text += "<color=#cb4747>" + (data.gun_stats.extra_shots + 1) + " ▼";
+                        tooltip_body2.text += red_color + (data.gun_stats.extra_shots + 1) + " ▼";
                     }
                     else{
                         tooltip_body2.text += data.gun_stats.extra_shots + 1;
@@ -252,7 +258,7 @@ public class InvController : MonoBehaviour
                 }
                 break;
             case ItemType.Food:
-                tooltip_body2.text += "heals <color=#009e30>" + (data.food_heal_amount + heal_level) + " health";
+                tooltip_body2.text += "heals " + green_color + (data.food_heal_amount + heal_level) + " health";
                 break;
             case ItemType.Seeds:
                 tooltip_body2.text += data.seed_type.ToString().ToLower() + " seeds"; // only tolower because thats the current look
