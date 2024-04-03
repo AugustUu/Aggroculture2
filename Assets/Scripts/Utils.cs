@@ -15,9 +15,12 @@ public class Utils : MonoBehaviour
 
 public enum ItemList{
     schmeeze,
-    eeee,
-    aaaa,
-    big,
+    tomato_seeds,
+    potato_seeds,
+    carrot_seeds,
+    tomato,
+    potato,
+    carrot,
     gozoman,
     stockedAK,
     shoel,
@@ -26,4 +29,5 @@ public enum ItemList{
     glock,
     shotgun,
     smg
+    
 }

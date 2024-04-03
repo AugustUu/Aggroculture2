@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: Potato
+  m_Name: Potato Seeds
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
+  width: 2
+  height: 2
   stackable: 0
-  equippable: 0
-  item_icon: {fileID: 21300000, guid: 95c3c04bf75b1419482dfcbc3c7e2985, type: 3}
-  item_type: 0
-  seed_type: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: 9dea4f713f3a547ae8e082a82be5ed22, type: 3}
+  item_type: 1
+  seed_type: 2
   tooltip: 
   gun_stats:
     firerate: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
     recoil: 0
     spread: 0
     extra_shots: 0
-  food_heal_amount: 5
+  food_heal_amount: 0
