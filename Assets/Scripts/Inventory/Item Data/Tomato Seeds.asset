@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: big
+  m_Name: Tomato Seeds
   m_EditorClassIdentifier: 
-  width: 3
-  height: 3
+  width: 2
+  height: 2
   stackable: 0
-  equippable: 0
-  item_icon: {fileID: 21300000, guid: 833c49b2f5a2964449c61b5ad00be283, type: 3}
-  item_type: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: 992cf74f61ff9de4e8c627d0b3a7e1e7, type: 3}
+  item_type: 1
+  seed_type: 3
+  tooltip: 
   gun_stats:
     firerate: 0
     max_ammo: 0
     mag_size: 0
     damage: 0
     recoil: 0
-  food_heal_amount: 20
+    spread: 0
+    extra_shots: 0
+  food_heal_amount: 0
