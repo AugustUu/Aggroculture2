@@ -18,7 +18,7 @@ public class PlantCrop : MonoBehaviour
         randRotation = UnityEngine.Random.Range(0,360);
         foreach (var t in plantModels)
         {
-            //Debug.Log(t.name);
+            Debug.Log(t.name);
         }
     }
 
