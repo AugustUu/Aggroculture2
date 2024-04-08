@@ -15,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     public ParticleSystem particle_system;
     public static int plots = 0;
     public static int max_plots = 10;
+    public Transform farmParent;
 
     public void dig()
     {
@@ -52,7 +53,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
             {
-                GameObject farmland = Instantiate(placeable, position, Quaternion.identity);
+                GameObject farmland = Instantiate(placeable, position, Quaternion.identity,farmParent);
                 // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
                     
                 plots++;

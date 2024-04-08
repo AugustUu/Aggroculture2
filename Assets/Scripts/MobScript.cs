@@ -11,15 +11,17 @@ public class MobScript : MonoBehaviour
     public int health = 100;
 
     public GameObject xp_orb;
+    private Transform xpParent;
 
     void Start(){
         target = GameObject.Find("Player").transform;
+        xpParent = GameObject.Find("EXP").GetComponent<Transform>();
     }
 
     public void hit(int dammage){
         health -= dammage;
         if(health <= 0){
-            Instantiate(xp_orb, this.transform.position, this.transform.rotation);
+            Instantiate(xp_orb, this.transform.position, this.transform.rotation,xpParent);
             Destroy(this.transform.gameObject);
         }
     }
