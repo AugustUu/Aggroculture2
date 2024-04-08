@@ -76,4 +76,7 @@ public class PlantCrop : MonoBehaviour
             }
         }
     }
+    public void shovelPlant(){
+        Destroy(this.transform.GetChild(1).GameObject());
+    }
 }
