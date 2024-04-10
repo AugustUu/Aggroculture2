@@ -139,9 +139,16 @@ public class PlayerInteraction : MonoBehaviour
                 particle_system.Emit(particle,1);
 
                 Ray ray = new Ray(this.transform.position, forward);
-                RaycastHit hit_object;
+                RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
-                if (Physics.Raycast(ray, out hit_object, 300f, 1 << 11))
+                foreach (var hit in hits)
+                {
+                    // do stuff here
+                }
+
+       
+                /*
+                if ()
                 {
                     
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
@@ -155,7 +162,7 @@ public class PlayerInteraction : MonoBehaviour
                 else
                 {
                     Debug.DrawRay(this.transform.position, forward * 10, Color.red, 1f);
-                }
+                }*/
             }
         }
     }
