@@ -143,6 +143,15 @@ public class PlayerInteraction : MonoBehaviour
                 // use raycast all
                 foreach (var hit in hits)
                 {
+                    if (hit.transform.gameObject.layer == 11)
+                    {
+                        MobScript mob = hit.transform.gameObject.GetComponent<MobScript>();
+                        if (mob != null)
+                        {
+                            mob.hit(stats.damage);
+                            // Debug.Log(mob);
+                        }
+                    }
                     // do stuff here
                 }
 
