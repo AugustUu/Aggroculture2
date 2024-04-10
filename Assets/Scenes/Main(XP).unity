@@ -1982,7 +1982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1356969112
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2234,35 +2234,45 @@ MonoBehaviour:
   inv_controller: {fileID: 8639214405181510638}
   trades:
   - input:
-    - item: 0
-      count: 0
+    - item: 6
+      count: 15
     output:
-      item: 0
+      item: 10
+      count: 1
+  - input:
+    - item: 6
+      count: 20
+    output:
+      item: 9
+      count: 1
+  - input:
+    - item: 7
+      count: 8
+    output:
+      item: 14
+      count: 1
+  - input:
+    - item: 7
+      count: 20
+    output:
+      item: 11
       count: 1
   - input: []
     output:
       item: 0
       count: 0
-  - input: []
+  - input:
+    - item: 6
+      count: 2
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 12
+      count: 1
+  - input:
+    - item: 5
+      count: 10
     output:
-      item: 0
-      count: 0
-  - input: []
-    output:
-      item: 0
-      count: 0
-  - input: []
-    output:
-      item: 0
-      count: 0
-  - input: []
-    output:
-      item: 0
-      count: 0
+      item: 13
+      count: 1
   - input: []
     output:
       item: 0

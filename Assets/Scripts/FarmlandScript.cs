@@ -18,6 +18,7 @@ public class FarmlandScript : MonoBehaviour
     void OnDrawGizmos()
     {
         Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
+        
     }
 
     public void Plant(SeedType seed_type){
