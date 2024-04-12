@@ -18,5 +18,14 @@ public class NewBehaviourScript : MonoBehaviour
         if(Input.GetButtonDown("Flashlight")){
             flashlight.enabled = !flashlight.enabled;
         }
+
+        if(Input.GetKeyDown(KeyCode.P)){
+            if(Time.timeScale != 0){
+                Time.timeScale = 0;
+            }
+            else{
+                Time.timeScale = 1;
+            }
+        }
     }
 }

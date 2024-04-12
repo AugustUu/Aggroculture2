@@ -17,12 +17,13 @@ public class FarmlandScript : MonoBehaviour
     }
     void OnDrawGizmos()
     {
+        
         Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
     }
 
-    public void Plant(SeedType seed_type){
+    public void Plant(SeedType seedType){
         if(plant == SeedType.None){
-            plant = seed_type;
+            plant = seedType;
         }
         Invoke("grow", 1.0f);
     }
