@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
                 Mathf.Round(hit_object.point.z / scale.z) * scale.z
             );
 
-            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
+            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~((1 << 6) | (1 << 11))))
             {
                 GameObject farmland = Instantiate(placeable, position, Quaternion.identity,farmParent);
                 // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
@@ -151,6 +151,10 @@ public class PlayerInteraction : MonoBehaviour
                             mob.hit(stats.damage);
                             // Debug.Log(mob);
                         }
+                    }
+                    else
+                    {
+                        return;
                     }
                     // do stuff here
                 }
