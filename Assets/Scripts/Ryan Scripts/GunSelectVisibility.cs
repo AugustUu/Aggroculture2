@@ -25,12 +25,15 @@ public class GunSelectVisibility : MonoBehaviour
                 Debug.Log(InvController.equipped_item.item_data.name);
             }
             for (int i = 0; i <= tools.Length - 1; i++){
-                if (InvController.equipped_item.item_data.name.Equals(tools[i].name)){
+                if (InvController.equipped_item.item_data.name.Equals(tools[i].name))
+                {
                     tools[i].SetActive(true);
-                    for (int j = 0; j <= tools.Length - 1;j++){
-                        if(j != i){
+                    for (int j = 0; j <= tools.Length - 1; j++)
+                    {
+                        if (j != i)
+                        {
                             tools[j].SetActive(false);
-                        }             
+                        }
                     }
                 }
             }

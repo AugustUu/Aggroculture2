@@ -962,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &569643497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3962,6 +3962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inv_container: {fileID: 457899973858632193}
+  trash: {fileID: 0}
 --- !u!1 &5978800109083034735
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,6 +4242,8 @@ MonoBehaviour:
   inv_highlighter: {fileID: 2192848082172963242}
   equip_highlighter: {fileID: 6378676136453896374}
   tooltip: {fileID: 909912338}
+  trash: {fileID: 0}
+  trashing: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
