@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87bbdcdd59bc4d6d9fc0e09d87385fa, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  grow_time: 6
+  grow_time: 9
   seed_item: 4
   produce_item: 7
