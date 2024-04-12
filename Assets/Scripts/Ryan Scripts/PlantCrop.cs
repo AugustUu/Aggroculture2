@@ -44,7 +44,7 @@ public class PlantCrop : MonoBehaviour
 
     public void growStage(){
         FarmlandScript script = gameObject.GetComponent<FarmlandScript>();
-        if (script.growth == 2){
+        if (script.growth == (int)(Utils.plant_list[(int) script.plant].grow_time / 3)){
             foreach (var t in plantModels)
             {
                 if (script.plant.ToString().Equals(t.name)){
@@ -55,7 +55,7 @@ public class PlantCrop : MonoBehaviour
                 }
             }
         }
-        if (script.growth == 4){
+        if (script.growth == (int)(Utils.plant_list[(int) script.plant].grow_time * 2 / 3)){
             foreach (var t in plantModels)
             {
                 if (script.plant.ToString().Equals(t.name)){
@@ -65,7 +65,7 @@ public class PlantCrop : MonoBehaviour
                 }
             }
         }
-        if (script.growth == 6){
+        if (script.growth == Utils.plant_list[(int) script.plant].grow_time){
             foreach (var t in plantModels)
             {
                 if (script.plant.ToString().Equals(t.name)){
@@ -75,5 +75,9 @@ public class PlantCrop : MonoBehaviour
                 }
             }
         }
+    }
+    public void shovelPlant(){
+        Destroy(this.transform.GetChild(1).GameObject());
+        planted = false;
     }
 }

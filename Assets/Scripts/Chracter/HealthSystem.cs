@@ -28,7 +28,8 @@ public class HealthSystem : MonoBehaviour
         if(hp_change >= 0){
             
         }
-        if(hp_change >= 0){
+        if(hp_change < 0){
+            
         }
         
         hp_bar.value = hp;

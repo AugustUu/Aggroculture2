@@ -69,14 +69,6 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            animator.SetBool("IsDead", true);
-        }
-
-
-
-
         model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 8);
         Vector3 move = direction * Time.deltaTime * player_speed;
         
