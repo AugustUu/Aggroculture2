@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5598409851412892940}
   - component: {fileID: 4194163677516981177}
   - component: {fileID: 5943518782512550413}
-  m_Layer: 0
+  - component: {fileID: 3077656752301384684}
+  m_Layer: 18
   m_Name: xp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4843,6 +4844,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eba77d5d1f59a4296ae34c2703dcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3077656752301384684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141923156838582121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bb3e7942ee1411bbad5de03207e80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 262144
 --- !u!1 &8408029624421290881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4871,7 @@ GameObject:
   - component: {fileID: 8122357746526840667}
   - component: {fileID: 2967686231855377834}
   - component: {fileID: 3841454983342578233}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,6 +5015,10 @@ PrefabInstance:
     - target: {fileID: 8881137221559119241, guid: 9ce60b89433ae92489f07960a2392734, type: 3}
       propertyPath: m_Name
       value: gemstone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881137221559119241, guid: 9ce60b89433ae92489f07960a2392734, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
