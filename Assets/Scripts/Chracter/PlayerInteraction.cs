@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
                 Mathf.Round(hit_object.point.z / scale.z) * scale.z
             );
 
-            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~(1 << 6)))
+            if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~((1 << 6) | (1 << 11))))
             {
                 GameObject farmland = Instantiate(placeable, position, Quaternion.identity,farmParent);
                 // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
@@ -139,9 +139,29 @@ public class PlayerInteraction : MonoBehaviour
                 particle_system.Emit(particle,1);
 
                 Ray ray = new Ray(this.transform.position, forward);
-                RaycastHit hit_object;
+                RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
-                if (Physics.Raycast(ray, out hit_object, 300f, 1 << 11))
+                foreach (var hit in hits)
+                {
+                    if (hit.transform.gameObject.layer == 11)
+                    {
+                        MobScript mob = hit.transform.gameObject.GetComponent<MobScript>();
+                        if (mob != null)
+                        {
+                            mob.hit(stats.damage);
+                            // Debug.Log(mob);
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    // do stuff here
+                }
+
+       
+                /*
+                if ()
                 {
                     
                     Debug.DrawRay(ray.origin, ray.direction * hit_object.distance, Color.green, 1f);
@@ -155,7 +175,7 @@ public class PlayerInteraction : MonoBehaviour
                 else
                 {
                     Debug.DrawRay(this.transform.position, forward * 10, Color.red, 1f);
-                }
+                }*/
             }
         }
     }
