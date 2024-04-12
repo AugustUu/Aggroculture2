@@ -40,13 +40,11 @@ public class InvController : MonoBehaviour
     [SerializeField] InvHighlight inv_highlighter;
     [SerializeField] InvHighlight equip_highlighter;
     [SerializeField] GameObject tooltip;
-    [SerializeField] Trash trash;
     TextMeshProUGUI tooltip_header;
     TextMeshProUGUI tooltip_subtitle;
     TextMeshProUGUI tooltip_body1;
     TextMeshProUGUI tooltip_body2;
     public static int heal_level = 0;
-    public bool trashing = false;
     
 
     public static float main_canvas_tile_size;
@@ -144,12 +142,8 @@ public class InvController : MonoBehaviour
             old_pos = new Vector2Int(-1, -1); // just so check mouse moved thing is always false  theres gotta be a better way to do but idfk lol
             if (Input.GetMouseButtonUp(0) && selected_item != null){
                 ReturnItem();
-                if(trashing){
-                    origin_grid.RemoveItem(selected_item, true);
-                    trash.Close();
-                }
-                Debug.Log("item dropped outside inv");
                 Selected_item = null;
+                Debug.Log("item dropped outside inv");
             }
         }
         

@@ -14,11 +14,11 @@ public class XPScript : MonoBehaviour
         player_position = GameObject.Find("Player").transform;
     }
 
+    // Update is called once per frame
     void FixedUpdate(){
         if(Vector3.Distance(player_position.transform.position, transform.position) < 5){
             XPSystem.changeExp(5);
             Destroy(transform.gameObject);
-            
         }
     }
     
