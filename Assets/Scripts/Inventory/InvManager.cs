@@ -7,6 +7,7 @@ using UnityEngine;
 public class InvManager : MonoBehaviour
 {
     [SerializeField] GameObject inv_container;
+    [SerializeField] Trash trash;
 
     void Start(){
         ToggleInv();
@@ -29,6 +30,8 @@ public class InvManager : MonoBehaviour
     public void SetInvActive(bool active){
         if(!active){
             gameObject.GetComponent<InvController>().selected_item_grid = null;
+            gameObject.GetComponent<InvController>().trashing = false;
+            trash.Close();
         }
         inv_container.SetActive(active);
     }
