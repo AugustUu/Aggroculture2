@@ -19,6 +19,7 @@ public class FarmlandScript : MonoBehaviour
     {
         
         Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
+        
     }
 
     public void Plant(SeedType seedType){
@@ -32,6 +33,7 @@ public class FarmlandScript : MonoBehaviour
         growth = 0;
         plant = SeedType.None;
         CancelInvoke("grow");
+        gameObject.GetComponent<PlantCrop>().shovelPlant();
     }
 
     void grow()

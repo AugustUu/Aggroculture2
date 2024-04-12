@@ -16,6 +16,7 @@ public class GunStats{
     public float spread;
 
     public int extra_shots;
+    public int piercing;
 }
 
 
