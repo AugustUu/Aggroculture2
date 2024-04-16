@@ -10,11 +10,13 @@ public class InvManager : MonoBehaviour
     [SerializeField] Trash trash;
 
     void Start(){
+        gameObject.GetComponent<InvController>().InsertItemID(ItemList.shoel);
+        gameObject.GetComponent<InvController>().InsertItemID(ItemList.glock);
         ToggleInv();
     }
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") && !Pause.is_paused)
         {
             ToggleInv();
         }
