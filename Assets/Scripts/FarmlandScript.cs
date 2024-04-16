@@ -19,6 +19,7 @@ public class FarmlandScript : MonoBehaviour
     {
         
         Handles.Label(transform.position, "Plant: " + plant + "\nGrowth: " + growth);
+        
     }
 
     public void Plant(SeedType seedType){

@@ -170,7 +170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 88452122df896ae44b293c552af0933f, type: 2}
+  - {fileID: 2100000, guid: 3bd6a329032064f69b568cee13eff2fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -240,4 +240,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93b4b54bd1e544ceaa5f4fa501e8352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textures: []
+  plantModels: []

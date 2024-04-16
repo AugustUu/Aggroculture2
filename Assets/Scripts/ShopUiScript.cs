@@ -66,8 +66,12 @@ public class ShopUiScript : MonoBehaviour
                         inv_controller.RemoveItemHeld(item.item,item.count);
                     }
 
-                    inv_controller.InsertItemID(trades[a].output.item);
-                    Debug.Log(a + " " + trades[a]);
+                    for (int i = 0; i < trades[a].output.count; i++)
+                    {
+                        inv_controller.InsertItemID(trades[a].output.item);
+                        Debug.Log(a + " " + trades[a]);
+                    }
+                    
                 });
 
                 string name = "";
