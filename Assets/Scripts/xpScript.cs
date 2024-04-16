@@ -6,7 +6,8 @@ using UnityEngine.Experimental.Rendering;
 
 public class XPScript : MonoBehaviour
 {
-    
+    public int expLvl;
+    public GameObject expHigher;
     Transform player_position;
 
     void Start()
@@ -16,7 +17,7 @@ public class XPScript : MonoBehaviour
 
     void FixedUpdate(){
         if(Vector3.Distance(player_position.transform.position, transform.position) < 5){
-            XPSystem.changeExp(5);
+            XPSystem.changeExp(expLvl);
             Destroy(transform.gameObject);
             
         }

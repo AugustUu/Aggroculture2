@@ -36,7 +36,7 @@ public class PlantCrop : MonoBehaviour
                 planted = true;
             }
         }
-        if (tempGrow != script.growth){
+        if (tempGrow != script.growth && script.plant != SeedType.None){
             growStage();
         }
         tempGrow = script.growth;

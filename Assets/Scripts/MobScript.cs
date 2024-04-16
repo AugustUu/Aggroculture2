@@ -19,10 +19,12 @@ public class MobScript : MonoBehaviour
     }
 
     public void hit(int dammage){
-        health -= dammage;
-        if(health <= 0){
-            Instantiate(xp_orb, this.transform.position, this.transform.rotation,xpParent);
-            Destroy(this.transform.gameObject);
+        if(health > 0){
+            health -= dammage;
+            if(health <= 0){
+                Instantiate(xp_orb, this.transform.position, this.transform.rotation,xpParent);
+                Destroy(this.transform.gameObject);
+            }
         }
     }
 
