@@ -16,7 +16,7 @@ public class CondenseGems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ihatelayermasksihatelayermasks
+       //ihatelayermasksihatelayermasks;
         Collider[] hehe = Physics.OverlapBox(gameObject.transform.position, condenseSize, Quaternion.identity, layerMask);
         if (hehe.Length - 1 >= 5){
             Debug.Log("haha");
