@@ -31,5 +31,16 @@ public enum ItemList{
     glock,
     shotgun,
     smg
-    
+}
+
+
+public enum UpgradeList{
+    speedUp,
+    healthUp,
+    regenUp,
+    dammageUp,
+    firerateUp,
+    tomatoUP,
+    carrotUP,
+    potatoUP,
 }

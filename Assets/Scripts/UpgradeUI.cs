@@ -15,15 +15,15 @@ public class UpgradeUi : MonoBehaviour
     
     static List<Button> buttons_static;
 
-    [FormerlySerializedAs("UpgradeParent")] public GameObject upgrade_parent;
+    public GameObject upgrade_parent;
 
     static GameObject upgrade_parent_static;
 
 
     // upgrades
 
-    [FormerlySerializedAs("Upgrades")] public List<Upgrade> upgrades;
-    private static List<Upgrade> upgrades_static;
+    public Upgrade[] upgrades;
+    private static Upgrade[]  upgrades_static;
 
 
     void Start()
@@ -37,7 +37,7 @@ public class UpgradeUi : MonoBehaviour
     public static void RandomiseUpgrades(){
         foreach (Button button in buttons_static)
         {
-            int index = Random.Range(0, upgrades_static.Count);
+            int index = Random.Range(0, upgrades_static.Length);
             foreach (var image in button.GetComponentsInChildren<Image>()){
                 if (image.sprite.name != "UISprite")
                 {
@@ -61,17 +61,9 @@ public class UpgradeUi : MonoBehaviour
         upgrade_parent_static.SetActive(true);
     }
 
-    public static Upgrade getUpgradeInfo(string name)
+    public static Upgrade getUpgradeInfo(UpgradeList upgrade)
     {
-        foreach (var upgrade in upgrades_static)
-        {
-            if (upgrade.name == name)
-            {
-                return upgrade;
-            }
-        }
-
-        return null;
+        return upgrades_static[(int)upgrade];
     }
 }
 
