@@ -10030,7 +10030,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -10095,6 +10095,7 @@ MonoBehaviour:
   placeable: {fileID: 4731878773796962094, guid: a6eaf1f67d79901438560d341443d59c, type: 3}
   inv_controller: {fileID: 0}
   particle_system: {fileID: 7771353681299670931}
+  farmParent: {fileID: 0}
 --- !u!1 &8502623075486325994
 GameObject:
   m_ObjectHideFlags: 0
@@ -10154,6 +10155,7 @@ MonoBehaviour:
   - {fileID: 486971182152838468}
   - {fileID: 3425556592585993638}
   animator: {fileID: 295259322297904707}
+  seeEquippedItem: 0
 --- !u!1 &8549138336732312862
 GameObject:
   m_ObjectHideFlags: 0

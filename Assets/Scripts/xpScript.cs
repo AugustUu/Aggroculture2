@@ -15,6 +15,10 @@ public class XPScript : MonoBehaviour
         player_position = GameObject.Find("Player").transform;
     }
 
+    void Awake(){
+        gameObject.GetComponent<CondenseGems>().collisionatorationalizationarilly();
+    }
+
     void FixedUpdate(){
         if(Vector3.Distance(player_position.transform.position, transform.position) < 5){
             XPSystem.changeExp(expLvl);

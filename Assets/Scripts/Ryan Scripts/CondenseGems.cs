@@ -6,28 +6,26 @@ using UnityEngine;
 public class CondenseGems : MonoBehaviour
 {
     public LayerMask layerMask;
-    private Vector3 condenseSize;
+    public static Vector3 condenseSize = new Vector3(10,10,10);
     private Transform xpParent;
     // Start is called before the first frame update
     void Start()
     {
-        condenseSize = new Vector3(10,10,10);
         xpParent = GameObject.Find("EXP").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        collisionatorationalizationarilly();
+
     }
 
     void OnDrawGizmos(){
         Gizmos.color = Color.cyan;
-        //Gizmos.matrix = transform.localToWorldMatrix;
-        //Gizmos.DrawWireCube(gameObject.transform.position, condenseSize * 2);
+        Gizmos.DrawWireCube(gameObject.transform.position, condenseSize * 2);
     }
 
-    void collisionatorationalizationarilly(){
+    public void collisionatorationalizationarilly(){
         Collider[] gems = Physics.OverlapBox(gameObject.transform.position, condenseSize, Quaternion.identity, layerMask);
         if (gems.Length - 1 >= 4){
             if (gameObject.GetComponent<XPScript>().expHigher != null){
