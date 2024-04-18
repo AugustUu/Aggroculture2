@@ -184,40 +184,42 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
 
-
-        if (Input.GetMouseButton(0))
-        {
-            if (InvController.equipped_item != null)
+        if(!Pause.is_paused){
+            if (Input.GetMouseButton(0))
             {
-                if(Input.GetMouseButtonDown(0)){
+                if (InvController.equipped_item != null)
+                {
+                    if(Input.GetMouseButtonDown(0)){
+                        switch (InvController.equipped_item.item_data.item_type)
+                    {
+                        case ItemType.Tool:
+                            dig();
+                            break;
+                        case ItemType.Seeds:
+                            plant(InvController.equipped_item.item_data.seed_type);
+                            break;
+                        default:
+                            break;
+
+                    }
+                    }
+                    //Debug.Log(InvController.equipped_item.item_data.name);
                     switch (InvController.equipped_item.item_data.item_type)
-                {
-                    case ItemType.Tool:
-                        dig();
-                        break;
-                    case ItemType.Seeds:
-                        plant(InvController.equipped_item.item_data.seed_type);
-                        break;
-                    default:
-                        break;
+                    {
+                        case ItemType.Gun:
+                            shoot(InvController.equipped_item.item_data.gun_stats);
+                            break;
+                        default:
+                            break;
 
-                }
-                }
-                //Debug.Log(InvController.equipped_item.item_data.name);
-                switch (InvController.equipped_item.item_data.item_type)
-                {
-                    case ItemType.Gun:
-                        shoot(InvController.equipped_item.item_data.gun_stats);
-                        break;
-                    default:
-                        break;
-
+                    }
                 }
             }
+            else if(Input.GetMouseButton(1)){
+                Harvest(); // should probably end up as blanket interact script
+            }
         }
-        else if(Input.GetMouseButton(1)){
-            Harvest(); // should probably end up as blanket interact script
-        }
+        
         /*
         if(gun_mode){
             if (Input.GetMouseButton(0)){
