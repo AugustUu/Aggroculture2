@@ -46,15 +46,17 @@ public class InteractionManager : MonoBehaviour
     
     public void Update()
     {
-        if (Input.GetButtonDown("Interact") && index < interactables.Count)
-        {
-            interactables.ElementAt(index).Value.Item2.Invoke();
-        }
-        if(Input.GetButtonDown("index")){
-            index += (int)Input.GetAxisRaw("index");
-            index = Math.Clamp(index,0,interactables.Count-1);
-            Debug.Log(index);
-            updateText();
+        if(!Pause.is_paused){
+            if (Input.GetButtonDown("Interact") && index < interactables.Count)
+            {
+                interactables.ElementAt(index).Value.Item2.Invoke();
+            }
+            if(Input.GetButtonDown("index")){
+                index += (int)Input.GetAxisRaw("index");
+                index = Math.Clamp(index,0,interactables.Count-1);
+                Debug.Log(index);
+                updateText();
+            }
         }
     }
 
