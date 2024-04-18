@@ -45,6 +45,7 @@ public class XPSystem : MonoBehaviour
 
         inv_controller.HandleHighlight(false); // errors but still works ??
         
+        UpgradeUi.open_Upgrade_menu();
     }
 
     public static void setExp(int xp){

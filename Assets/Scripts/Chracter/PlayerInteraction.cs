@@ -17,6 +17,9 @@ public class PlayerInteraction : MonoBehaviour
     public static int max_plots = 10;
     public Transform farmParent;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     public void dig()
     {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -111,10 +114,11 @@ public class PlayerInteraction : MonoBehaviour
     double lastShot = 0;
     public void shoot(GunStats stats)
     {
+        
         double dealy = 1.0 / stats.firerate;
         if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
         {
-
+            
             lastShot = Time.timeSinceLevelLoadAsDouble;
 
             for (int i = 0; i <= stats.extra_shots; i++)
@@ -137,7 +141,7 @@ public class PlayerInteraction : MonoBehaviour
                 EmitParams particle = new EmitParams();
 
                 particle_system.Emit(particle,1);
-
+                source.PlayOneShot(clip);
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
@@ -149,7 +153,7 @@ public class PlayerInteraction : MonoBehaviour
                         if (mob != null)
                         {
                             mob.hit(stats.damage);
-                            // Debug.Log(mob);
+                            Debug.Log(mob);
                         }
                     }
                     else
