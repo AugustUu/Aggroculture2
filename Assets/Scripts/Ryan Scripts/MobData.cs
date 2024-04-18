@@ -10,6 +10,7 @@ public class MobData : MonoBehaviour
         int health;
         int damage;
         double gusIndex;
+        GameObject mobPreFab;
 
         public Mob (string name){
             this.name = name;
@@ -17,7 +18,7 @@ public class MobData : MonoBehaviour
             damage = 5;
             gusIndex = 0.15;
         }
-        public Mob (string name, int health, int damage){
+        public Mob (string name, int health, int damage,GameObject mobPrefab){
             this.name =name;
             this.health = health;
             this.damage = damage;

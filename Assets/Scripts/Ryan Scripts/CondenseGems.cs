@@ -22,7 +22,7 @@ public class CondenseGems : MonoBehaviour
 
     void OnDrawGizmos(){
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(gameObject.transform.position, condenseSize * 2);
+        //Gizmos.DrawWireCube(gameObject.transform.position, condenseSize * 2);
     }
 
     public void collisionatorationalizationarilly(){

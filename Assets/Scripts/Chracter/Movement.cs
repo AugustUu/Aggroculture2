@@ -60,9 +60,11 @@ public class Movement : MonoBehaviour
         }
         else if (direction != Vector3.zero)
         {
-            animator.SetBool("IsMoving", true);
             rotation = Mathf.Atan2(direction.x, direction.z);
             rotation += transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
+        }
+        if (direction != Vector3.zero){
+            animator.SetBool("IsMoving", true);
         }
         else
         {
