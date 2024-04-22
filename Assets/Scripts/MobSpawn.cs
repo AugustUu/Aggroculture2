@@ -14,10 +14,10 @@ public class MobSpawn : MonoBehaviour
     List<GameObject> mob_list = new List<GameObject>();
     bool spawned_wave = false;
     int minutes;
-    int[] default_weights = {7, 2, 1};
-    int[] wave_weights = {1, 1, 1};
+    int[] default_weights = {7, 2, 3};
+    int[] wave_weights = {3, 2, 3};
     int natural_spawn_amount = 1;
-    int wave_spawn_amount = 15;
+    int wave_spawn_amount = 5;
     int old_days = TimeCycle.days;
 
     public Transform mobParent;

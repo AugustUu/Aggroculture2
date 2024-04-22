@@ -21,11 +21,12 @@ MonoBehaviour:
   seed_type: 0
   tooltip: 
   gun_stats:
-    firerate: 100
+    firerate: 2
     max_ammo: 0
     mag_size: 0
-    damage: 1000
+    damage: 25
     recoil: 0
-    spread: 5
-    extra_shots: 20
+    spread: 0
+    extra_shots: 0
+    piercing: 0
   food_heal_amount: 0
