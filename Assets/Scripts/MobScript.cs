@@ -8,7 +8,7 @@ public class MobScript : MonoBehaviour
 {
 
     private Transform target;
-    public int health = 100;
+    public int health;
 
     public GameObject xp_orb;
     private Transform xpParent;
@@ -16,6 +16,8 @@ public class MobScript : MonoBehaviour
     void Start(){
         target = GameObject.Find("Player").transform;
         xpParent = GameObject.Find("EXP").GetComponent<Transform>();
+
+        
     }
 
     public void hit(int dammage){

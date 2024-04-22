@@ -7,7 +7,7 @@ public class CondenseGems : MonoBehaviour
 {
     public LayerMask layerMask;
     public static Vector3 condenseSize = new Vector3(10,10,10);
-    private Transform xpParent;
+    public static Transform xpParent;
     // Start is called before the first frame update
     void Start()
     {
