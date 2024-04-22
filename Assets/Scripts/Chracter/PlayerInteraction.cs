@@ -149,7 +149,7 @@ public class PlayerInteraction : MonoBehaviour
                         if (mob != null)
                         {
                             mob.hit(stats.damage);
-                            // Debug.Log(mob);
+                            Debug.Log(mob);
                         }
                     }
                     else

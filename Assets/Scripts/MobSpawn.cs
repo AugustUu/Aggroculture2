@@ -40,14 +40,7 @@ public class MobSpawn : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){ // debug
             for (int i = 0; i < 1; i++)
             {
-                float spawn_magnitude = Random.Range(50f, 100f);
-                float spawn_angle = Random.Range(0f, Mathf.PI * 2);
-                Vector3 spawn_pos = new Vector3(Mathf.Cos(spawn_angle), 0, Mathf.Sin(spawn_angle));
-                spawn_pos *= spawn_magnitude;
-                Vector3 position = GameObject.Find("Player").transform.position;
-                position += spawn_pos;
-                position.y = 0;
-                Instantiate(rat, position, GameObject.Find("Player").transform.rotation, mobParent);
+                SpawnMob(new int[] {0,0,1}, 1);
             }
         }
         
