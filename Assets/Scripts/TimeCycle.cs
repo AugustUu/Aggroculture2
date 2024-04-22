@@ -9,7 +9,7 @@ public class TimeCycle : MonoBehaviour
     [SerializeField]
     static public float minutes = 0.0f;
     [SerializeField]
-    static public float hours = 0.0f;
+    static public float hours = 10.0f;
     [SerializeField]
     static public int days = 1;
     [SerializeField]

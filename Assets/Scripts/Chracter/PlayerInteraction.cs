@@ -141,6 +141,7 @@ public class PlayerInteraction : MonoBehaviour
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.magenta, 1f);
                 foreach (var hit in hits)
                 {
                     if (hit.transform.gameObject.layer == 11)

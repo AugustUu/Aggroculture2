@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569643496}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a57c15418eccee4da45a54eb4670382, type: 3}
   m_Name: 
@@ -2855,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3394176229663608367, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 3394176229663608367, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2901,9 +2901,25 @@ PrefabInstance:
       propertyPath: m_SpotAngle
       value: 27.142912
       objectReference: {fileID: 0}
+    - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 6388355080024114070, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: orthographic size
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759316427911217451, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759316427911217451, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176315663651704406, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_IsTrigger
