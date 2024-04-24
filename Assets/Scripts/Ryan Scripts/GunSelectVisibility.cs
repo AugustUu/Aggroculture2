@@ -42,6 +42,13 @@ public class GunSelectVisibility : MonoBehaviour
             if (!holdTool)
             {
                 animator.SetBool("HoldingTool", false);
+                for (int i = 0; i <= tools.Length - 1; i++){
+                    for (int j = 0; j <= tools.Length - 1;j++){
+                        if(j != i){
+                            tools[j].SetActive(false);
+                        }             
+                    }
+                }
             }
         }
         if (InvController.equipped_item == null){
