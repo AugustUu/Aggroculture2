@@ -19,7 +19,9 @@ MonoBehaviour:
   item_icon: {fileID: 21300000, guid: 991c2be4c61aaf340be387f61c513e50, type: 3}
   item_type: 2
   seed_type: 0
+  tooltip: 
   gun_stats:
+    gunsound: {fileID: 8300000, guid: e413f8671ace04c9492beeeb3a53ac26, type: 3}
     firerate: 15
     max_ammo: 0
     mag_size: 0
@@ -27,4 +29,5 @@ MonoBehaviour:
     recoil: 0
     spread: 0
     extra_shots: 0
+    piercing: 0
   food_heal_amount: 0

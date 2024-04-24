@@ -18,7 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     public Transform farmParent;
 
     public AudioSource source;
-    public AudioClip clip;
+    AudioClip clip;
 
     public void dig()
     {
@@ -114,13 +114,13 @@ public class PlayerInteraction : MonoBehaviour
     double lastShot = 0;
     public void shoot(GunStats stats)
     {
-        
+        clip = stats.gunsound;
         double dealy = 1.0 / stats.firerate;
         if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
         {
             
             lastShot = Time.timeSinceLevelLoadAsDouble;
-
+            source.PlayOneShot(clip);
             for (int i = 0; i <= stats.extra_shots; i++)
             {
 
@@ -141,7 +141,7 @@ public class PlayerInteraction : MonoBehaviour
                 EmitParams particle = new EmitParams();
 
                 particle_system.Emit(particle,1);
-                source.PlayOneShot(clip);
+                
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
@@ -212,6 +212,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     case ItemType.Gun:
                         shoot(InvController.equipped_item.item_data.gun_stats);
+                        
                         break;
                     default:
                         break;

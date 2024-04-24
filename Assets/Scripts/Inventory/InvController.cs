@@ -47,7 +47,10 @@ public class InvController : MonoBehaviour
     TextMeshProUGUI tooltip_body2;
     public static int heal_level = 0;
     public bool trashing = false;
-    
+    public AudioSource source;
+    public AudioClip select_gun;
+    public AudioClip select_alt;
+
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
@@ -61,7 +64,6 @@ public class InvController : MonoBehaviour
     void Update()
     {
         DragItemIcon();
-
         if (Input.GetKeyDown(KeyCode.O)){
             //InsertItem(GenerateItem(Random.Range(0, items.Count)));
             for (int i = 0; i < items.Count; i++)
@@ -348,6 +350,14 @@ public class InvController : MonoBehaviour
                     equipped_item = null;
                 }
                 else if(to_equip_item != null){
+                    if (to_equip_item.item_data.item_type == ItemType.Gun)
+                    {
+                        source.PlayOneShot(select_gun);
+                    }
+                    else
+                    {
+                        source.PlayOneShot(select_alt);
+                    }
                     equipped_item = to_equip_item;
                     equip_highlighter.SetSize(equipped_item, selected_item_grid);
                     equip_highlighter.SetParent(selected_item_grid);

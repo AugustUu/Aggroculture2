@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 [Serializable]
 public class GunStats{
+    public AudioClip gunsound;
     public int firerate;
     public int max_ammo;
     public int mag_size;
