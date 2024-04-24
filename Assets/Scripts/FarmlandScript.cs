@@ -34,6 +34,7 @@ public class FarmlandScript : MonoBehaviour
         plant = SeedType.None;
         CancelInvoke("grow");
         gameObject.GetComponent<PlantCrop>().shovelPlant();
+        XPSystem.changeExp(25);
     }
 
     void grow()
