@@ -2855,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3394176229663608367, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: 3394176229663608367, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2889,13 +2889,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4796288759207428362, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 3529464318730694079, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.122
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248252576481666920, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_Range
+      value: 96.85613
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248252576481666920, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_SpotAngle
+      value: 27.142912
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 6388355080024114070, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: orthographic size
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759316427911217451, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759316427911217451, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176315663651704406, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_IsTrigger

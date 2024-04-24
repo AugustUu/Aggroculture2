@@ -33,11 +33,7 @@ public class Movement : MonoBehaviour
     {
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         
-        grounded_player = controller.isGrounded;
-        if (grounded_player && player_velocity.y < 0)
-        {
-            player_velocity.y = 0f;
-        }
+
 
         Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
         Vector3 mouse_pos = Input.mousePosition;
@@ -75,6 +71,7 @@ public class Movement : MonoBehaviour
         Vector3 move = direction * Time.deltaTime * player_speed;
         
         controller.Move(this.transform.TransformDirection(move));
+        
 
     }
 

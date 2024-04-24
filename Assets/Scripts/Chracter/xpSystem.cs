@@ -41,9 +41,6 @@ public class XPSystem : MonoBehaviour
         exp_bar.maxValue = level_up_req;
         display.text = "lvl " + levels;
         PlayerInteraction.max_plots++;
-        InvController.heal_level++;
-
-        inv_controller.HandleHighlight(false); // errors but still works ??
         
     }
 
