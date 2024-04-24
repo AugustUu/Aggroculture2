@@ -40,7 +40,7 @@ public class MobSpawn : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){ // debug
             for (int i = 0; i < 1; i++)
             {
-                SpawnMob(new int[] {0,0,1}, 1);
+                SpawnMob(new int[] {0,1,0}, 1);
             }
         }
         
