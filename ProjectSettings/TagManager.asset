@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ruby
+  - Emerald
+  - Sapphire
   layers:
   - Default
   - TransparentFX
@@ -34,9 +37,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Ruby
+  - Emerald
+  - Sapphire
   m_SortingLayers:
   - name: Default
     uniqueID: 0

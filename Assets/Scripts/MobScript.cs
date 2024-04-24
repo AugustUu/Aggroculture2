@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class MobScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MobScript : MonoBehaviour
 
     public GameObject xp_orb;
     private Transform xpParent;
+    public int xp_drop_count;
 
     void Start(){
         target = GameObject.Find("Player").transform;
@@ -19,10 +21,14 @@ public class MobScript : MonoBehaviour
     }
 
     public void hit(int dammage){
-        health -= dammage;
-        if(health <= 0){
-            Instantiate(xp_orb, this.transform.position, this.transform.rotation,xpParent);
-            Destroy(this.transform.gameObject);
+        if(health > 0){
+            health -= dammage;
+            if(health <= 0){
+                for(int i = 0; i < xp_drop_count; i++){
+                    Instantiate(xp_orb, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y, transform.position.z + Random.Range(-2, 2)), this.transform.rotation,xpParent);
+                }
+                Destroy(this.transform.gameObject);
+            }
         }
     }
 
