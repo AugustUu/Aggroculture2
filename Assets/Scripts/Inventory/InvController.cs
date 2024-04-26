@@ -51,7 +51,7 @@ public class InvController : MonoBehaviour
     public AudioSource source;
     public AudioClip select_gun;
     public AudioClip select_alt;
-
+    public AudioClip eating;
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
@@ -373,6 +373,7 @@ public class InvController : MonoBehaviour
                 }
             }
             else if(to_equip_item.item_data.item_type == ItemType.Food){
+                source.PlayOneShot(eating);
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
                 HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount + heal_level);
                 Destroy(to_equip_item.gameObject);

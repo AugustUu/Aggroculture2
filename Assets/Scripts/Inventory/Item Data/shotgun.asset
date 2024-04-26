@@ -25,7 +25,7 @@ MonoBehaviour:
     firerate: 1
     max_ammo: 0
     mag_size: 0
-    damage: 8
+    damage: 25
     recoil: 0
     spread: 25
     extra_shots: 6
