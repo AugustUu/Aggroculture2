@@ -10,14 +10,16 @@ public class MobScript : MonoBehaviour
 
     private Transform target;
     public int health;
-
+    public int dammage;
+    
     public GameObject xp_orb;
     private Transform xpParent;
     public int xp_drop_count;
     public bool drops_item;
     public ItemList dropped_item;
     public float drop_chance;
-
+     
+    
     void Start(){
         target = GameObject.Find("Player").transform;
         xpParent = GameObject.Find("EXP").GetComponent<Transform>();
@@ -42,50 +44,65 @@ public class MobScript : MonoBehaviour
         }
     }
 
-
+    double last_hit = 0;
     void Update(){
         
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = target.position; 
-    
-        Vector3 forward = new Vector3();
-        float rotation = Mathf.Deg2Rad *transform.rotation.eulerAngles.y;
+        agent.destination = target.position;
 
-        forward.x = (float)(Math.Sin(rotation));
-        forward.z = (float)(Math.Cos(rotation));
+        if (Time.timeSinceLevelLoadAsDouble - last_hit > 0.5)
+        {
+            last_hit = Time.timeSinceLevelLoadAsDouble;
+            
+            Vector3 forward = new Vector3();
+            float rotation = Mathf.Deg2Rad * transform.rotation.eulerAngles.y;
 
-        Ray ray = new Ray(this.transform.position, forward);    
-        RaycastHit hit_object;
-        if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-        }else{
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
+            forward.x = (float)(Math.Sin(rotation));
+            forward.z = (float)(Math.Cos(rotation));
+
+            Ray ray = new Ray(this.transform.position, forward);
+            RaycastHit hit_object;
+            if (Physics.Raycast(ray, out hit_object, 5f))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
+                if (hit_object.transform.name == "Player")
+                {
+                    HealthSystem.changeHealth(-this.dammage);
+                    return;
+                }
+            }
+
+            rotation += Mathf.PI / 4; // check 45deg to right 
+
+            forward.x = Mathf.Sin(rotation);
+            forward.z = Mathf.Cos(rotation);
+
+            ray = new Ray(this.transform.position, forward);
+            if (Physics.Raycast(ray, out hit_object, 5f))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
+                if (hit_object.transform.name == "Player")
+                {
+                    HealthSystem.changeHealth(-this.dammage);
+                    return;
+                }
+            }
+
+            rotation -= Mathf.PI / 2; // check 45deg to left 
+
+            forward.x = Mathf.Sin(rotation);
+            forward.z = Mathf.Cos(rotation);
+
+            ray = new Ray(this.transform.position, forward);
+            if (Physics.Raycast(ray, out hit_object, 5f))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
+                if (hit_object.transform.name == "Player")
+                {
+                    HealthSystem.changeHealth(-this.dammage);
+                }
+            }
         }
 
-        rotation += Mathf.PI / 4; // check 45deg to right 
-        
-        forward.x = Mathf.Sin(rotation);
-        forward.z = Mathf.Cos(rotation);
-
-        ray = new Ray(this.transform.position, forward);    
-        if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-        }else{
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
-        }
-
-        rotation -= Mathf.PI / 2; // check 45deg to left 
-        
-        forward.x = Mathf.Sin(rotation);
-        forward.z = Mathf.Cos(rotation);
-
-        ray = new Ray(this.transform.position, forward);    
-        if (Physics.Raycast(ray, out hit_object)){
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-        }else{
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.blue, 0.01f);
-        }
-
-        
     }
 }

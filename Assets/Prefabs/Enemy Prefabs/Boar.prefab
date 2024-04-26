@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 142182104729188847}
   - component: {fileID: 195125889422310756}
   - component: {fileID: 3297086008065773162}
-  - component: {fileID: 8965821571301702136}
   m_Layer: 11
   m_Name: Boar
   m_TagString: Untagged
@@ -144,23 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
+  dammage: 10
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
   xp_drop_count: 3
   drops_item: 1
   dropped_item: 3
   drop_chance: 0.1
---- !u!114 &8965821571301702136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5890863077589170162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45870dcca31634798ba58774db95df6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7968596209515348630
 PrefabInstance:
   m_ObjectHideFlags: 0
