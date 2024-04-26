@@ -21,6 +21,7 @@ MonoBehaviour:
   seed_type: 0
   tooltip: 
   gun_stats:
+    gunsound: {fileID: 8300000, guid: eda83df0fe0244aefa977a23d3396754, type: 3}
     firerate: 1
     max_ammo: 1
     mag_size: 1
@@ -28,4 +29,5 @@ MonoBehaviour:
     recoil: 1
     spread: 0
     extra_shots: 0
+    piercing: 0
   food_heal_amount: 0

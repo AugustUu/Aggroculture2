@@ -42,6 +42,7 @@ public class XPSystem : MonoBehaviour
         display.text = "lvl " + levels;
         PlayerInteraction.max_plots++;
         
+        UpgradeUi.open_Upgrade_menu();
     }
 
     public static void setExp(int xp){

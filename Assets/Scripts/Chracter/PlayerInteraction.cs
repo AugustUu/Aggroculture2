@@ -17,6 +17,9 @@ public class PlayerInteraction : MonoBehaviour
     public static int max_plots = 10;
     public Transform farmParent;
 
+    public AudioSource source;
+    AudioClip clip;
+
     public void dig()
     {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -111,12 +114,13 @@ public class PlayerInteraction : MonoBehaviour
     double lastShot = 0;
     public void shoot(GunStats stats)
     {
+        clip = stats.gunsound;
         double dealy = 1.0 / stats.firerate;
         if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
         {
-
+            
             lastShot = Time.timeSinceLevelLoadAsDouble;
-
+            source.PlayOneShot(clip);
             for (int i = 0; i <= stats.extra_shots; i++)
             {
 
@@ -137,11 +141,10 @@ public class PlayerInteraction : MonoBehaviour
                 EmitParams particle = new EmitParams();
 
                 particle_system.Emit(particle,1);
-
+                
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.magenta, 1f);
                 foreach (var hit in hits)
                 {
                     if (hit.transform.gameObject.layer == 11)
@@ -185,42 +188,41 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
 
-        if(!Pause.is_paused){
-            if (Input.GetMouseButton(0))
+
+        if (Input.GetMouseButton(0))
+        {
+            if (InvController.equipped_item != null)
             {
-                if (InvController.equipped_item != null)
-                {
-                    if(Input.GetMouseButtonDown(0)){
-                        switch (InvController.equipped_item.item_data.item_type)
-                    {
-                        case ItemType.Tool:
-                            dig();
-                            break;
-                        case ItemType.Seeds:
-                            plant(InvController.equipped_item.item_data.seed_type);
-                            break;
-                        default:
-                            break;
-
-                    }
-                    }
-                    //Debug.Log(InvController.equipped_item.item_data.name);
+                if(Input.GetMouseButtonDown(0)){
                     switch (InvController.equipped_item.item_data.item_type)
-                    {
-                        case ItemType.Gun:
-                            shoot(InvController.equipped_item.item_data.gun_stats);
-                            break;
-                        default:
-                            break;
+                {
+                    case ItemType.Tool:
+                        dig();
+                        break;
+                    case ItemType.Seeds:
+                        plant(InvController.equipped_item.item_data.seed_type);
+                        break;
+                    default:
+                        break;
 
-                    }
+                }
+                }
+                //Debug.Log(InvController.equipped_item.item_data.name);
+                switch (InvController.equipped_item.item_data.item_type)
+                {
+                    case ItemType.Gun:
+                        shoot(InvController.equipped_item.item_data.gun_stats);
+                        
+                        break;
+                    default:
+                        break;
+
                 }
             }
-            else if(Input.GetMouseButton(1)){
-                Harvest(); // should probably end up as blanket interact script
-            }
         }
-        
+        else if(Input.GetMouseButton(1)){
+            Harvest(); // should probably end up as blanket interact script
+        }
         /*
         if(gun_mode){
             if (Input.GetMouseButton(0)){
