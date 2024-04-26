@@ -1119,9 +1119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57c15418eccee4da45a54eb4670382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rat: {fileID: 5890863077589170162, guid: b40acdb52cf1d4d4c990fec6a814c07e, type: 3}
-  boar: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
-  wolf: {fileID: 5890863077589170162, guid: c3103002529de294a8afed996a664a2c, type: 3}
+  mob_list:
+  - game_object: {fileID: 5890863077589170162, guid: b40acdb52cf1d4d4c990fec6a814c07e, type: 3}
+    day_weight: 7
+    night_weight: 3
+  - game_object: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
+    day_weight: 2
+    night_weight: 2
+  - game_object: {fileID: 5890863077589170162, guid: c3103002529de294a8afed996a664a2c, type: 3}
+    day_weight: 3
+    night_weight: 3
+  - game_object: {fileID: 5890863077589170162, guid: 96e1f2ed4554a4978b3b12c6513fa08d, type: 3}
+    day_weight: 100
+    night_weight: 100
   mobParent: {fileID: 604861848}
 --- !u!4 &569643498
 Transform:

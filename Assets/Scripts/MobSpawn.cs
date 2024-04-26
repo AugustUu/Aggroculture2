@@ -7,15 +7,22 @@ using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 public class MobSpawn : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject rat;
-    public GameObject boar;
-    public GameObject wolf;
-    List<GameObject> mob_list = new List<GameObject>();
+
+    [Serializable]
+    public class Mob
+    {
+        public GameObject game_object;
+        public int day_weight = 0;
+        public int night_weight = 0;
+    }
+    
+    
+    public List<Mob> mob_list;
+    
     bool spawned_wave = false;
     int minutes;
-    int[] default_weights = {7, 2, 3};
-    int[] wave_weights = {3, 2, 3};
+
+    
     int natural_spawn_amount = 1;
     int wave_spawn_amount = 5;
     int old_days = TimeCycle.days;
@@ -25,9 +32,6 @@ public class MobSpawn : MonoBehaviour
     void Start()
     {
         minutes = (int)TimeCycle.minutes;
-        mob_list.Add(rat);
-        mob_list.Add(boar);
-        mob_list.Add(wolf);
     }
 
     // Update is called once per frame
@@ -40,7 +44,7 @@ public class MobSpawn : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){ // debug
             for (int i = 0; i < 1; i++)
             {
-                SpawnMob(new int[] {0,0,1}, 1);
+                SpawnMob(true, 1);
             }
         }
         
@@ -48,7 +52,7 @@ public class MobSpawn : MonoBehaviour
         {
             for (int i = 0; i < wave_spawn_amount * Math.Pow(1.1, TimeCycle.days); i++)
             {
-                SpawnMob(wave_weights, 1);
+                SpawnMob(true, 1);
             }
             spawned_wave = true;
         }
@@ -62,19 +66,19 @@ public class MobSpawn : MonoBehaviour
         {
             for (int i = 0; i < natural_spawn_amount * TimeCycle.days; i++)
             {
-                SpawnMob(default_weights, 0.1 * TimeCycle.days);
+                SpawnMob(false, 0.1 * TimeCycle.days);
                 minutes = (int)TimeCycle.minutes;
             }
 
         }
     }
 
-    public void SpawnMob(int[] weights, double success_rate)
+    public void SpawnMob(bool day, double success_rate)
     {
         float rand = Random.value;
         while(rand <= success_rate){
             success_rate -= 1;
-            int spawn_type = GetRandomWeightedIndex(weights);
+            int spawn_type = GetRandomWeightedIndex(day);
             float spawn_magnitude = Random.Range(50f, 100f);
             float spawn_angle = Random.Range(0f, Mathf.PI * 2);
             Vector3 spawn_pos = new Vector3(Mathf.Cos(spawn_angle), 0, Mathf.Sin(spawn_angle));
@@ -82,17 +86,28 @@ public class MobSpawn : MonoBehaviour
             Vector3 position = GameObject.Find("Player").transform.position;
             position += spawn_pos;
             position.y = 0;
-            Instantiate(mob_list[spawn_type], position, GameObject.Find("Player").transform.rotation, mobParent);
+            Instantiate(mob_list[spawn_type].game_object, position, GameObject.Find("Player").transform.rotation, mobParent);
         }
         
     }
 
-    public int GetRandomWeightedIndex(int[] weights)
+    public int GetRandomWeightedIndex(bool day)
     {
-        if(weights == null || weights.Length == 0) return -1;
-
+        List<int> weights = new List<int>(mob_list.Count);
+        foreach (var mob in mob_list)
+        {
+            if (day)
+            {
+                weights.Add(mob.day_weight);
+            }
+            else
+            {
+                weights.Add(mob.night_weight);
+            }
+        }
+        
         int sum = 0;
-        for(int i = 0; i < weights.Length; i++)
+        for(int i = 0; i < weights.Count; i++)
         {
             sum += weights[i];
         }
@@ -100,7 +115,7 @@ public class MobSpawn : MonoBehaviour
         float r = Random.value;
         float s = 0f;
     
-        for(int i = 0; i < weights.Length; i++)
+        for(int i = 0; i < weights.Count; i++)
         {
             s += (float)weights[i] / sum;
             if (s >= r) return i;

@@ -37,6 +37,7 @@ public class InvController : MonoBehaviour
     [SerializeField] Transform canvas_transform;
     [SerializeField] ItemGrid main_grid;
     [SerializeField] GameObject inv_parent;
+    static GameObject static_inv_parent;
     [SerializeField] InvHighlight inv_highlighter;
     [SerializeField] InvHighlight equip_highlighter;
     [SerializeField] GameObject tooltip;
@@ -60,6 +61,7 @@ public class InvController : MonoBehaviour
         tooltip_subtitle = tooltip.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         tooltip_body1 = tooltip.transform.GetChild(0).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
         tooltip_body2 = tooltip.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
+        static_inv_parent = inv_parent;
     }
     void Update()
     {
@@ -307,6 +309,10 @@ public class InvController : MonoBehaviour
 
     public bool InsertItemID(ItemList item_ID){
         return InsertItem(GenerateItem((int) item_ID));
+    }
+
+    public static void StaticInsertItemID(ItemList item_ID){
+        static_inv_parent.GetComponent<InvController>().InsertItemID(item_ID);
     }
 
     public void InsertRandomItem(){
