@@ -14,6 +14,9 @@ public class MobScript : MonoBehaviour
     public GameObject xp_orb;
     private Transform xpParent;
     public int xp_drop_count;
+    public bool drops_item;
+    public ItemList dropped_item;
+    public float drop_chance;
 
     void Start(){
         target = GameObject.Find("Player").transform;
@@ -22,12 +25,17 @@ public class MobScript : MonoBehaviour
         
     }
 
-    public void hit(int dammage){
+    public void hit(int damage){
         if(health > 0){
-            health -= dammage;
+            health -= damage;
             if(health <= 0){
                 for(int i = 0; i < xp_drop_count; i++){
-                    Instantiate(xp_orb, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y, transform.position.z + Random.Range(-2, 2)), this.transform.rotation,xpParent);
+                    Instantiate(xp_orb, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-2.0f, 2.0f)), this.transform.rotation,xpParent);
+                }
+                if(drops_item){
+                    if(Random.Range(0.0f, 1.0f) < drop_chance){
+                        InvController.StaticInsertItemID(dropped_item);
+                    }
                 }
                 Destroy(this.transform.gameObject);
             }

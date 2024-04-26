@@ -146,6 +146,9 @@ MonoBehaviour:
   health: 150
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
   xp_drop_count: 3
+  drops_item: 1
+  dropped_item: 3
+  drop_chance: 0.1
 --- !u!114 &8965821571301702136
 MonoBehaviour:
   m_ObjectHideFlags: 0
