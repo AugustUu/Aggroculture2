@@ -17,12 +17,20 @@ public class HealthSystem : MonoBehaviour
     {
         hp_bar = GetComponent<Slider>();
         setHealth(max_hp);
+        InvokeRepeating("Regen", 2.0f, 2.0f);
     }
 
     public static void setHealth(int set_hp){
         hp = set_hp;
         hp_bar.value = hp;
     }
+
+    public void Regen()
+    {
+        changeHealth(UpgradeUi.getUpgradeInfo(UpgradeList.regenUp).value);
+    }
+
+
 
     public static void changeHealth (int hp_change){
         
@@ -34,7 +42,9 @@ public class HealthSystem : MonoBehaviour
             
         }
 
+        
         hp = Math.Clamp(hp, 0, max_hp + (UpgradeUi.getUpgradeInfo(UpgradeList.healthUp).value * 10));
+        hp_bar.maxValue = max_hp + (UpgradeUi.getUpgradeInfo(UpgradeList.healthUp).value * 10);
         hp_bar.value = hp;
     }
 }

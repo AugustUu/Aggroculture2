@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     public new Camera camera;
 
     public Transform model_transform;
-    public float player_speed = 10.0f;
+    //public float player_speed = 10.0f;
 
     public int sens = 10;
 
@@ -66,9 +66,11 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
+        
+
 
         model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 8);
-        Vector3 move = direction * Time.deltaTime * player_speed;
+        Vector3 move = direction * Time.deltaTime * (10.0f + UpgradeUi.getUpgradeInfo(UpgradeList.speedUp).value);
         
         controller.Move(this.transform.TransformDirection(move));
         
