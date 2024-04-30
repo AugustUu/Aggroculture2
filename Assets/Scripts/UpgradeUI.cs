@@ -53,6 +53,7 @@ public class UpgradeUi : MonoBehaviour
                 upgrades_static[index].value += 1;
                 upgrades_static[index].onUpgrade.Invoke();
                 upgrade_parent_static.SetActive(false);
+                Pause.ForcePause(false);
             });
         }
     }
@@ -62,6 +63,7 @@ public class UpgradeUi : MonoBehaviour
     {
         RandomiseUpgrades();
         upgrade_parent_static.SetActive(true);
+        Pause.ForcePause(true);
     }
 
     public static Upgrade getUpgradeInfo(UpgradeList upgrade)

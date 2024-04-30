@@ -8,6 +8,7 @@ public class InvManager : MonoBehaviour
 {
     [SerializeField] GameObject inv_container;
     [SerializeField] Trash trash;
+    public bool inv_active;
 
     void Start(){
         gameObject.GetComponent<InvController>().InsertItemID(ItemList.shoel);
@@ -36,6 +37,14 @@ public class InvManager : MonoBehaviour
             trash.Close();
         }
         inv_container.SetActive(active);
+        inv_active = active;
+    }
+
+    public void SetInvTempInactive(){
+        if(inv_active){
+            SetInvActive(false);
+            inv_active = true;
+        }
     }
 
     
