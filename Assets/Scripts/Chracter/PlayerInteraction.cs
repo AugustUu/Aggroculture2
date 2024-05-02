@@ -115,7 +115,7 @@ public class PlayerInteraction : MonoBehaviour
     public void shoot(GunStats stats)
     {
         clip = stats.gunsound;
-        double dealy = 1.0 / stats.firerate;
+        double dealy = 1.0 / (stats.firerate * (1 + UpgradeUi.getUpgradeInfo(UpgradeList.firerateUp).value / 10.0));
         if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
         {
             
@@ -152,7 +152,7 @@ public class PlayerInteraction : MonoBehaviour
                         MobScript mob = hit.transform.gameObject.GetComponent<MobScript>();
                         if (mob != null)
                         {
-                            mob.hit(stats.damage);
+                            mob.hit(stats.damage * (1 + UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value / 10) );
                             Debug.Log(mob);
                         }
                     }
