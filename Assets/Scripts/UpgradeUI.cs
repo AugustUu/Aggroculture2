@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
-
+using UnityEngine.Events;
 
 public class UpgradeUi : MonoBehaviour
 {
@@ -39,17 +39,21 @@ public class UpgradeUi : MonoBehaviour
         {
             int index = Random.Range(0, upgrades_static.Length);
             foreach (var image in button.GetComponentsInChildren<Image>()){
-                if (image.sprite.name != "UISprite")
+                if (image.sprite.name != "brownButton")
                 {
                     image.sprite = upgrades_static[index].sprite;
                 }
             }
-
+            
             button.GetComponentInChildren<TextMeshProUGUI>().text = upgrades_static[index].name;
+            
+            button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => {
                 //Debug.Log(Upgrades_static[index].name);
                 upgrades_static[index].value += 1;
+                upgrades_static[index].onUpgrade.Invoke();
                 upgrade_parent_static.SetActive(false);
+                Pause.ForcePause(false);
             });
         }
     }
@@ -59,6 +63,7 @@ public class UpgradeUi : MonoBehaviour
     {
         RandomiseUpgrades();
         upgrade_parent_static.SetActive(true);
+        Pause.ForcePause(true);
     }
 
     public static Upgrade getUpgradeInfo(UpgradeList upgrade)
@@ -73,4 +78,5 @@ public class Upgrade{
     public string name;
 
     public Sprite sprite;
+    public UnityEvent onUpgrade;
 }
