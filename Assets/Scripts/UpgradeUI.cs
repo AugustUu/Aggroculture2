@@ -39,7 +39,7 @@ public class UpgradeUi : MonoBehaviour
         {
             int index = Random.Range(0, upgrades_static.Length);
             foreach (var image in button.GetComponentsInChildren<Image>()){
-                if (image.sprite.name != "UISprite")
+                if (image.sprite.name != "brownButton")
                 {
                     image.sprite = upgrades_static[index].sprite;
                 }

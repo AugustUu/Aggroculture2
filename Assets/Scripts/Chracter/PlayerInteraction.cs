@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Playables;
 using static UnityEngine.ParticleSystem;
@@ -18,7 +19,8 @@ public class PlayerInteraction : MonoBehaviour
     public Transform farmParent;
 
     public AudioSource source;
-    AudioClip clip;
+    public AudioClip clip;
+    public AudioClip digging;
 
     public void dig()
     {
@@ -57,6 +59,7 @@ public class PlayerInteraction : MonoBehaviour
             if (!Physics.CheckBox(position, placeable.transform.localScale / 2.01f, Quaternion.identity, ~((1 << 6) | (1 << 11))))
             {
                 GameObject farmland = Instantiate(placeable, position, Quaternion.identity,farmParent);
+                source.PlayOneShot(digging);
                 // FarmlandScript script = farmland.GetComponent<FarmlandScript>();
                     
                 plots++;
