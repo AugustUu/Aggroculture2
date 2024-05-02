@@ -6,19 +6,40 @@ public class Pause : MonoBehaviour
 {
     // Update is called once per frame
     public static bool is_paused = false;
+    static bool force_paused = false;
     public InvManager inv_manager;
+    static InvManager inv_manager_static; //I HATE DOING THIS
+
+    void Start(){
+        inv_manager_static = inv_manager;
+    }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P)){
+        if(Input.GetKeyDown(KeyCode.P) && !force_paused){
             if(!is_paused){
-                Time.timeScale = 0;
-                is_paused = true;
-                inv_manager.SetInvActive(false);
+                PauseGame(true);
             }
             else{
-                Time.timeScale = 1;
-                is_paused = false;
+                PauseGame(false);
             }
+        }
+    }
+
+    public static void ForcePause(bool pause){
+        force_paused = pause;
+        PauseGame(pause);
+    }
+
+    private static void PauseGame(bool pause){
+        if(pause){
+            Time.timeScale = 0;
+            is_paused = true;
+            inv_manager_static.SetInvTempInactive();
+        }
+        else{
+            Time.timeScale = 1;
+            is_paused = false;
+            inv_manager_static.SetInvActive(inv_manager_static.inv_active);
         }
     }
 }

@@ -22,12 +22,12 @@ MonoBehaviour:
   tooltip: 
   gun_stats:
     gunsound: {fileID: 8300000, guid: ef3bcf92a224e45b39b80bfedd9fd464, type: 3}
-    firerate: 3
+    firerate: -1
     max_ammo: 0
     mag_size: 0
     damage: 5
     recoil: 0
-    spread: 5
-    extra_shots: 10
+    spread: 40
+    extra_shots: 10000
     piercing: 0
   food_heal_amount: 0

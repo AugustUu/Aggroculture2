@@ -14,7 +14,9 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {        
         inv_controller.trashing = true;
-        GetComponent<UnityEngine.UI.Image>().sprite = open_sprite;
+        if(inv_controller.Selected_item != null){
+            GetComponent<UnityEngine.UI.Image>().sprite = open_sprite;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
