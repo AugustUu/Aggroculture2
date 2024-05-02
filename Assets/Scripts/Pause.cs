@@ -17,24 +17,24 @@ public class Pause : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P) && !force_paused){
             if(!is_paused){
-                PauseGame(true);
+                PauseGame(true, false);
             }
             else{
-                PauseGame(false);
+                PauseGame(false, false);
             }
         }
     }
 
-    public static void ForcePause(bool pause){
+    public static void ForcePause(bool pause, bool inv){
         force_paused = pause;
-        PauseGame(pause);
+        PauseGame(pause, inv);
     }
 
-    private static void PauseGame(bool pause){
+    private static void PauseGame(bool pause, bool inv){
         if(pause){
             Time.timeScale = 0;
             is_paused = true;
-            inv_manager_static.SetInvTempInactive();
+            inv_manager_static.InvTempToggle(inv);
         }
         else{
             Time.timeScale = 1;

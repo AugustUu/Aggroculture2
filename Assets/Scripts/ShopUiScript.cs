@@ -129,5 +129,6 @@ public class ShopUiScript : MonoBehaviour
 
     public static void toggle_trade_menu(){
         ShopParentStatic.SetActive(!ShopParentStatic.activeSelf);
+        Pause.ForcePause(ShopParentStatic.activeSelf, true);
     }
 }

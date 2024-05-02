@@ -229,42 +229,55 @@ public class InvController : MonoBehaviour
 
         switch(data.item_type){
             case ItemType.Gun:
+                string firerate_upgrade = "";
+                string damage_upgrade = "";
+                string shots_upgrade = "";
+                if(UpgradeUi.getUpgradeInfo(UpgradeList.firerateUp).value > 0){
+                    firerate_upgrade = " " + equip_color + "+" + data.gun_stats.firerate / 10.0 * UpgradeUi.getUpgradeInfo(UpgradeList.firerateUp).value;
+                }
+                if(UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value > 0){
+                    damage_upgrade = " " + equip_color + "+" + data.gun_stats.damage / 10.0 * UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value;
+                }
+                /*if(UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value > 0){      implement once august adds upgrade
+                    shots_upgrade = " " + equip_color + "+" + data.gun_stats.extra_shots UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value;
+                }*/
                 if(equipped_item != null && equipped_item != item && equipped_item.item_data.item_type == ItemType.Gun){
+                    
                     tooltip_body2.text += "firerate: ";
                     if(equipped_item.item_data.gun_stats.firerate < data.gun_stats.firerate){
-                        tooltip_body2.text += green_color + data.gun_stats.firerate + " ▲";
+                        tooltip_body2.text += green_color + data.gun_stats.firerate + firerate_upgrade + green_color + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.firerate > data.gun_stats.firerate){
-                        tooltip_body2.text += red_color + data.gun_stats.firerate + " ▼";
+                        tooltip_body2.text += red_color + data.gun_stats.firerate + firerate_upgrade + red_color + " ▼";
                     }
                     else{
-                        tooltip_body2.text += data.gun_stats.firerate;
+                        tooltip_body2.text += data.gun_stats.firerate + firerate_upgrade;
                     }
                     tooltip_body2.text += "\n" + light_gray_color + "damage: ";
                     if(equipped_item.item_data.gun_stats.damage < data.gun_stats.damage){
-                        tooltip_body2.text += green_color + data.gun_stats.damage + " ▲";
+                        tooltip_body2.text += green_color + data.gun_stats.damage + damage_upgrade + green_color + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.damage > data.gun_stats.damage){
-                        tooltip_body2.text += red_color + data.gun_stats.damage + " ▼";
+                        tooltip_body2.text += red_color + data.gun_stats.damage + damage_upgrade + red_color + " ▼";
                     }
                     else{
-                        tooltip_body2.text += data.gun_stats.damage;
+                        tooltip_body2.text += data.gun_stats.damage + damage_upgrade;
                     }
                     tooltip_body2.text += "\n" + light_gray_color + "shots fired: " ;
                     if(equipped_item.item_data.gun_stats.extra_shots < data.gun_stats.extra_shots){
-                        tooltip_body2.text += green_color + (data.gun_stats.extra_shots + 1) + " ▲";
+                        tooltip_body2.text += green_color + (data.gun_stats.extra_shots + 1) + shots_upgrade + green_color + " ▲";
                     }
                     else if(equipped_item.item_data.gun_stats.extra_shots > data.gun_stats.extra_shots){
-                        tooltip_body2.text += red_color + (data.gun_stats.extra_shots + 1) + " ▼";
+                        tooltip_body2.text += red_color + (data.gun_stats.extra_shots + 1) + shots_upgrade + red_color + " ▼";
                     }
                     else{
-                        tooltip_body2.text += data.gun_stats.extra_shots + 1;
+                        tooltip_body2.text += data.gun_stats.extra_shots + 1 + shots_upgrade;
                         }
                 }
                 else{
-                    tooltip_body2.text += "firerate: " + data.gun_stats.firerate;
-                    tooltip_body2.text += "\ndamage: " + data.gun_stats.damage;
-                    tooltip_body2.text += "\nshots fired: " + (data.gun_stats.extra_shots + 1);
+                    tooltip_body2.text += "firerate: " + data.gun_stats.firerate + firerate_upgrade;
+                    tooltip_body2.text += mid_gray_color + "\ndamage: " + data.gun_stats.damage + damage_upgrade;
+                    tooltip_body2.text += mid_gray_color + "\nshots fired: " + (data.gun_stats.extra_shots + 1) + shots_upgrade;
                 }
                 break;
             case ItemType.Food:

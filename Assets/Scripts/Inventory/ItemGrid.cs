@@ -48,6 +48,7 @@ public class ItemGrid : MonoBehaviour
     public float canvas_tile_size;
 
     InvItem[,] inventory;
+    InvItem[,] trade_sim_inv;
     List<InvItem> item_list = new List<InvItem>();
 
     Vector2 grid_pos = new Vector2();
@@ -197,4 +198,12 @@ public class ItemGrid : MonoBehaviour
         }
         return false;
     }
+
+    /*public bool TradeSim(string input, int input_count, string output, int output_count){     FINISH LATER
+        trade_sim_inv = inventory;
+
+
+
+        return false;
+    }*/
 }

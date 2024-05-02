@@ -46,7 +46,7 @@ public class InteractionManager : MonoBehaviour
     
     public void Update()
     {
-        if(!Pause.is_paused){
+        //if(!Pause.is_paused){
             if (Input.GetButtonDown("Interact") && index < interactables.Count)
             {
                 interactables.ElementAt(index).Value.Item2.Invoke();
@@ -57,7 +57,7 @@ public class InteractionManager : MonoBehaviour
                 Debug.Log(index);
                 updateText();
             }
-        }
+        //}
     }
 
     static void updateText()
