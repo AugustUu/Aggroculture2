@@ -124,8 +124,9 @@ public class PlayerInteraction : MonoBehaviour
             
             lastShot = Time.timeSinceLevelLoadAsDouble;
             source.PlayOneShot(clip);
-            for (int i = 0; i <= stats.extra_shots; i++)
+            for (int i = 0; i <= stats.extra_shots + UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value; i++)
             {
+                Debug.Log(i);
 
                 Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
                 Vector3 mouse_pos = Input.mousePosition;
@@ -158,10 +159,6 @@ public class PlayerInteraction : MonoBehaviour
                             mob.hit(stats.damage * (1 + UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value / 10) );
                             Debug.Log(mob);
                         }
-                    }
-                    else
-                    {
-                        return;
                     }
                     // do stuff here
                 }

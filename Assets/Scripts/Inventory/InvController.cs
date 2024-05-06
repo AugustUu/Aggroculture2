@@ -238,9 +238,9 @@ public class InvController : MonoBehaviour
                 if(UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value > 0){
                     damage_upgrade = " " + equip_color + "+" + data.gun_stats.damage / 10.0 * UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value;
                 }
-                /*if(UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value > 0){      implement once august adds upgrade
-                    shots_upgrade = " " + equip_color + "+" + data.gun_stats.extra_shots UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value;
-                }*/
+                if(UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value > 0){
+                    shots_upgrade = " " + equip_color + "+" + UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value;
+                }
                 if(equipped_item != null && equipped_item != item && equipped_item.item_data.item_type == ItemType.Gun){
                     
                     tooltip_body2.text += "firerate: ";

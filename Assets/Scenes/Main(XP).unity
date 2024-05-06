@@ -459,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: buttons.Array.data[3]
@@ -487,14 +487,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[5].name
-      value: Tomato
+      value: Shots Up
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[6].name
-      value: Carrot
+      value: Tomato
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[7].name
+      value: Carrot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
+      propertyPath: upgrades.Array.data[8].name
       value: Potato
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
@@ -536,13 +540,17 @@ PrefabInstance:
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[5].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 992cf74f61ff9de4e8c627d0b3a7e1e7, type: 3}
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[6].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3eb1d18cb1b216f4e84b54a5ef0d1a16, type: 3}
+      objectReference: {fileID: 21300000, guid: 992cf74f61ff9de4e8c627d0b3a7e1e7, type: 3}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[7].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3eb1d18cb1b216f4e84b54a5ef0d1a16, type: 3}
+    - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
+      propertyPath: upgrades.Array.data[8].sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9dea4f713f3a547ae8e082a82be5ed22, type: 3}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
@@ -4570,6 +4578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inv_container: {fileID: 457899973858632193}
   trash: {fileID: 513292157}
+  inv_active: 0
 --- !u!1 &5978800109083034735
 GameObject:
   m_ObjectHideFlags: 0
