@@ -118,14 +118,15 @@ public class PlayerInteraction : MonoBehaviour
     public void shoot(GunStats stats)
     {
         clip = stats.gunsound;
-        double dealy = 1.0 / stats.firerate;
+        double dealy = 1.0 / (stats.firerate * (1 + UpgradeUi.getUpgradeInfo(UpgradeList.firerateUp).value / 10.0));
         if (Time.timeSinceLevelLoadAsDouble - lastShot >= dealy)
         {
             
             lastShot = Time.timeSinceLevelLoadAsDouble;
             source.PlayOneShot(clip);
-            for (int i = 0; i <= stats.extra_shots; i++)
+            for (int i = 0; i <= stats.extra_shots + UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value; i++)
             {
+                Debug.Log(i);
 
                 Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
                 Vector3 mouse_pos = Input.mousePosition;
@@ -155,13 +156,9 @@ public class PlayerInteraction : MonoBehaviour
                         MobScript mob = hit.transform.gameObject.GetComponent<MobScript>();
                         if (mob != null)
                         {
-                            mob.hit(stats.damage);
+                            mob.hit(stats.damage * (1 + UpgradeUi.getUpgradeInfo(UpgradeList.dammageUp).value / 10) );
                             Debug.Log(mob);
                         }
-                    }
-                    else
-                    {
-                        return;
                     }
                     // do stuff here
                 }
