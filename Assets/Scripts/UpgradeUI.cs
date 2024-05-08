@@ -38,14 +38,15 @@ public class UpgradeUi : MonoBehaviour
         foreach (Button button in buttons_static)
         {
             int index = Random.Range(0, upgrades_static.Length);
-            foreach (var image in button.GetComponentsInChildren<Image>()){
+            /*foreach (var image in button.GetComponentsInChildren<Image>()){   old aujust code
                 if (image.sprite.name != "brownButton")
                 {
                     image.sprite = upgrades_static[index].sprite;
                 }
-            }
+            }*/
+            button.transform.GetChild(1).GetComponent<Image>().sprite = upgrades_static[index].sprite;
             
-            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrades_static[index].name;
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = upgrades_static[index].name;
             
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => {
@@ -76,6 +77,7 @@ public class UpgradeUi : MonoBehaviour
 public class Upgrade{
     public int value;
     public string name;
+    public string description;
 
     public Sprite sprite;
     public UnityEvent onUpgrade;
