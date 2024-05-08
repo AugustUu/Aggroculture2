@@ -41,7 +41,5 @@ public enum UpgradeList{
     dammageUp,
     shotsUp,
     firerateUp,
-    tomatoUP,
-    carrotUP,
-    potatoUP,
+    growthUP,
 }

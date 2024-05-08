@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894620054403328470, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrade_parent
@@ -509,6 +509,14 @@ PrefabInstance:
       propertyPath: buttons.Array.data[3]
       value: 
       objectReference: {fileID: 2086538415}
+    - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
+      propertyPath: upgrade_stat_ui_peice
+      value: 
+      objectReference: {fileID: 4212541235927744529, guid: 25e42955273ba477ba09635e8723b4d3, type: 3}
+    - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
+      propertyPath: upgrade_stat_ui_parent
+      value: 
+      objectReference: {fileID: 1950111905}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[0].name
       value: Speed
@@ -3298,6 +3306,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8698206064823181105, guid: 6e2c462ae612c314794068f22ee1cbef, type: 3}
   m_PrefabInstance: {fileID: 5429103802303619640}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1950111904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950111905}
+  m_Layer: 0
+  m_Name: UpgradesList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1950111905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950111904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3218299758213250014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979374558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3951,6 +3990,7 @@ Transform:
   - {fileID: 957737502362941986}
   - {fileID: 909912339}
   - {fileID: 513292156}
+  - {fileID: 1950111905}
   m_Father: {fileID: 3532278862447757177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3494923188440057975 stripped
