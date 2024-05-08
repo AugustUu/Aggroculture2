@@ -40,11 +40,10 @@ public class InvManager : MonoBehaviour
         inv_active = active;
     }
 
-    public void SetInvTempInactive(){
-        if(inv_active){
-            SetInvActive(false);
-            inv_active = true;
-        }
+    public void InvTempToggle(bool active){
+        bool old_active = inv_active;
+        SetInvActive(active);
+        inv_active = old_active;
     }
 
     

@@ -44,6 +44,33 @@ public class MobScript : MonoBehaviour
         }
     }
 
+    public bool Attack(float offset)
+    {
+        Vector3 forward = new Vector3();
+        float rotation = Mathf.Deg2Rad * transform.rotation.eulerAngles.y + offset;
+
+        forward.x = (float)(Math.Sin(rotation));
+        forward.z = (float)(Math.Cos(rotation));
+
+        Ray ray = new Ray(this.transform.position, forward);
+        RaycastHit hit_object;
+        if (Physics.Raycast(ray, out hit_object, 5f))
+        {
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
+            if (hit_object.transform.name == "Player")
+            {
+                HealthSystem.changeHealth(-this.dammage);
+                return true;
+            }
+        }
+        else
+        {
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.green, 1f);
+        }
+
+        return false;
+    }
+
     double last_hit = 0;
     void Update(){
         
@@ -53,55 +80,13 @@ public class MobScript : MonoBehaviour
         if (Time.timeSinceLevelLoadAsDouble - last_hit > 0.5)
         {
             last_hit = Time.timeSinceLevelLoadAsDouble;
-            
-            Vector3 forward = new Vector3();
-            float rotation = Mathf.Deg2Rad * transform.rotation.eulerAngles.y;
 
-            forward.x = (float)(Math.Sin(rotation));
-            forward.z = (float)(Math.Cos(rotation));
-
-            Ray ray = new Ray(this.transform.position, forward);
-            RaycastHit hit_object;
-            if (Physics.Raycast(ray, out hit_object, 5f))
+            if (Attack(0.0f) || Attack(Mathf.PI / 4) || Attack(-Mathf.PI / 4))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-                if (hit_object.transform.name == "Player")
-                {
-                    HealthSystem.changeHealth(-this.dammage);
-                    return;
-                }
+                return;
             }
 
-            rotation += Mathf.PI / 4; // check 45deg to right 
 
-            forward.x = Mathf.Sin(rotation);
-            forward.z = Mathf.Cos(rotation);
-
-            ray = new Ray(this.transform.position, forward);
-            if (Physics.Raycast(ray, out hit_object, 5f))
-            {
-                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-                if (hit_object.transform.name == "Player")
-                {
-                    HealthSystem.changeHealth(-this.dammage);
-                    return;
-                }
-            }
-
-            rotation -= Mathf.PI / 2; // check 45deg to left 
-
-            forward.x = Mathf.Sin(rotation);
-            forward.z = Mathf.Cos(rotation);
-
-            ray = new Ray(this.transform.position, forward);
-            if (Physics.Raycast(ray, out hit_object, 5f))
-            {
-                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
-                if (hit_object.transform.name == "Player")
-                {
-                    HealthSystem.changeHealth(-this.dammage);
-                }
-            }
         }
 
     }
