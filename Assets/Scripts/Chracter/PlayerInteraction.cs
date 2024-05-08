@@ -21,6 +21,7 @@ public class PlayerInteraction : MonoBehaviour
     public AudioSource source;
     public AudioClip clip;
     public AudioClip digging;
+    public AudioClip undigging;
 
     public void dig()
     {
@@ -33,6 +34,7 @@ public class PlayerInteraction : MonoBehaviour
             FarmlandScript script = hit_object.collider.gameObject.GetComponent<FarmlandScript>();
             if(script != null){
                 if(script.plant == SeedType.None){
+                    source.PlayOneShot(undigging);
                     Destroy(script.gameObject);
                     plots--;
                 }

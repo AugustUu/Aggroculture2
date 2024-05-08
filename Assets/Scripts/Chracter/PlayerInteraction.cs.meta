@@ -3,7 +3,16 @@ guid: 60a9c21c27b9da94d8f9083f983f7826
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - camera: {instanceID: 0}
+  - placeable: {instanceID: 0}
+  - inv_controller: {instanceID: 0}
+  - particle_system: {instanceID: 0}
+  - farmParent: {instanceID: 0}
+  - source: {instanceID: 0}
+  - clip: {instanceID: 0}
+  - digging: {fileID: 8300000, guid: 2fd7dc9b131ae47a9be2252beda9a063, type: 3}
+  - undigging: {fileID: 8300000, guid: 0a292bf254efe406787492979b0bc068, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
