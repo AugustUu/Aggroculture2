@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3297086008065773162}
   - component: {fileID: -657270079507836232}
   m_Layer: 11
-  m_Name: zombie 1
+  m_Name: slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 5, z: 1}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 4.5, y: 10, z: 4.5}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!195 &195125889422310756
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 10
   m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751636e6517698b4e8daf8a7c8fd0bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 150
   dammage: 5
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
-  xp_drop_count: 0
+  xp_drop_count: 3
   drops_item: 0
   dropped_item: 0
   drop_chance: 0

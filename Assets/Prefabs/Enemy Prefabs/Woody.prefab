@@ -108,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 5, z: 1}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 3, y: 10, z: 3}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!195 &195125889422310756
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -144,13 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751636e6517698b4e8daf8a7c8fd0bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 1000
   dammage: 5
-  xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
-  xp_drop_count: 5
-  drops_item: 0
-  dropped_item: 8
-  drop_chance: 0
+  xp_orb: {fileID: 6141923156838582121, guid: e6353c0aa8f7241c492035be368d2821, type: 3}
+  xp_drop_count: 2
+  drops_item: 1
+  dropped_item: 3
+  drop_chance: 1
 --- !u!114 &-1619406704356412842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aba5250d440e74e8a8baefb124c90bf7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.496
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aba5250d440e74e8a8baefb124c90bf7, type: 3}
       propertyPath: m_LocalRotation.w

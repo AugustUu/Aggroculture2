@@ -77,7 +77,6 @@ public class UpgradeUi : MonoBehaviour
 public class Upgrade{
     public int value;
     public string name;
-    public string description;
 
     public Sprite sprite;
     public UnityEvent onUpgrade;
