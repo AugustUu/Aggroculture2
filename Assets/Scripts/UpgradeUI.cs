@@ -19,9 +19,6 @@ public class UpgradeUi : MonoBehaviour
 
     static GameObject upgrade_parent_static;
 
-    TextMeshProUGUI tooltip_header;
-    TextMeshProUGUI tooltip_body;
-
 
     // upgrades
 
@@ -34,8 +31,6 @@ public class UpgradeUi : MonoBehaviour
         upgrades_static = upgrades;
         buttons_static = buttons;
         upgrade_parent_static =  upgrade_parent;
-        tooltip_header = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        tooltip_body = gameObject.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         RandomiseUpgrades();
     }
 
@@ -43,14 +38,15 @@ public class UpgradeUi : MonoBehaviour
         foreach (Button button in buttons_static)
         {
             int index = Random.Range(0, upgrades_static.Length);
-            foreach (var image in button.GetComponentsInChildren<Image>()){
+            /*foreach (var image in button.GetComponentsInChildren<Image>()){   old aujust code
                 if (image.sprite.name != "brownButton")
                 {
                     image.sprite = upgrades_static[index].sprite;
                 }
-            }
+            }*/
+            button.transform.GetChild(1).GetComponent<Image>().sprite = upgrades_static[index].sprite;
             
-            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrades_static[index].name;
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = upgrades_static[index].name;
             
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => {
@@ -75,20 +71,13 @@ public class UpgradeUi : MonoBehaviour
     {
         return upgrades_static[(int)upgrade];
     }
-
-    public void HandleTooltip(int button_index){
-        tooltip_header.text = "<color=#7b7b7b>";
-        tooltip_body.text = "<color=#a4a4a4>";
-
-        tooltip_header.text += "fdsa";
-        tooltip_body.text += "asdf";
-    }
 }
 
 [Serializable]
 public class Upgrade{
     public int value;
     public string name;
+    public string description;
 
     public Sprite sprite;
     public UnityEvent onUpgrade;
