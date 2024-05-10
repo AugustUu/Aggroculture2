@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
@@ -27,10 +28,14 @@ public class CondenseGems : MonoBehaviour
 
     public void collisionatorationalizationarilly(){
         Collider[] gems = Physics.OverlapBox(gameObject.transform.position, condenseSize, Quaternion.identity, layerMask);
-        if (gems.Length - 1 >= 4){
+        if (gems.Length >= 5){
             if (gameObject.GetComponent<XPScript>().expHigher != null){
-                Instantiate(gameObject.GetComponent<XPScript>().expHigher, this.transform.position, this.transform.rotation,xpParent);
-                for (int i =0;i<gems.Length;i++){
+                Instantiate(gameObject.GetComponent<XPScript>().expHigher, new Vector3(
+                    gems.Take(5).Average(x=>x.transform.position.x),
+                    gems.Take(5).Average(x=>x.transform.position.y),
+                    gems.Take(5).Average(x=>x.transform.position.z)
+                ), this.transform.rotation,xpParent);
+                for (int i = 0; i < 5; i++){
                     Destroy(gems[i].gameObject);
                 }
             }

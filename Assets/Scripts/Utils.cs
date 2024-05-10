@@ -43,4 +43,5 @@ public enum UpgradeList{
     shotsUp,
     growthUP,
     magnetUp,
+    pierceUp
 }

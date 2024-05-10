@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
@@ -126,15 +127,18 @@ public class PlayerInteraction : MonoBehaviour
             
             lastShot = Time.timeSinceLevelLoadAsDouble;
             source.PlayOneShot(clip);
+
+            Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
+            Vector3 mouse_pos = Input.mousePosition;
+            float rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y) + Mathf.PI + transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
+
             for (int i = 0; i <= stats.extra_shots + UpgradeUi.getUpgradeInfo(UpgradeList.shotsUp).value; i++)
             {
-                Debug.Log(i);
-
-                Vector3 player_screen_pos = camera.WorldToScreenPoint(transform.position);
-                Vector3 mouse_pos = Input.mousePosition;
-
-                float rotation = Mathf.Atan2(player_screen_pos.x - mouse_pos.x, player_screen_pos.y - mouse_pos.y) + Mathf.PI + transform.rotation.eulerAngles.y / Mathf.Rad2Deg;
-
+                if(i > stats.extra_shots){
+                    if(UnityEngine.Random.Range(0, 2) == 0){
+                        continue;
+                    }
+                }
                 Vector3 forward = new Vector3 
                 {
                     x = (float)(Math.Cos(0.0) * Math.Sin(rotation)) + UnityEngine.Random.Range(stats.spread * -1 * Mathf.Deg2Rad, stats.spread * Mathf.Deg2Rad),
@@ -151,7 +155,7 @@ public class PlayerInteraction : MonoBehaviour
                 Ray ray = new Ray(this.transform.position, forward);
                 RaycastHit[] hits = Physics.RaycastAll(this.transform.position, forward,300f);
                 // use raycast all
-                foreach (var hit in hits)
+                foreach (var hit in hits.Take(UpgradeUi.getUpgradeInfo(UpgradeList.pierceUp).value + 1))
                 {
                     if (hit.transform.gameObject.layer == 11)
                     {
