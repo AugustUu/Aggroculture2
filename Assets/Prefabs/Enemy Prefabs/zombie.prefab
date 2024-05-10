@@ -121,7 +121,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 20
-  m_Acceleration: 1000
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 0
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751636e6517698b4e8daf8a7c8fd0bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 75
   dammage: 5
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
-  xp_drop_count: 0
+  xp_drop_count: 2
   drops_item: 0
   dropped_item: 0
   drop_chance: 0

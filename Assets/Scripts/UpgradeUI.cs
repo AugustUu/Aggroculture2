@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -19,12 +20,16 @@ public class UpgradeUi : MonoBehaviour
 
     static GameObject upgrade_parent_static;
 
+    public Transform upgrade_stat_ui_parent;
+    
+    public GameObject upgrade_stat_ui_peice;
 
     // upgrades
 
     public Upgrade[] upgrades;
     private static Upgrade[]  upgrades_static;
 
+    private static List<GameObject> upgrade_list_enements = new List<GameObject>();
 
     void Start()
     {
@@ -32,6 +37,19 @@ public class UpgradeUi : MonoBehaviour
         buttons_static = buttons;
         upgrade_parent_static =  upgrade_parent;
         RandomiseUpgrades();
+
+        //Vector3 position = new Vector3(1450, 800,0);
+        Vector3 position = upgrade_stat_ui_parent.transform.position;
+        
+        for (int i = 0; i < upgrades.Length; i++)
+        {
+            
+            GameObject ui_element = Instantiate(upgrade_stat_ui_peice, position, Quaternion.identity,upgrade_stat_ui_parent);
+            ui_element.GetComponentInChildren<TextMeshProUGUI>().text = "lvl " + upgrades[i].value;
+            ui_element.GetComponentInChildren<Image>().sprite = upgrades[i].sprite;
+            position.y -= 30;
+            upgrade_list_enements.Add(ui_element);
+        }
     }
 
     public static void RandomiseUpgrades(){
@@ -51,8 +69,10 @@ public class UpgradeUi : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => {
                 //Debug.Log(Upgrades_static[index].name);
+                
                 upgrades_static[index].value += 1;
                 upgrades_static[index].onUpgrade.Invoke();
+                upgrade_list_enements[index].GetComponentInChildren<TextMeshProUGUI>().text = "lvl " + upgrades_static[index].value;
                 upgrade_parent_static.SetActive(false);
                 Pause.ForcePause(false, false);
             });
@@ -77,7 +97,6 @@ public class UpgradeUi : MonoBehaviour
 public class Upgrade{
     public int value;
     public string name;
-    public string description;
 
     public Sprite sprite;
     public UnityEvent onUpgrade;

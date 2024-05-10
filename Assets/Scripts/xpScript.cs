@@ -20,7 +20,7 @@ public class XPScript : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(Vector3.Distance(player_position.transform.position, transform.position) < 5){
+        if(Vector3.Distance(player_position.transform.position, transform.position) < 5 * (UpgradeUi.getUpgradeInfo(UpgradeList.magnetUp).value +1)){
             XPSystem.changeExp(expLvl);
             Destroy(transform.gameObject);
             

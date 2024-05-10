@@ -753,47 +753,59 @@ MonoBehaviour:
   inv_controller: {fileID: 0}
   trades:
   - input:
-    - item: 0
-      count: 0
+    - item: 6
+      count: 10
     output:
-      item: 0
+      item: 2
       count: 1
-  - input: []
+  - input:
+    - item: 7
+      count: 10
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 3
+      count: 1
+  - input:
+    - item: 5
+      count: 10
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 4
+      count: 1
+  - input:
+    - item: 6
+      count: 5
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 12
+      count: 1
+  - input:
+    - item: 7
+      count: 20
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 14
+      count: 1
+  - input:
+    - item: 5
+      count: 25
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 13
+      count: 1
+  - input:
+    - item: 6
+      count: 30
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 10
+      count: 1
+  - input:
+    - item: 6
+      count: 35
     output:
-      item: 0
-      count: 0
-  - input: []
+      item: 9
+      count: 1
+  - input:
+    - item: 7
+      count: 35
     output:
-      item: 0
-      count: 0
-  - input: []
-    output:
-      item: 0
-      count: 0
+      item: 11
+      count: 1
   buttons:
   - {fileID: 4962112820474924409}
   - {fileID: 8220607247890375835}

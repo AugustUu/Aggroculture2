@@ -39,9 +39,8 @@ public enum UpgradeList{
     healthUp,
     regenUp,
     dammageUp,
-    shotsUp,
     firerateUp,
-    tomatoUP,
-    carrotUP,
-    potatoUP,
+    shotsUp,
+    growthUP,
+    magnetUp,
 }
