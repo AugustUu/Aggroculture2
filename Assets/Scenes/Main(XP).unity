@@ -1141,18 +1141,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mob_list:
   - game_object: {fileID: 5890863077589170162, guid: b40acdb52cf1d4d4c990fec6a814c07e, type: 3}
-    day_weight: 7
+    day_weight: 6
     night_weight: 3
   - game_object: {fileID: 5890863077589170162, guid: 91516ab96709f6d4d99c611b5a7205ce, type: 3}
-    day_weight: 2
+    day_weight: 4
     night_weight: 2
   - game_object: {fileID: 5890863077589170162, guid: c3103002529de294a8afed996a664a2c, type: 3}
-    day_weight: 3
-    night_weight: 3
+    day_weight: 2
+    night_weight: 5
   - game_object: {fileID: 5890863077589170162, guid: 96e1f2ed4554a4978b3b12c6513fa08d, type: 3}
-    day_weight: 100
-    night_weight: 100
-  boss: {fileID: 0}
+    day_weight: 0
+    night_weight: 4
+  - game_object: {fileID: 5890863077589170162, guid: 7fdb2aecfdcf6499d9f6104f431ef877, type: 3}
+    day_weight: 4
+    night_weight: 2
+  boss: {fileID: 5890863077589170162, guid: 6af499828f8404ee1b8ce589bb840ff0, type: 3}
   mobParent: {fileID: 604861848}
 --- !u!4 &569643498
 Transform:
@@ -3332,7 +3335,7 @@ Transform:
   m_GameObject: {fileID: 1950111904}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 450, y: 240, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

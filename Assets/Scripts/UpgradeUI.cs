@@ -38,7 +38,8 @@ public class UpgradeUi : MonoBehaviour
         upgrade_parent_static =  upgrade_parent;
         RandomiseUpgrades();
 
-        Vector3 position = new Vector3(1450, 800,0);
+        //Vector3 position = new Vector3(1450, 800,0);
+        Vector3 position = upgrade_stat_ui_parent.transform.position;
         
         for (int i = 0; i < upgrades.Length; i++)
         {
