@@ -147,7 +147,7 @@ MonoBehaviour:
   health: 75
   dammage: 5
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
-  xp_drop_count: 1
+  xp_drop_count: 2
   drops_item: 0
   dropped_item: 0
   drop_chance: 0
