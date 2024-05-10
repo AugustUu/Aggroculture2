@@ -9969,7 +9969,6 @@ MonoBehaviour:
   controller: {fileID: 6759316427911217451}
   camera: {fileID: 6388355080024114070}
   model_transform: {fileID: 455905038153429413}
-  player_speed: 10
   sens: 10
   animator: {fileID: 295259322297904707}
 --- !u!114 &1375446873584930804
@@ -9989,6 +9988,9 @@ MonoBehaviour:
   inv_controller: {fileID: 0}
   particle_system: {fileID: 7771353681299670931}
   farmParent: {fileID: 0}
+  source: {fileID: 0}
+  clip: {fileID: 0}
+  digging: {fileID: 0}
 --- !u!1 &8502623075486325994
 GameObject:
   m_ObjectHideFlags: 0

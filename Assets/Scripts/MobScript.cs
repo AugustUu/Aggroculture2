@@ -23,8 +23,6 @@ public class MobScript : MonoBehaviour
     void Start(){
         target = GameObject.Find("Player").transform;
         xpParent = GameObject.Find("EXP").GetComponent<Transform>();
-
-        
     }
 
     public void hit(int damage){
@@ -32,7 +30,13 @@ public class MobScript : MonoBehaviour
             health -= damage;
             if(health <= 0){
                 for(int i = 0; i < xp_drop_count; i++){
-                    Instantiate(xp_orb, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-2.0f, 2.0f)), this.transform.rotation,xpParent);
+                    if(xp_drop_count > 1){
+                        Instantiate(xp_orb, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-2.0f, 2.0f)), this.transform.rotation,xpParent);
+                    }
+                    else{
+                        Instantiate(xp_orb, new Vector3(transform.position.x, transform.position.y, transform.position.z), this.transform.rotation,xpParent);
+                    }
+                    
                 }
                 if(drops_item){
                     if(Random.Range(0.0f, 1.0f) < drop_chance){
@@ -54,7 +58,7 @@ public class MobScript : MonoBehaviour
 
         Ray ray = new Ray(this.transform.position, forward);
         RaycastHit hit_object;
-        if (Physics.Raycast(ray, out hit_object, 5f))
+        if (Physics.Raycast(ray, out hit_object, 2f))
         {
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
             if (hit_object.transform.name == "Player")
@@ -65,7 +69,7 @@ public class MobScript : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(ray.origin, ray.direction * 5, Color.green, 1f);
+            Debug.DrawRay(ray.origin, ray.direction * 5, Color.green, 0.5f);
         }
 
         return false;
