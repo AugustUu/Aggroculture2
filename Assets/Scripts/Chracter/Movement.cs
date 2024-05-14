@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
 
 
         model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 8);
-        Vector3 move = direction * Time.deltaTime * (10.0f + UpgradeUi.getUpgradeInfo(UpgradeList.speedUp).value);
+        Vector3 move = direction.normalized * Time.deltaTime * (12.0f + UpgradeUi.getUpgradeInfo(UpgradeList.speedUp).value);
         
         controller.Move(this.transform.TransformDirection(move));
         
