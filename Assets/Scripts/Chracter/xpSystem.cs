@@ -26,7 +26,7 @@ public class XPSystem : MonoBehaviour
     }
 
     void Update(){
-        if(exp >= level_up_req)
+        if(exp >= level_up_req && !Pause.is_paused)
         {
             LevelUp(level_up_req);
         }

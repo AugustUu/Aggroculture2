@@ -320,8 +320,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: slime
       objectReference: {fileID: 0}
+    - target: {fileID: 7277041359911922533, guid: 9d90e8e54ce8b4ec39063721e729491b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7277041359911922533, guid: 9d90e8e54ce8b4ec39063721e729491b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9d90e8e54ce8b4ec39063721e729491b, type: 3}
