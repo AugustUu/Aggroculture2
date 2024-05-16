@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1000
-  dammage: 5
+  dammage: 8
   xp_orb: {fileID: 6141923156838582121, guid: e6353c0aa8f7241c492035be368d2821, type: 3}
   xp_drop_count: 2
   drops_item: 1
