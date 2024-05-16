@@ -21,7 +21,7 @@ MonoBehaviour:
   seed_type: 0
   tooltip: 
   gun_stats:
-    gunsound: {fileID: 8300000, guid: eb673cecc167f4c64886dfb8d0e5ef11, type: 3}
+    gunsound: {fileID: 8300000, guid: 219380af27f19437c8db35f3d627d480, type: 3}
     firerate: 2
     max_ammo: 0
     mag_size: 0
