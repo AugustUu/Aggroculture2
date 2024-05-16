@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[5].sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: bd16dc6a11a1948ccb5726cc939477c6, type: 3}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[6].sprite
       value: 
@@ -487,11 +487,11 @@ PrefabInstance:
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[7].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ec0f61c7805cf4b9e8c473a4dd33e779, type: 3}
+      objectReference: {fileID: 21300000, guid: 805bd65fa798f4a0c8e97fd6839f201d, type: 3}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[8].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0c4ad1b20bfe1444d8f7460cc0f04256, type: 3}
+      objectReference: {fileID: 21300000, guid: 74b0796c5eaccc945ab765dbbc0c7a11, type: 3}
     - target: {fileID: 6848723006736206068, guid: 8511f068815f44285a7065aebba377aa, type: 3}
       propertyPath: upgrades.Array.data[9].sprite
       value: 
@@ -2537,7 +2537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_Constraints
-      value: 116
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 6388355080024114070, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: orthographic size
@@ -3808,7 +3808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8355553793124470547, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: grid_width
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8355553793124470547, guid: 56c41e7841acb6642882dd535c524b7a, type: 3}
       propertyPath: grid_height
@@ -4233,6 +4233,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab74175c4df829b47a8b01e7ac0d0069, type: 2}
   - {fileID: 11400000, guid: 277384d2d69372c47a1e8c2be7c6e483, type: 2}
   - {fileID: 11400000, guid: d0e201b094d47f24191c189d89ad6a32, type: 2}
+  - {fileID: 11400000, guid: 46cf0a78121714dedbde6e37157abd83, type: 2}
   item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   canvas_transform: {fileID: 2047849635}
   main_grid: {fileID: 3494923188440057975}
