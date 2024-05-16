@@ -12,7 +12,6 @@ public class MainMenuScript : MonoBehaviour
     {
         play.onClick.AddListener(() =>
         {
-            Debug.Log("å´®åƒƒå");
             SceneManager.LoadScene("Main(XP)",LoadSceneMode.Single);
             
         });

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -35,16 +36,17 @@ public class HealthSystem : MonoBehaviour
     public static void changeHealth (int hp_change){
         
         hp += hp_change;
-        if(hp_change >= 0){
-            
-        }
-        if(hp_change < 0){
-            
-        }
+
 
         
         hp = Math.Clamp(hp, 0, max_hp + (UpgradeUi.getUpgradeInfo(UpgradeList.healthUp).value * 10));
         hp_bar.maxValue = max_hp + (UpgradeUi.getUpgradeInfo(UpgradeList.healthUp).value * 10);
         hp_bar.value = hp;
+
+        if (hp == 0)
+        {
+            SceneManager.LoadScene("Main Menu",LoadSceneMode.Single);
+        }
+        
     }
 }
