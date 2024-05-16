@@ -63,7 +63,7 @@ public class MobScript : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 1f);
             if (hit_object.transform.name == "Player")
             {
-                HealthSystem.changeHealth(-this.dammage);
+                HealthSystem.changeHealth(-this.dammage + TimeCycle.days);
                 return true;
             }
         }

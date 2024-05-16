@@ -9991,6 +9991,7 @@ MonoBehaviour:
   source: {fileID: 0}
   clip: {fileID: 0}
   digging: {fileID: 0}
+  undigging: {fileID: 0}
 --- !u!1 &8502623075486325994
 GameObject:
   m_ObjectHideFlags: 0
