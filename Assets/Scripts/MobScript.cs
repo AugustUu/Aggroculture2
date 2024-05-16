@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -93,5 +94,9 @@ public class MobScript : MonoBehaviour
 
         }
 
+    }
+
+    public void OnDrawGizmos(){
+        Handles.Label(transform.position, health.ToString());
     }
 }

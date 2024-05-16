@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: gozoman
+  m_Name: Gozoman
   m_EditorClassIdentifier: 
   width: 1
   height: 1
