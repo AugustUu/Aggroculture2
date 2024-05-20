@@ -51,7 +51,7 @@ public class TimeCycle : MonoBehaviour
         recalculateTime();
         if (minutes < 10)
         {
-            dayGUI.text = hours + " : 0" + minutes + "  Day " + days;
+            dayGUI.text = hours + " : 0" + minutes + "  Day  " + days;
         }
         else
         {
