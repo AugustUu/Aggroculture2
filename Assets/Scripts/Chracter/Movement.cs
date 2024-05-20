@@ -71,7 +71,10 @@ public class Movement : MonoBehaviour
 
         model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 8);
         Vector3 move = direction.normalized * Time.deltaTime * (12.0f + UpgradeUi.getUpgradeInfo(UpgradeList.speedUp).value);
-        
+        if (model_transform.transform.position.y > 2.125f)
+        {
+            move.y = 2.125f - model_transform.transform.position.y;
+        }
         controller.Move(this.transform.TransformDirection(move));
         
 
