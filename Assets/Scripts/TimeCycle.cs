@@ -24,11 +24,11 @@ public class TimeCycle : MonoBehaviour
         InvokeRepeating("addTime", 1.0f, 1.0f/3.0f);
         if (minutes < 10)
         {
-            dayGUI.text = hours + " : 0" + minutes + "  Day: " + days;
+            dayGUI.text = hours + " : 0" + minutes + "  Day " + days;
         }
         else
         {
-            dayGUI.text = hours + " : " + minutes + "  Day: " + days;
+            dayGUI.text = hours + " : " + minutes + "  Day " + days;
         }
         if (hours < 10)
         {
@@ -51,11 +51,11 @@ public class TimeCycle : MonoBehaviour
         recalculateTime();
         if (minutes < 10)
         {
-            dayGUI.text = hours + " : 0" + minutes + "  Day: " + days;
+            dayGUI.text = hours + " : 0" + minutes + "  Day " + days;
         }
         else
         {
-            dayGUI.text = hours + " : " + minutes + "  Day: " + days;
+            dayGUI.text = hours + " : " + minutes + "  Day " + days;
         }
         if (hours < 10)
         {

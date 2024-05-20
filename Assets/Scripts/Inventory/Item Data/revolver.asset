@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
+  m_Name: revolver
+  m_EditorClassIdentifier: 
+  width: 2
+  height: 2
+  stackable: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: 2017a32ad18ba46ffa036c8bc30675d0, type: 3}
+  item_type: 2
+  seed_type: 0
+  tooltip: 
+  gun_stats:
+    gunsound: {fileID: 8300000, guid: 219380af27f19437c8db35f3d627d480, type: 3}
+    firerate: 2
+    max_ammo: 0
+    mag_size: 0
+    damage: 50
+    recoil: 0
+    spread: 5
+    extra_shots: 0
+    piercing: 1
+  food_heal_amount: 0
