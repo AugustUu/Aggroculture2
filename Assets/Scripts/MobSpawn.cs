@@ -46,7 +46,7 @@ public class MobSpawn : MonoBehaviour
         if(TimeCycle.minutes != minutes)
         {
             if(TimeCycle.hours >= 5 && TimeCycle.hours <= 19){
-                //SpawnMob(true, 0.01 * TimeCycle.days);
+                SpawnMob(true, 0.01 * TimeCycle.days);
             }
             else{
                 SpawnMob(false, 0.2 * TimeCycle.days);
@@ -77,7 +77,7 @@ public class MobSpawn : MonoBehaviour
         position += spawn_pos;
         position.y = 0;
         GameObject mobSpawnee = Instantiate(mob, position, GameObject.Find("Player").transform.rotation, mobParent);
-        mobSpawnee.GetComponent<MobScript>().health += TimeCycle.days;
+        mobSpawnee.GetComponent<MobScript>().health += TimeCycle.days - 1;
     }
 
     public int GetRandomWeightedIndex(bool day)

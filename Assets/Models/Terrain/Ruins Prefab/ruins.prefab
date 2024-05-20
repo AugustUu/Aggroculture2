@@ -71,8 +71,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3193385836030482380}
-        m_TargetAssemblyTypeName: gusTer, Assembly-CSharp
-        m_MethodName: kys
+        m_TargetAssemblyTypeName: ChestScript, Assembly-CSharp
+        m_MethodName: openChest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4796660626509796953}
+  dropTable: 020000000300000004000000
 --- !u!1001 &1317480788660819803
 PrefabInstance:
   m_ObjectHideFlags: 0

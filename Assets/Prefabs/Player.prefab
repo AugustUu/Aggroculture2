@@ -11771,7 +11771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 30bc99ae9a734c54ebd4e60a598fc01b, type: 3}
       propertyPath: m_Name
-      value: glock
+      value: Glock
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 30bc99ae9a734c54ebd4e60a598fc01b, type: 3}
       propertyPath: m_Layer
@@ -11886,7 +11886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c022781f03b4f4e4ca46318e67997731, type: 3}
       propertyPath: m_Name
-      value: stocklessAK
+      value: Stockless AK
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c022781f03b4f4e4ca46318e67997731, type: 3}
       propertyPath: m_Layer
@@ -12291,7 +12291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b89c85b2579e0494db8a97a8e09f7e06, type: 3}
       propertyPath: m_Name
-      value: shotgun
+      value: Shotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12378,7 +12378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 56f25bb628686a94cb6abc16644e2041, type: 3}
       propertyPath: m_Name
-      value: shoel
+      value: Shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 56f25bb628686a94cb6abc16644e2041, type: 3}
       propertyPath: m_Layer
@@ -14590,7 +14590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dfa52757cb1df254cb1275d3b0fffeb2, type: 3}
       propertyPath: m_Name
-      value: oldGun
+      value: Old Gun
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dfa52757cb1df254cb1275d3b0fffeb2, type: 3}
       propertyPath: m_Layer
@@ -14725,7 +14725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 357fba044c72e1d46a9ddedcd3fffce9, type: 3}
       propertyPath: m_Name
-      value: stockedAK
+      value: Stocked AK
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 357fba044c72e1d46a9ddedcd3fffce9, type: 3}
       propertyPath: m_Layer
@@ -14828,7 +14828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ea77efea5842347c3882a68d572a2248, type: 3}
       propertyPath: m_Name
-      value: smg
+      value: SMG
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
