@@ -205,9 +205,6 @@ public class PlayerInteraction : MonoBehaviour
                         case ItemType.Tool:
                             dig();
                             break;
-                        case ItemType.Seeds:
-                            plant(InvController.equipped_item.item_data.seed_type);
-                            break;
                         default:
                             break;
 
@@ -218,7 +215,9 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         case ItemType.Gun:
                             shoot(InvController.equipped_item.item_data.gun_stats);
-                            
+                            break;
+                        case ItemType.Seeds:
+                            plant(InvController.equipped_item.item_data.seed_type);
                             break;
                         default:
                             break;
