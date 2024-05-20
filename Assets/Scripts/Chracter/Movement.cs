@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     private float mouse_start = 0;
 
     public Animator animator;
+    public float speedRun = 1;
 
     private void Start()
     {
@@ -75,9 +76,16 @@ public class Movement : MonoBehaviour
         {
             move.y = 2.125f - model_transform.transform.position.y;
         }
-        controller.Move(this.transform.TransformDirection(move));
+        controller.Move(this.transform.TransformDirection(move * speedRun));
         
-
+        if (InvController.equipped_item != null){
+            if (InvController.equipped_item.item_data.item_type.ToString().Equals("Gun") || InvController.equipped_item.item_data.item_type.ToString().Equals("Tool")){
+                speedRun = 1;
+            }
+        }
+        else{
+                speedRun = 1.3f;
+            }
     }
 
 }

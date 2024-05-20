@@ -24,6 +24,7 @@ public class ChestScript : MonoBehaviour
     public void openChest(){
         if (!opened){
             animator.SetTrigger("Open");
+            InvController.StaticInsertItemID(dropTable[Random.Range(0, dropTable.Length)]);
             //Destroy(gameObject.GetComponent<interactable>());
         }
         opened = true;
