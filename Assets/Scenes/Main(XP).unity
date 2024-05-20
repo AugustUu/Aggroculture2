@@ -1066,6 +1066,12 @@ MonoBehaviour:
   - game_object: {fileID: 5890863077589170162, guid: 7fdb2aecfdcf6499d9f6104f431ef877, type: 3}
     day_weight: 4
     night_weight: 2
+  - game_object: {fileID: 5890863077589170162, guid: e11b3c50e12ee4bde91caa007dd49203, type: 3}
+    day_weight: 4
+    night_weight: 2
+  - game_object: {fileID: 5890863077589170162, guid: 4ec0d1257180f49118206e37cdeb1196, type: 3}
+    day_weight: 4
+    night_weight: 2
   boss: {fileID: 5890863077589170162, guid: 6af499828f8404ee1b8ce589bb840ff0, type: 3}
   mobParent: {fileID: 604861848}
 --- !u!4 &569643498
