@@ -289,6 +289,9 @@ public class InvController : MonoBehaviour
             case ItemType.Tool:
                 tooltip_body2.text += "plots: " + PlayerInteraction.plots + " / " + PlayerInteraction.max_plots;
                 break;
+            case ItemType.Misc:
+                tooltip_body2.text += "right click to use";
+                break;
         }
     }
     
@@ -393,8 +396,11 @@ public class InvController : MonoBehaviour
             }
             else if(to_equip_item.item_data.item_type == ItemType.Misc){
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
-                if(to_equip_item.item_data.name == "Wooden Claw"){
+                if(to_equip_item.item_data.name == items[(int)ItemList.wooden_claw].name){
                     InsertItemID(((int)ItemList.tomato_seeds) + UnityEngine.Random.Range(0, 3));
+                }
+                else if(to_equip_item.item_data.name == items[(int)ItemList.premium_fertilizer].name){
+                    UpgradeUi.Upgrade((int)UpgradeList.growthUP, 3);
                 }
                 Destroy(to_equip_item.gameObject);
             }
