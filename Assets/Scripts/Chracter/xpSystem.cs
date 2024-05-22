@@ -37,7 +37,7 @@ public class XPSystem : MonoBehaviour
         exp -= exp_req;
         exp_bar.value = exp;
         levels += 1;
-        level_up_req = (int)(exp_req * 1.2);
+        level_up_req = (int)(exp_req * 1.4);
         exp_bar.maxValue = level_up_req;
         display.text = "lvl " + levels;
         PlayerInteraction.max_plots++;
