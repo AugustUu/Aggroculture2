@@ -4644,6 +4644,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab74175c4df829b47a8b01e7ac0d0069, type: 2}
   - {fileID: 11400000, guid: 277384d2d69372c47a1e8c2be7c6e483, type: 2}
   - {fileID: 11400000, guid: d0e201b094d47f24191c189d89ad6a32, type: 2}
+  - {fileID: 11400000, guid: e8f9e569d106a48b292c6e33396a030c, type: 2}
   item_prefab: {fileID: 4522877884258307140, guid: 542f66b24bd882d4b99f770474ca438d, type: 3}
   canvas_transform: {fileID: 2047849635}
   main_grid: {fileID: 3494923188440057975}
