@@ -74,14 +74,14 @@ public class InvController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.PageUp)){
+        /*if (Input.GetKeyDown(KeyCode.PageUp)){
             if(RemoveItemHeld(ItemList.schmeeze, 5)){
                 Debug.Log("removed");
             }
             else{
                 Debug.Log("not enough schmeeze");
             }
-        }
+        }*/
 
 
         if(selected_item_grid != null){
