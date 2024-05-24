@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad39fbccc02f244f9feb3a85e229eae, type: 3}
-  m_Name: Green Slime
+  m_Name: LawnMower
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
-  equippable: 0
-  item_icon: {fileID: 21300000, guid: b468ef7d1ead64a2a8e11cb424853055, type: 3}
+  width: 3
+  height: 3
+  stackable: 0
+  equippable: 1
+  item_icon: {fileID: 21300000, guid: 888264dfa747d412d9d8a0a0a71ffbd7, type: 3}
   item_type: 5
   seed_type: 0
-  tooltip: Ew
+  tooltip: whip around on this cool ride
   gun_stats:
     gunsound: {fileID: 0}
     firerate: 0
