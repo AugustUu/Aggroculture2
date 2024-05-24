@@ -70,16 +70,18 @@ public class UpgradeUi : MonoBehaviour
             button.onClick.AddListener(() => {
                 //Debug.Log(Upgrades_static[index].name);
                 
-                upgrades_static[index].value += 1;
-                upgrades_static[index].onUpgrade.Invoke();
-                upgrade_list_enements[index].GetComponentInChildren<TextMeshProUGUI>().text = "lvl " + upgrades_static[index].value;
+                Upgrade(index, 1);
                 upgrade_parent_static.SetActive(false);
                 Pause.ForcePause(false, false);
             });
         }
     }
 
-     
+    public static void Upgrade(int index, int amount){
+        upgrades_static[index].value += amount;
+        upgrades_static[index].onUpgrade.Invoke();
+        upgrade_list_enements[index].GetComponentInChildren<TextMeshProUGUI>().text = "lvl " + upgrades_static[index].value;
+    }     
     public static void open_Upgrade_menu()
     {
         RandomiseUpgrades();

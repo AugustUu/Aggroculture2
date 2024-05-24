@@ -1175,14 +1175,14 @@ MonoBehaviour:
     day_weight: 0
     night_weight: 4
   - game_object: {fileID: 5890863077589170162, guid: 7fdb2aecfdcf6499d9f6104f431ef877, type: 3}
-    day_weight: 4
-    night_weight: 2
+    day_weight: 2
+    night_weight: 1
   - game_object: {fileID: 5890863077589170162, guid: e11b3c50e12ee4bde91caa007dd49203, type: 3}
-    day_weight: 4
-    night_weight: 2
+    day_weight: 2
+    night_weight: 1
   - game_object: {fileID: 5890863077589170162, guid: 4ec0d1257180f49118206e37cdeb1196, type: 3}
-    day_weight: 4
-    night_weight: 2
+    day_weight: 2
+    night_weight: 1
   boss: {fileID: 5890863077589170162, guid: 6af499828f8404ee1b8ce589bb840ff0, type: 3}
   mobParent: {fileID: 604861848}
 --- !u!4 &569643498
@@ -2977,19 +2977,19 @@ PrefabInstance:
       objectReference: {fileID: 8639214405181510638}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.size
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[9].output.item
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[10].output.item
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[11].output.item
-      value: 2
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[12].output.item
@@ -3013,15 +3013,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[9].input.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[10].input.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[11].input.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[12].input.Array.size
@@ -3029,15 +3029,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[9].input.Array.data[0].item
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[9].input.Array.data[1].item
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[9].input.Array.data[2].item
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[10].input.Array.data[0].item
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[10].input.Array.data[1].item
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[10].input.Array.data[2].item
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[11].input.Array.data[0].item
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[11].input.Array.data[1].item
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[11].input.Array.data[2].item
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[12].input.Array.data[0].item
@@ -3056,11 +3080,35 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[9].input.Array.data[1].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[9].input.Array.data[2].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[10].input.Array.data[0].count
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[10].input.Array.data[1].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[10].input.Array.data[2].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
       propertyPath: trades.Array.data[11].input.Array.data[0].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[11].input.Array.data[1].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}
+      propertyPath: trades.Array.data[11].input.Array.data[2].count
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1376559392297550508, guid: 59a92976e782a405abd6edf678424e70, type: 3}

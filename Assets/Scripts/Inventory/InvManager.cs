@@ -23,7 +23,7 @@ public class InvManager : MonoBehaviour
         }
         if (Input.GetButtonDown("schmeezer"))
         {
-            GetComponent<InvController>().InsertItemID(ItemList.schmeeze);   
+            GetComponent<InvController>().InsertItemID(ItemList.wooden_claw);   
         }
     }
 
