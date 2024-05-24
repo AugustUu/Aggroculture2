@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
-        if (InvController.equipped_item && InvController.equipped_item.item_data.name == "LawnMower" )
+        if (InvController.equipped_item && InvController.equipped_item.item_data.name == "Lawn Mower" )
         {
             
             model_transform.rotation = Quaternion.Lerp(model_transform.rotation, Quaternion.Euler(0, (float)(rotation * Mathf.Rad2Deg), 0), Time.deltaTime * 8);
