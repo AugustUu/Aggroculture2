@@ -80,9 +80,9 @@ public class ShopUiScript : MonoBehaviour
                 string name = "";
 
                 foreach(Item item in trades[a].input){
-                    name += "" + item.count + " " + item.item + " ";
+                    name += "" + item.count + " " + inv_controller.items[(int)item.item].name + " ";
                 }
-                name += "For " + trades[a].output.item;
+                name += "For " + inv_controller.items[(int)trades[a].output.item].name;
                 buttons[i % 3].GetComponentInChildren<TextMeshProUGUI>().text = name;
             }
             for (int i = max - page * 3; i < 3; i++)

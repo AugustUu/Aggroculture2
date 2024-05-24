@@ -146,9 +146,9 @@ MonoBehaviour:
   dammage: 5
   xp_orb: {fileID: 6141923156838582121, guid: 3787ca883137b8546a28cc48c5fcfe14, type: 3}
   xp_drop_count: 1
-  drops_item: 0
-  dropped_item: 0
-  drop_chance: 1
+  drops_item: 1
+  dropped_item: 21
+  drop_chance: 0.2
 --- !u!1001 &1583792954894241726
 PrefabInstance:
   m_ObjectHideFlags: 0
