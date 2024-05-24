@@ -2721,6 +2721,10 @@ PrefabInstance:
       propertyPath: m_InnerSpotAngle
       value: 179
       objectReference: {fileID: 0}
+    - target: {fileID: 5141909422993595645, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 832277a6d9c4146d9bb22322c2687cfa, type: 2}
     - target: {fileID: 6299267673311836684, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -4666,6 +4670,8 @@ MonoBehaviour:
   select_gun: {fileID: 8300000, guid: e8d8fd3afddc44785a2de8fbaa378cc1, type: 3}
   select_alt: {fileID: 8300000, guid: 19735d7ffd60f44cd960dbac4b47efba, type: 3}
   eating: {fileID: 8300000, guid: 4c3cb51325b0a4d81a4ea15aecac93cb, type: 3}
+  lawn_equip: {fileID: 8300000, guid: 1c70fc34bb6314500a7539a3d67b9aec, type: 3}
+  driving: {fileID: 8300000, guid: 395b39bc0a3ea424a93a80e2f177771f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

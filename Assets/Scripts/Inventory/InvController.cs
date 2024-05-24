@@ -52,6 +52,11 @@ public class InvController : MonoBehaviour
     public AudioClip select_gun;
     public AudioClip select_alt;
     public AudioClip eating;
+    public AudioClip lawn_equip;
+    public AudioClip driving;
+
+     double lastplay = 0;
+
 
     public static float main_canvas_tile_size;
     public static float main_scaled_tile_size;
@@ -74,6 +79,17 @@ public class InvController : MonoBehaviour
             }
         }
 
+        if(equipped_item != null){
+            if(equipped_item.item_data.name.Equals("Lawn Mower")){
+                if (Time.timeSinceLevelLoadAsDouble - lastplay >= 4.989){
+                    lastplay = Time.timeSinceLevelLoadAsDouble;
+                    source.PlayOneShot(driving);
+                }
+
+            }
+                
+        }
+
         if (Input.GetKeyDown(KeyCode.PageUp)){
             if(RemoveItemHeld(ItemList.schmeeze, 5)){
                 Debug.Log("removed");
@@ -81,6 +97,8 @@ public class InvController : MonoBehaviour
             else{
                 Debug.Log("not enough schmeeze");
             }
+
+
         }
 
 
@@ -375,6 +393,10 @@ public class InvController : MonoBehaviour
                     if (to_equip_item.item_data.item_type == ItemType.Gun)
                     {
                         source.PlayOneShot(select_gun);
+                    }
+                    if (to_equip_item.item_data.name.Equals("Lawn Mower"))
+                    {
+                        source.PlayOneShot(lawn_equip);
                     }
                     else
                     {
