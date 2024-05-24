@@ -9971,6 +9971,7 @@ MonoBehaviour:
   model_transform: {fileID: 455905038153429413}
   sens: 10
   animator: {fileID: 295259322297904707}
+  speedRun: 1
 --- !u!114 &1375446873584930804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12378,7 +12379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 56f25bb628686a94cb6abc16644e2041, type: 3}
       propertyPath: m_Name
-      value: Shotgun
+      value: Shovel
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 56f25bb628686a94cb6abc16644e2041, type: 3}
       propertyPath: m_Layer
