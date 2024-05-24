@@ -2622,6 +2622,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1836674867}
     - target: {fileID: 1375446873584930804, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: digging
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fd7dc9b131ae47a9be2252beda9a063, type: 3}
+    - target: {fileID: 1375446873584930804, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
+      propertyPath: undigging
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a292bf254efe406787492979b0bc068, type: 3}
+    - target: {fileID: 1375446873584930804, guid: 316646ece01983a4ebcaedd26933d68e, type: 3}
       propertyPath: farmParent
       value: 
       objectReference: {fileID: 235551544}
