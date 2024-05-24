@@ -12,7 +12,8 @@ public enum ItemType{
     Gun,
     Melee,
     Tool,
-    Misc
+    Misc,
+    Consumable
 }
 
 public enum SeedType{
@@ -25,15 +26,9 @@ public enum SeedType{
 public class InvItem : MonoBehaviour
 {
     public ItemData item_data;
-    public int count;
 
     public Vector2Int grid_pos;
-    public int list_index;
     public InvHighlight back_highlighter;
-    public void Awake(){
-        
-    }
-
     internal void Set(ItemData data)
     {
         item_data = data;
@@ -53,9 +48,5 @@ public class InvItem : MonoBehaviour
             y = item_pixel_height * (scale / (item_pixel_height / item_data.height))
         };
         rt.sizeDelta = new Vector2(size.x, size.y);
-    }
-
-    public void IncreaseCount(int adding){
-        count += adding;
     }
 }

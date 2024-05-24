@@ -62,16 +62,19 @@ public class ShopUiScript : MonoBehaviour
                             return;
                         }
                     }
-                    foreach(Item item in trades[a].input){
-                        inv_controller.RemoveItemHeld(item.item,item.count);
-                    }
 
                     for (int i = 0; i < trades[a].output.count; i++)
                     {
-                        inv_controller.InsertItemID(trades[a].output.item);
+                        if(!inv_controller.InsertItemID(trades[a].output.item)){
+                            return;
+                        }
                         Debug.Log(a + " " + trades[a]);
+
                     }
-                    
+
+                    foreach(Item item in trades[a].input){
+                        inv_controller.RemoveItemHeld(item.item,item.count);
+                    }
                 });
 
                 string name = "";

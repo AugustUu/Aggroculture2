@@ -73,7 +73,6 @@ public class ItemGrid : MonoBehaviour
             }
         }
         item_list.Remove(picked_up_item);
-        Debug.Log(item_list.Count);
         return picked_up_item;
     }
 
