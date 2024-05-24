@@ -34,7 +34,7 @@ public class MobSpawn : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){ // debug
             for (int i = 0; i < 1; i++)
             {
-                SpawnMob(true, 1);
+                RandomSpawn(boss);
             }
         }
         /*if (spawned_wave && TimeCycle.hours != 0)
@@ -50,7 +50,7 @@ public class MobSpawn : MonoBehaviour
             }
             else{
                 SpawnMob(false, 0.2 * TimeCycle.days);
-                if(TimeCycle.hours == 20 && TimeCycle.minutes == 0){
+                if(TimeCycle.hours == 20 && TimeCycle.minutes == 0 && TimeCycle.days > 1){
                     RandomSpawn(boss);
                 }
             }

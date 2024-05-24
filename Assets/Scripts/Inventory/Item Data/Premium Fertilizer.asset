@@ -16,7 +16,7 @@ MonoBehaviour:
   height: 2
   equippable: 0
   item_icon: {fileID: 21300000, guid: f6e30cf893ea548e5b7d3d2c0a481a6a, type: 3}
-  item_type: 5
+  item_type: 6
   seed_type: 0
   tooltip: Triple the strength of competing brands!
   gun_stats:

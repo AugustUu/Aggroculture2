@@ -25,7 +25,7 @@ public class FarmlandScript : MonoBehaviour
         if(plant == SeedType.None){
             plant = seedType;
         }
-        InvokeRepeating("grow", 1, 0.2f / (3 * (UpgradeUi.getUpgradeInfo(UpgradeList.growthUP).value + 1)));
+        InvokeRepeating("grow", 0.2f, 2f / ((0.15f * UpgradeUi.getUpgradeInfo(UpgradeList.growthUP).value) + 1));
     }
 
     public void RemovePlant(){

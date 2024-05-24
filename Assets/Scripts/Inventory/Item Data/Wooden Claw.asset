@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 2
   height: 2
-  stackable: 0
   equippable: 0
   item_icon: {fileID: 0}
-  item_type: 5
+  item_type: 6
   seed_type: 0
   tooltip: Has seeds buried deep inside
   gun_stats:

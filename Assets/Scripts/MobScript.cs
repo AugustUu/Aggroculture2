@@ -17,6 +17,7 @@ public class MobScript : MonoBehaviour
     private Transform xpParent;
     public int xp_drop_count;
     public bool drops_item;
+    public bool boss_drops;
     public ItemList dropped_item;
     public float drop_chance;
      
@@ -42,6 +43,17 @@ public class MobScript : MonoBehaviour
                 if(drops_item){
                     if(Random.Range(0.0f, 1.0f) < drop_chance){
                         InvController.StaticInsertItemID(dropped_item);
+                    }
+                }
+                else if(boss_drops){
+                    for(int i = 0; i < Random.Range(0, 11); i++){
+                        InvController.StaticInsertItemID(ItemList.tomato);
+                    }
+                    for(int i = 0; i < Random.Range(0, 11); i++){
+                        InvController.StaticInsertItemID(ItemList.potato);
+                    }
+                    for(int i = 0; i < Random.Range(0, 11); i++){
+                        InvController.StaticInsertItemID(ItemList.carrot);
                     }
                 }
                 Destroy(this.transform.gameObject);

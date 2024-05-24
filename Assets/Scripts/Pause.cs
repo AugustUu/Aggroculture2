@@ -15,7 +15,7 @@ public class Pause : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P) && !force_paused){
+        if(Input.GetKeyDown(KeyCode.Escape) && !force_paused){
             if(!is_paused){
                 PauseGame(true, false);
             }

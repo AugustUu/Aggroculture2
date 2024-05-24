@@ -29,4 +29,4 @@ MonoBehaviour:
     spread: 0
     extra_shots: 0
     piercing: 0
-  food_heal_amount: 0
+  food_heal_amount: 3

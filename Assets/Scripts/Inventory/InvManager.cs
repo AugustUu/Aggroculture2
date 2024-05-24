@@ -21,10 +21,10 @@ public class InvManager : MonoBehaviour
         {
             ToggleInv();
         }
-        if (Input.GetButtonDown("schmeezer"))
+        /*if (Input.GetButtonDown("schmeezer"))
         {
             GetComponent<InvController>().InsertItemID(ItemList.premium_fertilizer);   
-        }
+        }*/
     }
 
     public void ToggleInv(){
