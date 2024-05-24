@@ -22,7 +22,7 @@ public class RuinVisbility : MonoBehaviour
         Wall2[Random.Range(0, 2)].SetActive(true);
         Wall3[Random.Range(0, 2)].SetActive(true);
         Wall4[Random.Range(0, 2)].SetActive(true);
-        if (Random.Range(0,11) > 9){
+        if (Random.Range(0,4) > 2){
             transform.Find("chest").gameObject.SetActive(true);
         }
     }
