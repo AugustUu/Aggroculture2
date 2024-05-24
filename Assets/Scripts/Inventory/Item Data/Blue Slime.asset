@@ -16,7 +16,7 @@ MonoBehaviour:
   height: 1
   equippable: 0
   item_icon: {fileID: 21300000, guid: 5ad18594eb69e451b89b59fa32c1f0f5, type: 3}
-  item_type: 5
+  item_type: 0
   seed_type: 0
   tooltip: Gross
   gun_stats:
@@ -29,4 +29,4 @@ MonoBehaviour:
     spread: 0
     extra_shots: 0
     piercing: 0
-  food_heal_amount: 0
+  food_heal_amount: 3
