@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
-  stackable: 0
   equippable: 1
-  item_icon: {fileID: 21300000, guid: 888264dfa747d412d9d8a0a0a71ffbd7, type: 3}
+  item_icon: {fileID: 21300000, guid: 5c8c4b774dc8742caa64469dd860dae9, type: 3}
   item_type: 5
   seed_type: 0
   tooltip: whip around on this cool ride

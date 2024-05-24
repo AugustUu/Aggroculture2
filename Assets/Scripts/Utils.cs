@@ -35,7 +35,8 @@ public enum ItemList{
     oldGun,
     glock,
     shotgun,
-    smg
+    smg,
+    lawnMower
 }
 
 
