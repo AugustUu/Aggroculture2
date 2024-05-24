@@ -79,7 +79,6 @@ public class InvController : MonoBehaviour
             }
         }
 
-<<<<<<< HEAD
         if(equipped_item != null){
             if(equipped_item.item_data.name.Equals("Lawn Mower")){
                 if (Time.timeSinceLevelLoadAsDouble - lastplay >= 4.989){
@@ -92,22 +91,15 @@ public class InvController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.PageUp)){
-=======
-        /*if (Input.GetKeyDown(KeyCode.PageUp)){
->>>>>>> main
             if(RemoveItemHeld(ItemList.schmeeze, 5)){
                 Debug.Log("removed");
             }
             else{
                 Debug.Log("not enough schmeeze");
             }
-<<<<<<< HEAD
 
 
         }
-=======
-        }*/
->>>>>>> main
 
 
         if(selected_item_grid != null){
