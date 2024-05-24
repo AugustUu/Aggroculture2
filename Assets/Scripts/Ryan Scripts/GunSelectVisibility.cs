@@ -37,7 +37,7 @@ public class GunSelectVisibility : MonoBehaviour
                     }
                 }
             }
-            bool holdTool = InvController.equipped_item.item_data.item_type.ToString().Equals("Gun") || InvController.equipped_item.item_data.item_type.ToString().Equals("Tool");
+            bool holdTool = InvController.equipped_item.item_data.item_type.ToString().Equals("Gun") || InvController.equipped_item.item_data.item_type.ToString().Equals("Tool") || InvController.equipped_item.item_data.item_type.ToString().Equals("Misc");
             if (holdTool)
             {
                 animator.SetBool("HoldingTool", true);
