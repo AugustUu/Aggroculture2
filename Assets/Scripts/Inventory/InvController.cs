@@ -32,7 +32,7 @@ public class InvController : MonoBehaviour
     [SerializeField] ItemGrid origin_grid;
     Vector2Int origin_pos;
 
-    [SerializeField] List<ItemData> items;
+    [SerializeField] public List<ItemData> items;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
     [SerializeField] ItemGrid main_grid;
@@ -394,7 +394,7 @@ public class InvController : MonoBehaviour
                 HealthSystem.changeHealth(to_equip_item.item_data.food_heal_amount + heal_level);
                 Destroy(to_equip_item.gameObject);
             }
-            else if(to_equip_item.item_data.item_type == ItemType.Misc){
+            else if(to_equip_item.item_data.item_type == ItemType.Consumable){
                 selected_item_grid.PickUpItem(to_equip_item.grid_pos);
                 if(to_equip_item.item_data.name == items[(int)ItemList.wooden_claw].name){
                     InsertItemID(((int)ItemList.tomato_seeds) + UnityEngine.Random.Range(0, 3));

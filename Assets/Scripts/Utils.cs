@@ -36,7 +36,8 @@ public enum ItemList{
     glock,
     shotgun,
     smg,
-    lawnMower
+    lawnMower,
+    rat_tail
 }
 
 
