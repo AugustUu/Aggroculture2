@@ -46,7 +46,7 @@ public class MobSpawn : MonoBehaviour
         if(TimeCycle.minutes != minutes)
         {
             if(TimeCycle.hours >= 5 && TimeCycle.hours <= 19){
-                SpawnMob(true, 0.01 * TimeCycle.days);
+                SpawnMob(true, 0.05 * TimeCycle.days);
             }
             else{
                 SpawnMob(false, 0.2 * TimeCycle.days);
