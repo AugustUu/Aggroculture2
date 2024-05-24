@@ -45,7 +45,7 @@ public class HealthSystem : MonoBehaviour
 
         if (hp == 0)
         {
-            SceneManager.LoadScene("Main Menu",LoadSceneMode.Single);
+            //SceneManager.LoadScene("Main Menu",LoadSceneMode.Single);
         }
         
     }
